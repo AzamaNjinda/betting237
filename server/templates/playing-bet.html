@@ -66,70 +66,71 @@
 
                 <div class="tab-content" id="bet-tabContent">
                     <div class="tab-pane fade show active" id="bet-all" role="tabpanel" aria-labelledby="bet-all-tab">
-                        <div class="sports-menu scrollable-menu" data-aos-offset="0" data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in">
-                            <ul class="nav nav-pills" id="sports-tab-1" role="tablist">
+                        <div class="sports-menu scrollable-menu" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500" data-aos-easing="ease-in">
+                            <ul class="nav nav-pills" id="sports-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="sports-football-tab-1" data-bs-toggle="pill" data-bs-target="#sports-football-1" type="button" role="tab" aria-controls="sports-football-1" aria-selected="true">
+                                    <button class="nav-link active" id="sports-all-tab" data-bs-toggle="pill" data-bs-target="#sports-all" type="button" role="tab" aria-controls="sports-all" aria-selected="true">
                                         <span class="sport-icon">
-                                            <img src="assets/img/playing-bet/sports-icon/football.png" alt="">
+                                            <img src="{% static  'assets/img/preloader/preload-2.gif'  %}" alt="">
                                         </span>
-                                        <span class="sport-name">football</span>
+                                        <span class="sport-name">All leagues</span>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="sports-tennis-tab-1" data-bs-toggle="pill" data-bs-target="#sports-tennis-1" type="button" role="tab" aria-controls="sports-tennis-1" aria-selected="false">
+                                    <button class="nav-link" id="sports-football-tab" data-bs-toggle="pill" data-bs-target="#sports-football" type="button" role="tab" aria-controls="sports-football" aria-selected="false">
                                         <span class="sport-icon">
-                                            <img src="assets/img/playing-bet/sports-icon/tennis.png" alt="">
+                                            <img src="{% static 'assets/img/home/39.png' %}" alt="">
+                                            <img src="{{ league_logo1 }}" alt="">
                                         </span>
-                                        <span class="sport-name">Tennis</span>
+                                        <span class="sport-name">Premiere league</span>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="sports-basketball-tab-1" data-bs-toggle="pill" data-bs-target="#sports-basketball-1" type="button" role="tab" aria-controls="sports-basketball-1" aria-selected="false">
+                                    <button class="nav-link" id="sports-tennis-tab" data-bs-toggle="pill" data-bs-target="#sports-tennis" type="button" role="tab" aria-controls="sports-tennis" aria-selected="false">
                                         <span class="sport-icon">
-                                            <img src="assets/img/playing-bet/sports-icon/basketball.png" alt="">
+                                            <img src="{% static 'assets/img/home/140.png' %}" alt="">
                                         </span>
-                                        <span class="sport-name">basketball</span>
+                                        <span class="sport-name">La Liga</span>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="sports-hockey-tab-1" data-bs-toggle="pill" data-bs-target="#sports-hockey-1" type="button" role="tab" aria-controls="sports-hockey-1" aria-selected="false">
+                                    <button class="nav-link" id="sports-basketball-tab" data-bs-toggle="pill" data-bs-target="#sports-basketball" type="button" role="tab" aria-controls="sports-basketball" aria-selected="false">
                                         <span class="sport-icon">
-                                            <img src="assets/img/playing-bet/sports-icon/hockey.png" alt="">
+                                            <img src="{% static 'assets/img/home/78.png' %}" alt="">                                    
                                         </span>
-                                        <span class="sport-name">hockey</span>
+                                        <span class="sport-name">Bundesliga</span>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="sports-volleyball-tab-1" data-bs-toggle="pill" data-bs-target="#sports-volleyball-1" type="button" role="tab" aria-controls="sports-volleyball-1" aria-selected="false">
+                                    <button class="nav-link" id="sports-hockey-tab" data-bs-toggle="pill" data-bs-target="#sports-hockey" type="button" role="tab" aria-controls="sports-hockey" aria-selected="false">
                                         <span class="sport-icon">
-                                            <img src="assets/img/playing-bet/sports-icon/volleyball.png" alt="">
+                                            <img src="{% static 'assets/img/home/135.png' %}" alt="">                                    
                                         </span>
-                                        <span class="sport-name">volleyball</span>
+                                        <span class="sport-name">Serie A</span>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="sports-badminton-tab-1" data-bs-toggle="pill" data-bs-target="#sports-badminton-1" type="button" role="tab" aria-controls="sports-badminton-1" aria-selected="false">
+                                    <button class="nav-link" id="sports-volleyball-tab" data-bs-toggle="pill" data-bs-target="#sports-volleyball" type="button" role="tab" aria-controls="sports-volleyball" aria-selected="false">
                                         <span class="sport-icon">
-                                            <img src="assets/img/playing-bet/sports-icon/badminton.png" alt="">
+                                            <img src="{% static 'assets/img/home/61.png' %}" alt="">                                    
                                         </span>
-                                        <span class="sport-name">badminton</span>
+                                        <span class="sport-name">Ligue 1</span>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="sports-baseball-tab-1" data-bs-toggle="pill" data-bs-target="#sports-baseball-1" type="button" role="tab" aria-controls="sports-baseball-1" aria-selected="false">
+                                    <button class="nav-link" id="sports-badminton-tab" data-bs-toggle="pill" data-bs-target="#sports-badminton" type="button" role="tab" aria-controls="sports-badminton" aria-selected="false">
                                         <span class="sport-icon">
-                                            <img src="assets/img/playing-bet/sports-icon/baseball.png" alt="">
+                                            <img src="{% static 'assets/img/home/2.png' %}" alt="">                                    
                                         </span>
-                                        <span class="sport-name">baseball</span>
+                                        <span class="sport-name">Champions League</span>
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="sports-rugby-tab-1" data-bs-toggle="pill" data-bs-target="#sports-rugby-1" type="button" role="tab" aria-controls="sports-rugby-1" aria-selected="false">
+                                    <button class="nav-link" id="sports-baseball-tab" data-bs-toggle="pill" data-bs-target="#sports-baseball" type="button" role="tab" aria-controls="sports-baseball" aria-selected="false">
                                         <span class="sport-icon">
-                                            <img src="assets/img/playing-bet/sports-icon/rugby.png" alt="">
+                                            <img src="{% static 'assets/img/home/3.png' %}" alt="">                                    
                                         </span>
-                                        <span class="sport-name">rugby</span>
+                                        <span class="sport-name">Europa League</span>
                                     </button>
                                 </li>
                             </ul>
