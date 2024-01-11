@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from server.forms import UserRegisterForm, UserLoginForm, PaymentForm
+from server.forms import UserRegisterForm, UserLoginForm, PaymentForm, WithdrawalForm
 from django.http import HttpResponse
 from django.contrib.auth import (
     authenticate,
@@ -278,7 +278,52 @@ def deposit_view(request):
     return render(request, "dashboard/dashboard-deposit.html", context )
 
 def withdraw(request):
-    return render(request, "dashboard/dashboard-withdraw.html")
+    home = request.GET.get('server:home')
+    form = WithdrawalForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            user = request.user
+            phoneNumber = form.cleaned_data.get('phoneNumber')
+        # print(phoneNumber)
+            amount = form.cleaned_data.get('amount')
+            payment_method = form.cleaned_data.get('payment_method')
+            operation = PaymentOperation('aee1c21026333a7eb9712c18a83ad5217aab77e3', 'a52b21e9-640c-477f-ae3a-6b744273d868', 'a785efe3-85e7-4923-85c1-dbdd3eae4764')
+            response = operation.make_deposit({
+                'amount': amount,
+                'service': payment_method,
+                'payer': phoneNumber,
+                'date': datetime.now(),
+                'nonce': RandomGenerator.nonce(),
+                'trxID': '1'
+            })
+            if response.is_operation_success() is True:
+                user.account_balance = user.account_balance - amount
+                user.save()
+                return redirect("server:home")
+            else:
+                context = {
+                'message': "Payment Not Successful",
+                'form': form,
+            }
+            return render(request, "dashboard/dashboard-withdraw.html", context)
+
+            
+            if home:
+                return redirect("server:home")
+            return redirect("server:home")
+        else:
+            context = {
+                'message': form.errors,
+                'form': form,
+            }
+            return render(request, "dashboard/dashboard-withdraw.html", context)
+
+    
+    context = {
+        'form': form,
+    }
+
+    return render(request, "dashboard/dashboard-withdraw.html", context)
 
 def about(request):
     return render(request, "about.html")

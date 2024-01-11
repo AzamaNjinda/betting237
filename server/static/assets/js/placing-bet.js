@@ -631,7 +631,8 @@
             }
         }
         displayEmptySlip();
-
+        
+        // function to place bet    
         $('.successfull-card').hide();
         function displaySuccessBet() {   
             var All_BSCard = $('.single-bs-card.singleBS').not('.hidden').length;
@@ -722,11 +723,11 @@
             }
         }
 
-        var resultNumb = 1;
+        var resultNumb = 300;
         $('.inc-dec-bet').find('.result-num').text(resultNumb);
         $('.bet-quantity').find('.inc-dec-bet').find('.inc-btn').on('click', function(e){
             e.preventDefault();
-            resultNumb++;
+            resultNumb = resultNumb + 300;
             $('.inc-dec-bet').find('.result-num').text(resultNumb);
             ComboRatioTotalMultipling();
             comboStakeCounting();
@@ -769,21 +770,21 @@
 
         singleCardBtn.on('click', function(){
             $('.bet-slip-calculation').find('.total-est-return').text(tatalEstReturn.toFixed(2));
-            resultNumb = 1;
+            resultNumb = 300;
             comboBtnisOn = false;
             systemBTNisON = false;
             $('.bet-slip-calculation').find('.total-stake').text(totalStakeNum);
         });
         comboCardBtn.on('click', function(){
             $('.bet-slip-calculation').find('.total-est-return').text(onlyComboRatioTotal.toFixed(2));
-            resultNumb = 1;
+            resultNumb = 300;
             $('.inc-dec-bet').find('.result-num').text(resultNumb);
             comboBtnisOn = true;
             systemBTNisON = false;
             comboStakeCounting();
         });
         systemCardBtn.on('click', function(){
-            resultNumb = 1;
+            resultNumb = 300;
             $('.inc-dec-bet').find('.result-num').text(resultNumb);
             ComboRatioTotalMultipling();
             comboStakeCounting();
