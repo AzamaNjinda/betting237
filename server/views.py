@@ -17,6 +17,8 @@ from django.db.models import Q  # Import Q for complex queries
 from pymesomb.operations import PaymentOperation
 from pymesomb.utils import RandomGenerator
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+
 
 
 async def fetch_data(url, params):
@@ -206,7 +208,7 @@ def register_view(request):
         user.set_password(password)
         user.phone_number = phoneNumber
         user.save()
-        new_user = authenticate(phoneNumber=user.phone_number, password=password)
+        new_user = authenticate(phoneNumber=phoneNumber, password=password)
         login(request, new_user)
         if home:
             return redirect("server:home")
@@ -229,6 +231,7 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
+@login_required(login_url='/login/')
 def deposit_view(request):
     home = request.GET.get('server:home')
     form = PaymentForm(request.POST or None)
@@ -278,7 +281,9 @@ def deposit_view(request):
 
     return render(request, "dashboard/dashboard-deposit.html", context )
 
+@login_required(login_url='/login/')
 def withdraw(request):
+    bet_success = request.GET.get('server:payment_successful')
     home = request.GET.get('server:home')
     form = WithdrawalForm(request.POST or None)
     if request.method == 'POST':
@@ -300,7 +305,7 @@ def withdraw(request):
             if response.is_operation_success() is True:
                 user.account_balance = user.account_balance - amount
                 user.save()
-                return redirect("server:home")
+                return redirect("server:payment_successful")
             else:
                 context = {
                 'message': "Payment Not Successful",
@@ -340,6 +345,9 @@ def upcoming(request):
 
 def contact(request):
     return render(request, "contact.html")
+
+def payment_successful(request):
+    return render(request, "payment-successful.html")
 
 
 

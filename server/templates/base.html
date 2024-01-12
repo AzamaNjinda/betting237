@@ -414,13 +414,16 @@
                                             </li> {% endcomment %}
                                             {% if request.user.is_authenticated %}
                                             <li class="nav-item">
+                                                <a class="nav-link" href="#">Balance:{{ request.user.account_balance }}</a>
+                                            </li>
+                                            <li class="nav-item">
                                                 <a class="nav-link" href="{% url 'server:deposit' %}">Deposit</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{% url 'server:withdraw' %}">Withdrawal</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:register' %}">Sign Out</a>
+                                                <a class="nav-link" href="{% url 'server:logout' %}">Sign Out</a>
                                             </li>
                                             {% else %}
                                             <li class="nav-item">

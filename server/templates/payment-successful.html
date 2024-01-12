@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+        <!-- breadcrumb begin -->
+        <div class="prd-breadcrumb">
+            <div class="brd-shape">
+                <div class="brd-img brd-img-1" data-aos="fade-right" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in">
+                    <img src="{% static 'assets/img/breadcrumb/brd-img-1.png' %}" alt="">
+                </div>
+                <div class="brd-img brd-img-2" data-aos="fade-left" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in">
+                    <img src="{% static 'assets/img/breadcrumb/brd-img-2.png' %}" alt="">
+                </div>
+            </div>
+            <div class="container">
+                <div class="brd-content">
+                    <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in">
+                        <span class="sub-title">Payment Successfull</span>
+                    </div>    
+                    <h2 class="title" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">You can Return to Home, and start Betting...</h2>
+                    <div class="page-direction">
+                        <ul>
+                            <li>
+                                <span class="icon"><i class="fa-solid fa-house"></i></span>
+                                <span class="text">Home</span>
+                            </li>
+                            <li>
+                                <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
+                                <span class="text">Payment Successfull</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb end -->
+
+        <!-- error begin -->
+        <div class="error">
+            <div class="global-shape style-3">
+                <img src="{% static 'assets/img/shapes/shape-1.png' %}" alt="" data-aos="fade-left" data-aos-duration="500" data-aos-offset="200" data-aos-easing="ease-in" data-aos-delay="400">
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xxl-7 col-xl-8 col-lg-9 col-md-10">
+                        <div class="part-img" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
+                            <img src="{% static 'assets/img/error/error-image.png' %}" alt="">
+                        </div>
+                        <div class="part-text">
+                            <div class="section-title" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
+                                <h3 class="sub-title">Payment Successful</h3>
+                                <h2 class="title">The you for betting with
+                                    Us. Bet and Win</h2>
+                            </div>
+                            <p data-aos="fade-up" data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">Let’s get you back in home at <span class="back-time">00:00:05</span> or browse instead <img src="{% static  'assets/img/error/vector.png' %}" alt=""></p>
+                            <div class="error-page-menu" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'server:home' %}" class="single-menu">homepage</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'server:about' %}" class="single-menu">About Us</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'server:playing' %}" class="single-menu">All Bets</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'server:deposit' %}" class="single-menu">Deposit</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'server:contact' %}" class="single-menu">contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- error end -->
+{% endblock content %}
+       
