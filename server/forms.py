@@ -21,10 +21,10 @@ class UserLoginForm(forms.Form):
         phoneNumber = self.cleaned_data.get('phoneNumber')
         password = self.cleaned_data.get('password')
 
-        if username and password:
+        if phoneNumber and password:
             user = authenticate(phoneNumber=phoneNumber, password=password)
             if not user:
-                raise forms.ValidationError('This user does not exist')
+                raise forms.ValidationError('This user does not exist with this Phone Number')
             if not user.check_password(password):
                 raise forms.ValidationError('Incorrect password')
             if not user.is_active:

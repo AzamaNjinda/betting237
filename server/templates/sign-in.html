@@ -37,6 +37,9 @@
 
         <!-- sign-in begin -->
         <div class="sign-in">
+            <div style="color:red; text-align:center;"> {{ form.errors }} </div>
+            <br>
+            <br> 
             <div class="global-shape" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
                 <img src="{% static 'assets/img/shapes/shape-1.png' %}" alt="">
             </div>
@@ -46,7 +49,7 @@
                         <div class="poklotto-form">
                             <h3 class="title">Fill the form as well</h3>
                             <div class="part-form">
-                                <form>
+                                <form method="POST">
                                     {% csrf_token %}
                                     <div class="row">
                                         <div class="col-xl-12">
