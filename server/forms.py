@@ -13,7 +13,7 @@ User = get_user_model()
 
 
 class UserLoginForm(forms.Form):
-    phoneNumber = forms.CharField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: +1 000 00 0000'}))
+    phoneNumber = forms.CharField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: +237 000 00 0000'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={ 'placeholder':'Your password here'}))
     
 
@@ -24,7 +24,7 @@ class UserLoginForm(forms.Form):
         if phoneNumber and password:
             user = authenticate(phoneNumber=phoneNumber, password=password)
             if not user:
-                raise forms.ValidationError('This user does not exist with this Phone Number')
+                raise forms.ValidationError('The user with this Phone Number does not exist')
             if not user.check_password(password):
                 raise forms.ValidationError('Incorrect password')
             if not user.is_active:

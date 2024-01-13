@@ -39,9 +39,16 @@
         
          <!-- sign-up begin -->
          <div class="sign-up">
-            <div style="color:red; text-align:center;"> {{ form.errors }} </div>
+            <div style="color:red; text-align:center;"> 
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li>ERROR: {{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div> 
             <br>
-            <br> 
             <div class="global-shape style-3">
                 <img src="{% static 'assets/img/shapes/shape-1.png' %}" alt="" data-aos="fade-left" data-aos-duration="500" data-aos-offset="200" data-aos-easing="ease-in" data-aos-delay="400">
             </div>

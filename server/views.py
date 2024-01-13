@@ -7,6 +7,7 @@ from django.contrib.auth import (
     login,
     logout
 )
+from django.contrib import messages
 import requests
 import asyncio
 import aiohttp
@@ -122,21 +123,19 @@ def home(request):
 def login_view(request):
     next = request.GET.get('server:home')
     form = UserLoginForm(request.POST or None)
-    if form.is_valid():
-        phoneNumber = form.cleaned_data.get('phoneNumber')
-        password = form.cleaned_data.get('password')
-        user = authenticate(phone_number=phoneNumber, password=password)
-        login(request, user)
-        if next:
-            return redirect(next)
-        return redirect('server:home')
-    else:
-        print(form.errors)
-        context = {
-            'message': form.errors,
-            'form': form,
-        }
-        return render(request, "sign-in.html", context)
+    if request.method == 'POST':
+        if form.is_valid():
+            phoneNumber = form.cleaned_data.get('phoneNumber')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, phone_number=phoneNumber, password=password)
+            login(request, user)
+            if next:
+                return redirect(next)
+            return redirect('server:home')
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{error}")
 
     context = {
         'form': form,
@@ -201,26 +200,29 @@ def extract_fixture_details(response_fixture_details):
 def register_view(request):
     home = request.GET.get('server:home')
     form = UserRegisterForm(request.POST or None)
-    if form.is_valid():
-        user = form.save(commit=False)
-        password = form.cleaned_data.get('password')
-        phoneNumber = form.cleaned_data.get('phoneNumber')
-        user.set_password(password)
-        user.phone_number = phoneNumber
-        user.save()
-        new_user = authenticate(phoneNumber=phoneNumber, password=password)
-        login(request, new_user)
-        if home:
-            return redirect("server:home")
-        return redirect("server:home")
-    else:
-        print(form.errors)
-        context = {
-            'message': form.errors,
-            'form': form,
-        }
-        return render(request, "signup.html", context)
 
+    if request.method == 'POST':
+        if form.is_valid():
+            user = form.save(commit=False)
+            password = form.cleaned_data.get('password')
+            phoneNumber = form.cleaned_data.get('phoneNumber')
+            user.set_password(password)
+            user.phone_number = phoneNumber
+            user.save()
+
+            new_user = authenticate(request, phoneNumber=phoneNumber, password=password)
+            login(request, new_user)
+
+            if home:
+                return redirect("server:home")
+            else:
+                return redirect("server:home")
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{error}")
+
+    # If the form is not valid or it's a GET request, render the registration form.
     context = {
         'form': form,
     }

@@ -37,9 +37,15 @@
 
         <!-- sign-in begin -->
         <div class="sign-in">
-            <div style="color:red; text-align:center;"> {{ form.errors }} </div>
-            <br>
-            <br> 
+            <div style="color:red; text-align:center;"> 
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li>ERROR: {{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>  
             <div class="global-shape" data-aos="fade-left" data-aos-duration="700" data-aos-delay="200">
                 <img src="{% static 'assets/img/shapes/shape-1.png' %}" alt="">
             </div>
