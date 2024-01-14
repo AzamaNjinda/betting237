@@ -1,0 +1,284 @@
+{% extends "dashboard-base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+        <!-- dashboard menu begin -->
+        <div class="container">
+            <div class="d-xl-block d-none">
+                <div class="db-menu">
+                    <ul class="nav nav-pills">
+                        {% comment %} <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="index.html">
+                                <i class="fa-duotone fa-gauge fa-lg"></i>overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard-bet-history.html">
+                                <i class="fa-duotone fa-dice fa-lg"></i>bet history</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard-transaction-history.html">
+                                <i class="fa-duotone fa-arrow-right-arrow-left fa-lg" style="font-size: 20px;"></i>
+                                transaction <span class="d-xxl-inline d-xl-none">history</span></a>
+                        </li>
+                         {% endcomment %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'server:deposit' %}">
+                                <i class="fa-duotone fa-sack-dollar fa-lg"></i>
+                                deposit</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'server:withdraw' %}">
+                                <i class="fa-duotone fa-upload fa-lg"></i>withdraw <span class="d-xxl-inline d-xl-none">funds</span></a>
+                        </li>
+                        
+                        {% comment %} <li class="nav-item">
+                            <a class="nav-link" href="dashboard-referral.html">
+                                <i class="fa-duotone fa-users fa-lg" style="font-size: 18px;"></i>referral</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard-settings.html"><i class="fa-duotone fa-gear fa-lg" style="--fa-primary-opacity: 0.4; --fa-secondary-opacity: 1;"></i>
+                                settings</a>
+                        </li> {% endcomment %}
+                    </ul>
+                </div>
+            </div>
+            <div class="d-xl-none d-block">
+                <div class="db-offset-menu-control">
+                    <span class="text">dashboard menu</span>
+                    <button class="btn-for-bs-offset" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" id="offcanvasExampleLabel">
+                        <i class="fa-regular fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- dashboard menu end -->
+        
+        <!-- dashboard-statics begin  -->
+        <div class="dashboard-statics">
+            <div class="container">
+                <div class="row g-lg-4 g-2">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="{% static 'assets-2/img/db-statics/image-1.png' %}" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">Main balance</span>
+                                <span class="descr">FCFA {{ request.user.account_balance }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {% comment %} <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-2.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">total earning</span>
+                                <span class="descr">$362.28 </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-3.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">deposit total</span>
+                                <span class="descr">$178.65 </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-4.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">total payout</span>
+                                <span class="descr">$658.14 </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-5.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">pending amount</span>
+                                <span class="descr">$571.35  </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-6.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">referral earning</span>
+                                <span class="descr">$75.20 </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-7.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">avr. odds</span>
+                                <span class="descr">322.02</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-8.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">bet winning %</span>
+                                <span class="descr">65.51%</span>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        <!-- dashboard-statics end  -->
+
+        <!-- db-elements begin -->
+        <div class="db-elements">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="single-db-element">
+                            <h4 class="title">
+                                <span class="icon wallet">
+                                    <img src="assets/img/icon/wallet-deposit.png" alt="">
+                                </span>
+                                <span class="text">withdraw your money</span>
+                            </h4>
+                            <div class="withdraw-money">
+                                <div class="row g-0">
+                                    <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7">
+                                        <div class="part-form">
+                                            <form method="POST">
+                                                {% csrf_token %}
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                                        <label for="first_name" class="form-label"><span>Enter amount</span></label>
+                                                        {% comment %} <input type="text" id="first_name" placeholder="ex: 5042.00"> {% endcomment %}
+                                                        {{ form.amount }}
+                                                    </div>
+                                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                                        <label for="first_name" class="form-label"><span>Enter Phone Number</span></label>
+                                                        {% comment %} <input type="text" id="first_name" placeholder="ex: 5042.00"> {% endcomment %}
+                                                        {{ form.phoneNumber }}
+                                                    </div>
+                                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                                        <label class="form-label"><span>select your payment wallet</span></label>
+                                                        <div class="dropdown select-list wallet-select">
+                                                            {{ form.payment_method }}
+                                                            {% comment %} <button class="dropdown-toggle" type="button" id="wallet-select" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                Bitcoin (BTC)
+                                                            </button>
+                                                            <ul class="dropdown-menu" aria-labelledby="wallet-select">
+                                                                <li><a class="dropdown-item active" href="#">Bitcoin (BTC)</a></li>
+                                                                <li><a class="dropdown-item" href="#">Ethereum (ETH) </a></li>
+                                                                <li><a class="dropdown-item" href="#">Litecoin (LTC)</a></li>
+                                                                <li><a class="dropdown-item" href="#">Local (USD)</a></li>
+                                                            </ul> {% endcomment %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="prd-btn-1">
+                                                    withdraw <i class="fa-duotone fa-arrow-right"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5">
+                                        <div class="all-balance">
+                                            <div class="single-balance">
+                                                <div class="part-currency">
+                                                    <div class="icon">
+                                                        <img src="assets/img/currency/cur-1.png" alt="">
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="descr">currency name:</span>
+                                                        <span class="name">FCFA </span>
+                                                    </div>
+                                                </div>
+                                                <div class="part-balance">
+                                                    <div class="single-info">
+                                                        <span class="descr">net balance :</span>
+                                                        <span class="name">{{ request.user.account_balance }}</span>
+                                                    </div>
+                                                    <div class="single-info">
+                                                        <span class="descr">of withdrawable :</span>
+                                                        <span class="name">{{ request.user.account_balance }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% comment %} <div class="col-xl-5 col-lg-5">
+                        <div class="single-db-element">
+                            <h4 class="title">
+                                <span class="icon wallet">
+                                    <img src="assets/img/icon/wallet-insert.png" alt="">
+                                </span>
+                                <span class="text">insert a new  wallet</span>
+                            </h4>
+                            <div class="part-form">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-6">
+                                            <label for="holder_first_name" class="form-label"><span>account holder name</span></label>
+                                            <input type="text" id="holder_first_name" placeholder="ex: Haden Rees">
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-6">
+                                            <label for="last_name" class="form-label"><span>Card number</span></label>
+                                            <input type="text" id="last_name" placeholder="ex: 0000 0000 0000 0000">
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-6">
+                                            <label for="expiry_date" class="form-label"><span>expiry date</span></label>
+                                            <input type="text" id="expiry_date" placeholder="ex: 02/26">
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-6">
+                                            <label for="phone_number" class="form-label"><span>CVV</span></label>
+                                            <input type="text" id="phone_number" placeholder="ex: 210">
+                                        </div>
+                                    </div>
+                                    <button class="prd-btn-1">
+                                        Add wallet <i class="fa-duotone fa-arrow-right"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        <!-- db-elements end -->
+
+{% endblock content %}

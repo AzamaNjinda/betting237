@@ -272,21 +272,21 @@ def deposit_view(request):
                     'message': "Payment Not Successful",
                     'form': form,
                 }
-            return render(request, "dashboard/dashboard-deposit.html", context)
+            return render(request, "dashboard-deposit.html", context)
 
         else:
             context = {
                 'message': form.errors,
                 'form': form,
             }
-            return render(request, "dashboard/dashboard-deposit.html", context)
+            return render(request, "dashboard-deposit.html", context)
 
     
     context = {
         'form': form,
     }
 
-    return render(request, "dashboard/dashboard-deposit.html", context )
+    return render(request, "dashboard-deposit.html", context )
 
 @login_required(login_url='/login/')
 def withdraw(request):
@@ -318,21 +318,21 @@ def withdraw(request):
                 'message': "Payment Not Successful",
                 'form': form,
             }
-            return render(request, "dashboard/dashboard-withdraw.html", context)
+            return render(request, "dashboard-withdraw.html", context)
 
         else:
             context = {
                 'message': form.errors,
                 'form': form,
             }
-            return render(request, "dashboard/dashboard-withdraw.html", context)
+            return render(request, "dashboard-withdraw.html", context)
 
     
     context = {
         'form': form,
     }
 
-    return render(request, "dashboard/dashboard-withdraw.html", context)
+    return render(request, "dashboard-withdraw.html", context)
 
 def about(request):
     return render(request, "about.html")
