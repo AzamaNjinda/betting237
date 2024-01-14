@@ -127,7 +127,7 @@ def login_view(request):
         if form.is_valid():
             phoneNumber = form.cleaned_data.get('phoneNumber')
             password = form.cleaned_data.get('password')
-            user = authenticate(request, phone_number=phoneNumber, password=password)
+            user = authenticate(request, username=phoneNumber, password=password)
             login(request, user)
             if next:
                 return redirect(next)
@@ -208,9 +208,10 @@ def register_view(request):
             phoneNumber = form.cleaned_data.get('phoneNumber')
             user.set_password(password)
             user.phone_number = phoneNumber
+            user.username = phoneNumber
             user.save()
 
-            new_user = authenticate(request, phoneNumber=phoneNumber, password=password)
+            new_user = authenticate(request, username=phoneNumber, password=password)
             login(request, new_user)
 
             if home:

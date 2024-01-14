@@ -40,8 +40,7 @@ class UserRegisterForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'username',
-            'phoneNumber',
+            'phone_number',
             'password',
             'cpassword'
         ]
