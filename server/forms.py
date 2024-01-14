@@ -22,13 +22,13 @@ class UserLoginForm(forms.Form):
         password = self.cleaned_data.get('password')
 
         if phoneNumber and password:
-            user = authenticate(phoneNumber=phoneNumber, password=password)
+            user = authenticate(request, username=phoneNumber, password=password)
             if not user:
                 raise forms.ValidationError('The user with this Phone Number does not exist')
             if not user.check_password(password):
                 raise forms.ValidationError('Incorrect password')
             if not user.is_active:
-                raise forms.ValidationError('This user is not active')
+                raise forms.ValidationError('This user is not active or Account is Disactivated ')
         return super(UserLoginForm, self).clean(*args, **kwargs)
 
 
