@@ -18,6 +18,7 @@ class UserLoginForm(forms.Form):
     
 
     def clean(self, *args, **kwargs):
+        cleaned_data = super(UserLoginForm, self).clean(*args, **kwargs)
         phoneNumber = self.cleaned_data.get('phoneNumber')
         password = self.cleaned_data.get('password')
 
@@ -29,7 +30,7 @@ class UserLoginForm(forms.Form):
                 raise forms.ValidationError('Incorrect password')
             if not user.is_active:
                 raise forms.ValidationError('This user is not active or Account is Disactivated ')
-        return super(UserLoginForm, self).clean(*args, **kwargs)
+        return cleaned_data
 
 
 class UserRegisterForm(forms.ModelForm):
