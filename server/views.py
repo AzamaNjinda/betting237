@@ -300,26 +300,39 @@ def withdraw(request):
         # print(phoneNumber)
             amount = form.cleaned_data.get('amount')
             payment_method = form.cleaned_data.get('payment_method')
-            operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
-            response = operation.make_deposit({
-                'amount': amount,
-                'service': payment_method,
-                'payer': phoneNumber,
-                'date': datetime.now(),
-                'nonce': RandomGenerator.nonce(),
-                'trxID': trxID
-            })
-            if response.is_operation_success() is True:
-                user.account_balance = user.account_balance - amount
-                user.save()
-                return redirect("server:payment_successful")
-            else:
+            if user.account_balance < amount:
                 context = {
-                'message': "Payment Not Successful",
-                'form': form,
-            }
-            return render(request, "dashboard-withdraw.html", context)
+                    'message': "You do Not have Enough Funds to Withdraw",
+                    'form': form,
+                }
+                return render(request, "dashboard-withdraw.html", context)
 
+            operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
+            try:
+                response = operation.make_deposit({
+                    'amount': amount,
+                    'service': payment_method,
+                    'receiver': phoneNumber,
+                    'date': datetime.now(),
+                    'nonce': RandomGenerator.nonce(),
+                    'trxID': trxID
+                })
+                if response.is_operation_success() is True:
+                    user.account_balance = user.account_balance - amount
+                    user.save()
+                    return redirect("server:home")
+                else:
+                    context = {
+                    'message': "Withdrawal Not Successful",
+                    'form': form,
+                }
+                return render(request, "dashboard-withdraw.html", context)
+            except Exception as e:
+                print(f"MeSomb API error: {e}")
+                context = {
+                    'message': "Withdrawal Not Successful",
+                    'form': form,
+                }
         else:
             context = {
                 'message': form.errors,
