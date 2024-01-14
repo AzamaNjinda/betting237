@@ -22,7 +22,7 @@ STATUS_CHOICES = (
 # Create your models here.
 class User(AbstractUser):
     phone_number= models.CharField(max_length=50, blank=True, null=True)
-    account_balance = models.IntegerField(blank=True, null=True)
+    account_balance = models.IntegerField(default=0, blank=True, null=True)
 
     def __str__(self):
         return self.username

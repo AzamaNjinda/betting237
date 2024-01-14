@@ -8,7 +8,7 @@ from .models import User,Fixture
 class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
-            'fields': ('first_name', 'last_name', 'email', 'username',  
+            'fields': ('first_name', 'last_name', 'email', 'username','phone_number',  
              'password1', 'password2', 'phone_number')
         }),
         ('Permissions', {
@@ -18,14 +18,14 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {
             'fields': ('first_name', 'last_name','email', 'username', 
-             'password', 'phone_number')
+             'password', 'phone_number','account_balance')
         }),
         ('Permissions', {
             'fields': ('is_superuser', 'is_staff','is_active', "user_permissions")
         })
     )
     list_display = ['username','phone_number','first_name', 'last_name','email', 'is_active']
-    search_fields = ('email', 'username', 'first_name', 'last_name')
+    search_fields = ('email', 'username', 'first_name', 'last_name','phone_number')
     ordering = ('phone_number',)
 
 class FixtureAdmin(admin.ModelAdmin):

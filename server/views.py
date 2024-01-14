@@ -11,6 +11,7 @@ from django.contrib import messages
 import requests
 import asyncio
 import aiohttp
+import uuid
 from . models import Fixture
 from django.core.cache import cache
 from asgiref.sync import sync_to_async
@@ -245,31 +246,34 @@ def deposit_view(request):
         # print(phoneNumber)
             amount = form.cleaned_data.get('amount')
             payment_method = form.cleaned_data.get('payment_method')
+            trxID = str(uuid.uuid4())
             operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
-
-            response = operation.make_collect({
-                'amount': amount,
-                'service': payment_method,
-                'payer': phoneNumber,
-                'date': datetime.now(),
-                'nonce': RandomGenerator.nonce(),
-                'trxID': '1'
-            })
-            if response.is_operation_success() is True:
-                user.account_balance = user.account_balance + amount
-                user.save()
-                return redirect("server:home")
-            else:
+            try:
+                response = operation.make_collect({
+                    'amount': amount,
+                    'service': payment_method,
+                    'payer': phoneNumber,
+                    'date': datetime.now(),
+                    'nonce': RandomGenerator.nonce(),
+                    'trxID': trxID
+                })
+                if response.is_operation_success() is True:
+                    user.account_balance = user.account_balance + amount
+                    user.save()
+                    return redirect("server:payment_successful")
+                else:
+                    context = {
+                    'message': "ERROR : Payment Not Successful",
+                    'form': form,
+                }
+            except Exception as e:
+                print(f"MeSomb API error: {e}")
                 context = {
-                'message': "Payment Not Successful",
-                'form': form,
-            }
+                    'message': "Payment Not Successful",
+                    'form': form,
+                }
             return render(request, "dashboard/dashboard-deposit.html", context)
 
-            
-            if home:
-                return redirect("server:home")
-            return redirect("server:home")
         else:
             context = {
                 'message': form.errors,
@@ -287,12 +291,12 @@ def deposit_view(request):
 @login_required(login_url='/login/')
 def withdraw(request):
     bet_success = request.GET.get('server:payment_successful')
-    home = request.GET.get('server:home')
     form = WithdrawalForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             user = request.user
             phoneNumber = form.cleaned_data.get('phoneNumber')
+            trxID = str(uuid.uuid4())
         # print(phoneNumber)
             amount = form.cleaned_data.get('amount')
             payment_method = form.cleaned_data.get('payment_method')
@@ -303,7 +307,7 @@ def withdraw(request):
                 'payer': phoneNumber,
                 'date': datetime.now(),
                 'nonce': RandomGenerator.nonce(),
-                'trxID': '1'
+                'trxID': trxID
             })
             if response.is_operation_success() is True:
                 user.account_balance = user.account_balance - amount
@@ -316,10 +320,6 @@ def withdraw(request):
             }
             return render(request, "dashboard/dashboard-withdraw.html", context)
 
-            
-            if home:
-                return redirect("server:home")
-            return redirect("server:home")
         else:
             context = {
                 'message': form.errors,
