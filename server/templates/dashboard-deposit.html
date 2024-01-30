@@ -14,15 +14,14 @@
                                 <i class="fa-duotone fa-gauge fa-lg"></i>overview</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="dashboard-bet-history.html">
-                                <i class="fa-duotone fa-dice fa-lg"></i>bet history</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="dashboard-transaction-history.html">
                                 <i class="fa-duotone fa-arrow-right-arrow-left fa-lg" style="font-size: 20px;"></i>
                                 transaction <span class="d-xxl-inline d-xl-none">history</span></a>
                         </li> {% endcomment %}
-                        
+                        <li class="nav-item">
+                            <a class="nav-link " href="{% url 'server:bet-history' %}">
+                                <i class="fa-duotone fa-dice fa-lg"></i>bet history</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{% url 'server:deposit' %}">
                                 <i class="fa-duotone fa-sack-dollar fa-lg"></i>

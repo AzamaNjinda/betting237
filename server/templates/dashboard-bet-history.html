@@ -1,0 +1,555 @@
+{% extends "dashboard-base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+        <!-- dashboard menu begin -->
+        <div class="container">
+            <div class="d-xl-block d-none">
+                <div class="db-menu">
+                    <ul class="nav nav-pills">
+                        {% comment %} <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="index.html">
+                                <i class="fa-duotone fa-gauge fa-lg"></i>overview</a>
+                        </li> {% endcomment %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'server:bet-history' %}">
+                                <i class="fa-duotone fa-dice fa-lg"></i>bet history</a>
+                        </li>
+                        {% comment %} <li class="nav-item">
+                            <a class="nav-link" href="dashboard-transaction-history.html">
+                                <i class="fa-duotone fa-arrow-right-arrow-left fa-lg" style="font-size: 20px;"></i>
+                                transaction <span class="d-xxl-inline d-xl-none">history</span></a>
+                        </li> {% endcomment %}
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'server:deposit' %}">
+                                <i class="fa-duotone fa-sack-dollar fa-lg"></i>
+                                deposit</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'server:withdraw' %}">
+                                <i class="fa-duotone fa-upload fa-lg"></i>withdraw <span class="d-xxl-inline d-xl-none">funds</span></a>
+                        </li>
+                        
+                        {% comment %} <li class="nav-item">
+                            <a class="nav-link" href="dashboard-referral.html">
+                                <i class="fa-duotone fa-users fa-lg" style="font-size: 18px;"></i>referral</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard-settings.html"><i class="fa-duotone fa-gear fa-lg" style="--fa-primary-opacity: 0.4; --fa-secondary-opacity: 1;"></i>
+                                settings</a>
+                        </li> {% endcomment %}
+                    </ul>
+                </div>
+            </div>
+            <div class="d-xl-none d-block">
+                <div class="db-offset-menu-control">
+                    <span class="text">dashboard menu</span>
+                    <button class="btn-for-bs-offset" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" id="offcanvasExampleLabel">
+                        <i class="fa-regular fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- dashboard menu end -->
+
+        <!-- dashboard-statics begin  -->
+        <div class="dashboard-statics">
+            <div class="container">
+                <div class="row g-lg-4 g-2">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="{% static 'assets-2/img/db-statics/image-1.png' %}" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">Main balance</span>
+                                <span class="descr">FCFA {{ request.user.account_balance }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {% comment %} <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-2.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">total earning</span>
+                                <span class="descr">$362.28 </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-3.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">deposit total</span>
+                                <span class="descr">$178.65 </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-4.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">total payout</span>
+                                <span class="descr">$658.14 </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-5.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">pending amount</span>
+                                <span class="descr">$571.35  </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-6.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">referral earning</span>
+                                <span class="descr">$75.20 </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-7.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">avr. odds</span>
+                                <span class="descr">322.02</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="single-statics">
+                            <div class="part-icon">
+                                <img src="assets/img/db-statics/image-8.png" alt="">
+                            </div>
+                            <div class="part-text">
+                                <span class="text">bet winning %</span>
+                                <span class="descr">65.51%</span>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        <!-- dashboard-statics end  -->     
+
+        <!-- db-elements begin -->
+        <div class="db-elements">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="single-db-element">
+                            <h4 class="title">
+                                <span class="icon"><i class="fa-duotone fa-clipboard-list"></i></span>
+                                <span class="text">pending betslip (4)</span>
+                            </h4>
+                            <div class="pending-slips-scrollable">
+                                <div class="pending-slips">
+                                    <div class="single-bs-card singleBS disabled" data-match-id="1689493708887">
+                                        <span class="locked">
+                                            <i class="fa-regular fa-lock"></i> Closed
+                                        </span>
+                                        <div class="bs-card-header">
+                                            <span class="tournament-name">M8887. UEFA Champions League</span>
+                                            <div class="slct-place">
+                                                <span class="team-name">Dinamo Zagreb</span>
+                                                <span class="attherate">@</span>
+                                                <span class="bet-ratio">0.25</span>
+                                            </div>
+                                            <button class="slip-dlt">
+                                                <i class="fa-light fa-trash-can"></i>
+                                            </button>
+                                        </div>
+                                        <div class="slct-match">
+                                            <span class="sports-category-icon">
+                                                <img src="assets/img/playing-bet/bet-slip/sports-icon.png" alt="">
+                                            </span>
+                                            <span class="team-1">Dinamo Zagreb</span>
+                                            vs
+                                            <span class="team-2">Bodo-Glimt</span>
+                                        </div>
+                                        <div class="bs-card-footer">
+                                            <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stake  :<span class="stake-number">1<span></span></span></button>
+                                            <div class="return-amount">
+                                                <span class="text">Return : </span>
+                                                <span class="number">0.25</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="single-bs-card singleBS" data-match-id="1689493708888">
+                                        <div class="bs-card-header">
+                                            <span class="tournament-name">M8888. UEFA Champions League</span>
+                                            <div class="slct-place"><span class="live-icon"><img src="assets/img/playing-bet/bet-slip/live-icon.png" alt=""></span>
+                                                <span class="team-name">Maccabi Haifa</span>
+                                                <span class="attherate">@</span>
+                                                <span class="bet-ratio" style="-webkit-text-fill-color: rgb(77, 142, 83); font-weight: 500;">1.00</span>
+                                            </div>
+                                            <button class="slip-dlt">
+                                                <i class="fa-light fa-trash-can"></i>
+                                            </button>
+                                        </div>
+                                        <div class="slct-match">
+                                            <span class="sports-category-icon">
+                                                <img src="assets/img/playing-bet/bet-slip/sports-icon.png" alt="">
+                                            </span>
+                                            <span class="team-1">Maccabi Haifa</span>
+                                            vs
+                                            <span class="team-2">Red Star Belgrade</span>
+                                        </div>
+                                        <div class="bs-card-footer">
+                                            <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stake  :<span class="stake-number">1<span></span></span></button>
+                                            <div class="return-amount">
+                                                <span class="text">Return : </span>
+                                                <span class="number">1.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="single-bs-card singleBS" data-match-id="1689493708887">
+                                        <div class="bs-card-header">
+                                            <span class="tournament-name">M8887. UEFA Champions League</span>
+                                            <div class="slct-place">
+                                                <span class="team-name">Dinamo Zagreb</span>
+                                                <span class="attherate">@</span>
+                                                <span class="bet-ratio">0.25</span>
+                                            </div>
+                                            <button class="slip-dlt">
+                                                <i class="fa-light fa-trash-can"></i>
+                                            </button>
+                                        </div>
+                                        <div class="slct-match">
+                                            <span class="sports-category-icon">
+                                                <img src="assets/img/playing-bet/bet-slip/sports-icon.png" alt="">
+                                            </span>
+                                            <span class="team-1">Dinamo Zagreb</span>
+                                            vs
+                                            <span class="team-2">Bodo-Glimt</span>
+                                        </div>
+                                        <div class="bs-card-footer">
+                                            <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stake  :<span class="stake-number">1<span></span></span></button>
+                                            <div class="return-amount">
+                                                <span class="text">Return : </span>
+                                                <span class="number">0.25</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="single-bs-card singleBS" data-match-id="1689493708889">
+                                        <div class="bs-card-header">
+                                            <span class="tournament-name">M8889. UEFA Champions League</span>
+                                            <div class="slct-place"><span class="live-icon"><img src="assets/img/playing-bet/bet-slip/live-icon.png" alt=""></span>
+                                                <span class="team-name">draw</span>
+                                                <span class="attherate">@</span>
+                                                <span class="bet-ratio" style="-webkit-text-fill-color: rgb(239, 102, 101); font-weight: 500;">2.44</span>
+                                            </div>
+                                            <button class="slip-dlt">
+                                                <i class="fa-light fa-trash-can"></i>
+                                            </button>
+                                        </div>
+                                        <div class="slct-match">
+                                            <span class="sports-category-icon">
+                                                <img src="assets/img/playing-bet/bet-slip/sports-icon.png" alt="">
+                                            </span>
+                                            <span class="team-1">Maccabi Haifa</span>
+                                            vs
+                                            <span class="team-2">Red Star Belgrade</span>
+                                        </div>
+                                        <div class="bs-card-footer">
+                                            <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stake  :<span class="stake-number">6<span></span></span></button>
+                                            <div class="return-amount">
+                                                <span class="text">Return : </span>
+                                                <span class="number">14.64</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="single-bs-card singleBS" data-match-id="1689493708889">
+                                        <div class="bs-card-header">
+                                            <span class="tournament-name">M8889. UEFA Champions League</span>
+                                            <div class="slct-place"><span class="live-icon"><img src="assets/img/playing-bet/bet-slip/live-icon.png" alt=""></span>
+                                                <span class="team-name">draw</span>
+                                                <span class="attherate">@</span>
+                                                <span class="bet-ratio" style="-webkit-text-fill-color: rgb(239, 102, 101); font-weight: 500;">2.44</span>
+                                            </div>
+                                            <button class="slip-dlt">
+                                                <i class="fa-light fa-trash-can"></i>
+                                            </button>
+                                        </div>
+                                        <div class="slct-match">
+                                            <span class="sports-category-icon">
+                                                <img src="assets/img/playing-bet/bet-slip/sports-icon.png" alt="">
+                                            </span>
+                                            <span class="team-1">Maccabi Haifa</span>
+                                            vs
+                                            <span class="team-2">Red Star Belgrade</span>
+                                        </div>
+                                        <div class="bs-card-footer">
+                                            <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stake  :<span class="stake-number">6<span></span></span></button>
+                                            <div class="return-amount">
+                                                <span class="text">Return : </span>
+                                                <span class="number">14.64</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="single-db-element">
+                            <h4 class="title">
+                                <span class="icon"><i class="fa-duotone fa-files"></i></span>
+                                <span class="text">my recent bets</span>
+                            </h4>
+                            <div class="sports-body">
+                                <div class="playing-sports-all no-tabs-here">
+                                    <div class="single-tournament">
+                                        <div class="tournament-title"></div>
+                                        <div class="all-tournament-match">
+                                            {% for bet_slip in bet_slips %}
+                                            {% for bet_history in bet_histories %}
+                                            {% for fixture in fixtures %}
+                                            <div class="single-t-match">
+                                                <span class="in-play-tag">in-play</span>
+                                                <div class="event">
+                                                    <div class="part-team">
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-5.png" alt="" class="team-icon">
+                                                            <span class="team-name">{{ fixture.home }}</span>
+                                                        </div>
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-6.png" alt="" class="team-icon">
+                                                            <span class="team-name">{{ fixture.away }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <span class="event-name">{{ fixture.date }} {{ fixture.league}}</span>
+                                                </div>
+                                                <div class="b-slip">
+                                                    <span class="slip-number">{{ bet_slip.slipID }}</span>
+                                                </div>
+                                                <div class="date-n-time">
+                                                    <span class="date">{{ fixture.date }}</span>
+                                                    <span class="time">{{ fixture.time }}</span>
+                                                </div>
+                                                <div class="bet-type">
+                                                    <span class="text">Single bet</span>
+                                                </div>
+                                                <div class="bet-amount">
+                                                    <span class="text">{{ bet_slip.total_stake_amount }}</span>
+                                                </div>
+                                                <div class="b-odd">
+                                                    <span class="text">{{ bet_history.predicted_outcome }}</span>
+                                                </div>
+                                                <div class="status">
+                                                    <span class="lost">L</span>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                            {% endfor %}
+                                            {% endfor %}
+                                            {% comment %} <div class="single-t-match">
+                                                <div class="event">
+                                                    <div class="part-team">
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-5.png" alt="" class="team-icon">
+                                                            <span class="team-name">S.S.La</span>
+                                                        </div>
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-6.png" alt="" class="team-icon">
+                                                            <span class="team-name">BAY</span>
+                                                        </div>
+                                                    </div>
+                                                    <span class="event-name">2020–21 UEFA Champions League</span>
+                                                </div>
+                                                <div class="b-slip">
+                                                    <span class="slip-number">BS3432589941</span>
+                                                </div>
+                                                <div class="date-n-time">
+                                                    <span class="date">1 dec 2022</span>
+                                                    <span class="time">5:15 am</span>
+                                                </div>
+                                                <div class="bet-type">
+                                                    <span class="text">Single bet</span>
+                                                </div>
+                                                <div class="bet-amount">
+                                                    <span class="text">$350.22</span>
+                                                </div>
+                                                <div class="b-odd">
+                                                    <span class="text">7.20</span>
+                                                </div>
+                                                <div class="status">
+                                                    <span class="win">W</span>
+                                                </div>
+                                            </div>
+                                            <div class="single-t-match">
+                                                <div class="event">
+                                                    <div class="part-team">
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-5.png" alt="" class="team-icon">
+                                                            <span class="team-name">S.S.La</span>
+                                                        </div>
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-6.png" alt="" class="team-icon">
+                                                            <span class="team-name">BAY</span>
+                                                        </div>
+                                                    </div>
+                                                    <span class="event-name">2020–21 UEFA Champions League</span>
+                                                </div>
+                                                <div class="b-slip">
+                                                    <span class="slip-number">BS3432589941</span>
+                                                </div>
+                                                <div class="date-n-time">
+                                                    <span class="date">1 dec 2022</span>
+                                                    <span class="time">5:15 am</span>
+                                                </div>
+                                                <div class="bet-type">
+                                                    <span class="text">Single bet</span>
+                                                </div>
+                                                <div class="bet-amount">
+                                                    <span class="text">$350.22</span>
+                                                </div>
+                                                <div class="b-odd">
+                                                    <span class="text">7.20</span>
+                                                </div>
+                                                <div class="status">
+                                                    <span class="win">W</span>
+                                                </div>
+                                            </div>
+                                            <div class="single-t-match">
+                                                <div class="event">
+                                                    <div class="part-team">
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-5.png" alt="" class="team-icon">
+                                                            <span class="team-name">S.S.La</span>
+                                                        </div>
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-6.png" alt="" class="team-icon">
+                                                            <span class="team-name">BAY</span>
+                                                        </div>
+                                                    </div>
+                                                    <span class="event-name">2020–21 UEFA Champions League</span>
+                                                </div>
+                                                <div class="b-slip">
+                                                    <span class="slip-number">BS3432589941</span>
+                                                </div>
+                                                <div class="date-n-time">
+                                                    <span class="date">1 dec 2022</span>
+                                                    <span class="time">5:15 am</span>
+                                                </div>
+                                                <div class="bet-type">
+                                                    <span class="text">Single bet</span>
+                                                </div>
+                                                <div class="bet-amount">
+                                                    <span class="text">$350.22</span>
+                                                </div>
+                                                <div class="b-odd">
+                                                    <span class="text">7.20</span>
+                                                </div>
+                                                <div class="status">
+                                                    <span class="lost">L</span>
+                                                </div>
+                                            </div>
+                                            <div class="single-t-match">
+                                                <div class="event">
+                                                    <div class="part-team">
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-5.png" alt="" class="team-icon">
+                                                            <span class="team-name">S.S.La</span>
+                                                        </div>
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-6.png" alt="" class="team-icon">
+                                                            <span class="team-name">BAY</span>
+                                                        </div>
+                                                    </div>
+                                                    <span class="event-name">2020–21 UEFA Champions League</span>
+                                                </div>
+                                                <div class="b-slip">
+                                                    <span class="slip-number">BS3432589941</span>
+                                                </div>
+                                                <div class="date-n-time">
+                                                    <span class="date">1 dec 2022</span>
+                                                    <span class="time">5:15 am</span>
+                                                </div>
+                                                <div class="bet-type">
+                                                    <span class="text">Single bet</span>
+                                                </div>
+                                                <div class="bet-amount">
+                                                    <span class="text">$350.22</span>
+                                                </div>
+                                                <div class="b-odd">
+                                                    <span class="text">7.20</span>
+                                                </div>
+                                                <div class="status">
+                                                    <span class="lost">L</span>
+                                                </div>
+                                            </div>
+                                            <div class="single-t-match">
+                                                <div class="event">
+                                                    <div class="part-team">
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-5.png" alt="" class="team-icon">
+                                                            <span class="team-name">S.S.La</span>
+                                                        </div>
+                                                        <div class="s-team">
+                                                            <img src="assets/img/playing-bet/team-icon/team-6.png" alt="" class="team-icon">
+                                                            <span class="team-name">BAY</span>
+                                                        </div>
+                                                    </div>
+                                                    <span class="event-name">2020–21 UEFA Champions League</span>
+                                                </div>
+                                                <div class="b-slip">
+                                                    <span class="slip-number">BS3432589941</span>
+                                                </div>
+                                                <div class="date-n-time">
+                                                    <span class="date">1 dec 2022</span>
+                                                    <span class="time">5:15 am</span>
+                                                </div>
+                                                <div class="bet-type">
+                                                    <span class="text">Single bet</span>
+                                                </div>
+                                                <div class="bet-amount">
+                                                    <span class="text">$350.22</span>
+                                                </div>
+                                                <div class="b-odd">
+                                                    <span class="text">7.20</span>
+                                                </div>
+                                                <div class="status">
+                                                    <span class="lost">L</span>
+                                                </div>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- db-elements end -->
+{% endblock content %}    

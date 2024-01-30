@@ -8,6 +8,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Betting237 - Sports Prediction HTML Template</title>
+        
+        {% csrf_token %}
         <!-- favicon -->
         <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
         <!-- bootstrap -->
@@ -46,6 +48,12 @@
             </span>
         </div>
         <!-- preloader end -->
+
+        <!-- In your Django template -->
+        <div id="user-details" data-username="{{ request.user.username }}" data-account-balance="{{ request.user.account_balance }}" data-max-stake-amount="{{ max_stake_amount }}">
+            <!-- Other content here -->
+        </div>
+
 
         <!-- bet-slip begin -->
         <div class="bet-slip">
@@ -253,7 +261,7 @@
                                                 <span class="part-icon">
                                                     <i class="fa-regular fa-dollar"></i>
                                                 </span>
-                                                <span class="part-text">{{request.user.account_balance}}</span>
+                                                <span class="part-text account-balance">{{request.user.account_balance}}</span>
                                             </a>
                                         </div>
                                         {% else %}

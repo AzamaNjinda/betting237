@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from server.forms import UserRegisterForm, UserLoginForm, PaymentForm, WithdrawalForm
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.contrib.auth import (
     authenticate,
     get_user_model,
@@ -20,6 +20,7 @@ from pymesomb.operations import PaymentOperation
 from pymesomb.utils import RandomGenerator
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
+from . models import BetHistory, BetSlip, StakeAmount
 
 
 
@@ -44,7 +45,7 @@ def home(request):
     fixture_Ligue_1= Fixture.objects.filter(league="L1")
     fixture_UEFA_Champions_League = Fixture.objects.filter(league="UCL")
     fixture_UEFA_Europa_League = Fixture.objects.filter(league="UEL")
-    
+    max_stake_amount = StakeAmount.objects.first()
 
     # base_url = "https://api-football-v1.p.rapidapi.com/v3"
 
@@ -112,7 +113,8 @@ def home(request):
         'fixture_SerieA':fixture_SerieA,
         'fixture_Ligue_1':fixture_Ligue_1,
         'fixture_UEFA_Champions_League':fixture_UEFA_Champions_League,
-        'fixture_UEFA_Europa_League':fixture_UEFA_Europa_League 
+        'fixture_UEFA_Europa_League':fixture_UEFA_Europa_League,
+        'max_stake_amount': max_stake_amount.stake_amount_max, 
 
     }
 
@@ -347,6 +349,48 @@ def withdraw(request):
 
     return render(request, "dashboard-withdraw.html", context)
 
+@login_required(login_url='/login/')
+def place_bet(request):
+    user = request.user
+    if request.method == 'POST':
+        # Retrieve data from the POST request
+        slip_id = request.POST.get('slipID')
+        fixture_id = request.POST.get('fixture')
+        stake_amount = request.POST.get('stake_amount')
+        predicted_outcome = request.POST.get('predicted_outcome')
+        total_stake_amount = request.POST.get('total_stake_amount')
+        total_payout = request.POST.get('total_payout')
+
+        fixture = get_object_or_404(Fixture, id=fixture_id)
+
+        print("Hello" + total_stake_amount )
+        
+    
+        bet_slip_query = BetSlip.objects.filter(slipID=slip_id)
+        
+        if bet_slip_query.exists():
+            bet_slip = bet_slip_query.first()
+        else:
+            bet_slip = BetSlip.objects.create(slipID=slip_id, user=user, total_stake_amount=float(total_stake_amount), total_payout=float(total_payout))
+
+        bet_history = BetHistory.objects.create(fixture=fixture, stake_amount=float(stake_amount), predicted_outcome=predicted_outcome)
+        bet_slip.bet_histories.set([bet_history])
+                
+        user.account_balance  = user.account_balance - int(total_stake_amount)
+        
+        if user.account_balance < 0:
+            user.account_balance = 0
+
+        user.save()
+
+        
+        data = {'message': f'Hello from Django! You entered: { slip_id,fixture_id,stake_amount,predicted_outcome,total_stake_amount,total_payout}'}
+
+        return JsonResponse(data)
+    else:
+        # If the request is not a POST request, return an error response
+        return JsonResponse({'error': 'Invalid request method'})
+
 def about(request):
     return render(request, "about.html")
 
@@ -365,5 +409,26 @@ def contact(request):
 def payment_successful(request):
     return render(request, "payment-successful.html")
 
+def bet_history(request):
+    user = request.user
+    bet_slips = BetSlip.objects.filter(user=request.user)
+    for bet_slip in bet_slips:
+        bet_histories = bet_slip.bet_histories.select_related('fixture')
 
+    fixtures = [bet_history.fixture for bet_history in bet_histories]
+    
+    context = {
+        'bet_slips': bet_slips,
+        'bet_histories': bet_histories,
+        'fixtures' : fixtures,
+    }
+
+    return render(request, "dashboard-bet-history.html", context)
+
+def error(request):
+    context = {
+        'title': "Inadequate Balance",
+        'message': "Your Account Balance is not Sufficient to Place this Bet, Please Deposit into Account",
+        }
+    return render(request, "error.html", context)
 

@@ -16,6 +16,8 @@
         var bettotal;
         var matchID;
         var fixtureID;
+        //var user_balance;
+       // var league (TO do after)
         var updateplacedID;
         var for_upadte_stake;
         var modalOpenFromPage = true;
@@ -79,6 +81,7 @@
 
         // data taken from match sheets
         function dataTakenFromMatchSheet(dataMining) {
+            //user_balance = dataMining.find('.part-text').find('account-balance').text();
             betRatio = dataMining.find("[data-bet-ratio='data-bet-ratio']").text();
             teamName = dataMining.find("[data-team-name='data-team-name']").text();
             fixtureID = dataMining.parents('.single-t-match').find('.match-time').find('.fixture-id').text();
@@ -94,6 +97,7 @@
         function dataSetToModal() {
             $('.placing-bet-modal').find('.slct-team-name').text(teamName);
             $('.placing-bet-modal').find('.slct-bet-ratio').text(betRatio);
+            $('.placing-bet-modal').find('.tournament-name').find('.fixture-id').text(fixtureID);
             $('.placing-bet-modal').find('.selected-match .single-team').first().find('.team-name').text(teamOneName);
             $('.placing-bet-modal').find('.selected-match .single-team').last().find('.team-name').text(teamTwoName);
             $('.placing-bet-modal').find('.selected-match .single-team').first().find('.team-icon img').attr('src', teamOneLogo);
@@ -403,7 +407,12 @@
 
             var newBScard = `<div class="single-bs-card singleBS" data-match-id="${matchID}">
                     <div class="bs-card-header">
-                        <span class="tournament-name">${match_uniqie_number}.league</span>
+                        <span class="tournament-name">
+                        ${match_uniqie_number}
+                        <span class="fixture-id">${fixtureID}</span>
+                        .Football
+                        </span>
+                        
                         <div class="slct-place">
                             <span class="team-name">${teamName}</span>
                             <span class="attherate">@</span>
@@ -432,7 +441,11 @@
 
             var newBScombo = `<div class="single-bs-card card-combo" data-match-id="${matchID}">
                     <div class="bs-card-header">
-                        <span class="tournament-name">${match_uniqie_number}. UEFA Champions League</span>
+                        <span class="tournament-name">
+                        ${match_uniqie_number}
+                        <span class="fixture-id">${fixtureID}</span>
+                        .Football
+                        </span>
                         <div class="slct-place">
                             <span class="team-name">${teamName}</span>
                             <span class="attherate">@</span>
@@ -454,7 +467,11 @@
 
             var newBSsystem = `<div class="single-bs-card card-system" data-match-id="${matchID}">
                     <div class="bs-card-header">
-                        <span class="tournament-name">${match_uniqie_number}. UEFA Champions League</span>
+                        <span class="tournament-name">
+                        ${match_uniqie_number}
+                        <span class="fixture-id">${fixtureID}</span>
+                        .Football
+                        </span>
                         <div class="slct-place">
                             <span class="team-name">${teamName}</span>
                             <span class="attherate">@</span>
@@ -631,10 +648,122 @@
             }
         }
         displayEmptySlip();
+
+        // Generate a random UUID
+        
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+            .replace(/[xy]/g, function (c) {
+                const r = Math.random() * 16 | 0, 
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
         
         // function to place bet    
         $('.successfull-card').hide();
-        function displaySuccessBet() {   
+        function displaySuccessBet() {
+           // if(comboBtnisOn == true) {
+                var allComboCard = $('.all-bs-card').find('.single-bs-card.card-combo').not('.hidden');  
+                var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+                var stake_amount = $('.bet-slip-calculation').find('.total-stake').text();
+                const slipID =  uuidv4();
+                var user_balance = $("#user-details").data("account-balance");
+                var max_stake_amount = $("#user-details").data("max-stake-amount");
+                console.log(user_balance);
+                if (parseInt(stake_amount) > parseInt(user_balance)) {
+                    $.ajax({
+                        type: 'GET',
+                        url: 'error/',
+                        headers: {
+                            'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+                        },
+                        success: function (data) {
+                            // Handle the successful response
+                            console.log(data.message);
+                            window.location.href = 'error/';
+                        },
+                        error: function (error) {
+                            // Handle the error
+                            console.log('Error:', error);
+                        }
+                    });
+
+                } else if (parseInt(stake_amount) > parseInt(max_stake_amount)){
+                    $.ajax({
+                        type: 'GET',
+                        url: 'error/',
+                        headers: {
+                            'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+                        },
+                        success: function (data) {
+                            // Handle the successful response
+                            console.log(data.message);
+                            window.location.href = 'error/';
+                        },
+                        error: function (error) {
+                            // Handle the error
+                            console.log('Error:', error);
+                        }
+                    });
+
+                } else {
+                
+                    allComboCard.each(function(){
+                        $.ajax({
+                            type: 'POST',
+                            url: 'place-bet/',
+                            headers: {
+                                'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+                            },
+                            data: {
+                                'slipID': slipID,
+                                'fixture': $(this).find('.fixture-id').text(),
+                                'stake_amount': 0,
+                                'predicted_outcome': $(this).find('.team-name').text(),
+                                'total_stake_amount': $('.bet-slip-calculation').find('.total-stake').text(),
+                                'total_payout':  $('.bet-slip-calculation').find('.total-est-return').text()
+
+                            },
+                            success: function (data) {
+                                // Handle the successful response
+                                console.log(data.message);
+                            },
+                            error: function (error) {
+                                // Handle the error
+                                console.log('Error:', error);
+                            }
+                        });
+
+                    });
+                }
+           // }
+            // if(systemBTNisON == true) {
+            //     var All_BSCard = $('.single-bs-card.singleBS').not('.hidden')
+            //     All_BSCard.each(function(){
+            //         $.ajax({
+            //             type: 'POST',
+            //             url: 'place-bet/',
+            //             data: {
+            //                 'fixture': $(this).find('.fixture-id').text(),
+            //                 'stake_amount': $(this).find('.stake-number').text(),
+            //                 'predicted_outcome': $(this).find('.slct-team-name').text(),
+            //                 'total_stake_amount': $('.bet-slip-calculation').find('.total-stake').text(),
+            //                 'total_payout':  $('.bet-slip-calculation').find('.total-est-return').text()
+
+            //             },
+            //             success: function (data) {
+            //                 // Handle the successful response
+            //                 console.log(data.message);
+            //             },
+            //             error: function (error) {
+            //                 // Handle the error
+            //                 console.log('Error:', error);
+            //             }
+            //         });
+            //     });
+            // }
             var All_BSCard = $('.single-bs-card.singleBS').not('.hidden').length;
             var singlePlacedC = $('.single-bet-place.placed');
             if(All_BSCard >= 1 ) {
@@ -737,9 +866,9 @@
         });
         $('.bet-quantity').find('.inc-dec-bet').find('.dec-btn').on('click', function(e){
             e.preventDefault();
-            resultNumb--;
+            resultNumb = resultNumb - 300 ;
             if(resultNumb <= 1) {
-                resultNumb = 1;
+                resultNumb = 300;
             }
             $('.inc-dec-bet').find('.result-num').text(resultNumb);
             ComboRatioTotalMultipling();
@@ -757,6 +886,10 @@
             allComboCard.each(function(){
                 onlyComboRatioTotal += parseFloat($(this).find('.bet-ratio').text());
             });
+            // added code below
+            //onlyComboRatioTotal = onlyComboRatioTotal.toFixed(2);
+            //$('.number').text(onlyComboRatioTotal);
+            // ComboRatioTotalMultipling(); 
         }
 
         function ComboRatioTotalMultipling() {
@@ -782,6 +915,8 @@
             comboBtnisOn = true;
             systemBTNisON = false;
             comboStakeCounting();
+            // added code below
+           // ComboRatioTotalMultipling();
         });
         systemCardBtn.on('click', function(){
             resultNumb = 300;

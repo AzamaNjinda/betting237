@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User,Fixture
+from .models import User,Fixture, BetHistory, BetSlip, StakeAmount
 
 
 
@@ -30,6 +30,7 @@ class UserAdmin(BaseUserAdmin):
 
 class FixtureAdmin(admin.ModelAdmin):
     list_display = [
+        'id',
         'league',
         'home',
         'away',
@@ -37,7 +38,14 @@ class FixtureAdmin(admin.ModelAdmin):
         'draw',
         'away_win'
     ]
+    search_fields = ('league','home')
    
+class BetSlipAdmin(admin.ModelAdmin):
+    search_fields = ('slipID','user','bet_histories')
+
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Fixture, FixtureAdmin)
+admin.site.register(BetSlip, BetSlipAdmin)
+admin.site.register(BetHistory)
+admin.site.register(StakeAmount)
