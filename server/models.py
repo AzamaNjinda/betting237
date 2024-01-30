@@ -11,7 +11,7 @@ LEAGUE_CHOICES = (
     ('L1', 'Legue 1'),
     ('UCL', 'UEFA Champions League'),
     ('UEL', 'UEFA Europa League'),
-    ('FRN', 'Club Friendly'),
+    ('CLG', 'Classified Game'),
     
 )
 

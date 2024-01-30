@@ -21,7 +21,7 @@ from pymesomb.utils import RandomGenerator
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from . models import BetHistory, BetSlip, StakeAmount
-
+from django.db.models import Case, When, Value, F, IntegerField
 
 
 async def fetch_data(url, params):
@@ -44,7 +44,9 @@ def home(request):
     fixture_SerieA = Fixture.objects.filter(league="SA")
     fixture_Ligue_1= Fixture.objects.filter(league="L1")
     fixture_UEFA_Champions_League = Fixture.objects.filter(league="UCL")
-    fixture_UEFA_Europa_League = Fixture.objects.filter(league="FRN")
+    fixture_UEFA_Europa_League = Fixture.objects.filter(league="UEL")
+    fixture_Classified_Game = Fixture.objects.filter(league="CLG")
+
     max_stake_amount = StakeAmount.objects.first()
 
     # base_url = "https://api-football-v1.p.rapidapi.com/v3"
@@ -115,6 +117,7 @@ def home(request):
         'fixture_UEFA_Champions_League':fixture_UEFA_Champions_League,
         'fixture_UEFA_Europa_League':fixture_UEFA_Europa_League,
         'max_stake_amount': max_stake_amount.stake_amount_max, 
+        'fixture_Classified_Game':fixture_Classified_Game
 
     }
 
@@ -422,8 +425,42 @@ def bet_history(request):
     bet_histories = []
     for bet_slip in bet_slips:
         bet_histories = bet_slip.bet_histories.select_related('fixture')
+        for bet_history in bet_histories:
+            fixture = bet_history.fixture
+            #for fixture in fixtures_qs:
+            if fixture.home_score > fixture.away_score:
+                bet_history.actual_outcome = "Home Win"
+                bet_history.save()
+                if bet_history.predicted_outcome == bet_history.actual_outcome:
+                    bet_slip.is_winner = True
+                    bet_slip.save()
+                else:
+                    bet_slip.is_winner = False
+                    bet_slip.save()
+            elif fixture.home_score == fixture.away_score:
+                bet_history.actual_outcome = "Draw"
+                bet_history.save()
+                if bet_history.predicted_outcome == bet_history.actual_outcome:
+                    bet_slip.is_winner = True
+                    bet_slip.save()
+                else:
+                    bet_slip.is_winner = False
+                    bet_slip.save()
+            elif fixture.home_score < fixture.away_score:
+                bet_history.actual_outcome = "Away Win"
+                bet_history.save()
+                if bet_history.predicted_outcome == bet_history.actual_outcome:
+                    bet_slip.is_winner = True
+                    bet_slip.save()
+                else:
+                    bet_slip.is_winner = False
+                    bet_slip.save()
+
+       
 
     fixtures = [bet_history.fixture for bet_history in bet_histories]
+
+          
     
     context = {
         'bet_slips': bet_slips,
@@ -433,6 +470,7 @@ def bet_history(request):
 
     return render(request, "dashboard-bet-history.html", context)
 
+  
 def error(request):
     context = {
         'title': "Inadequate Balance",
