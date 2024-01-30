@@ -44,7 +44,7 @@ def home(request):
     fixture_SerieA = Fixture.objects.filter(league="SA")
     fixture_Ligue_1= Fixture.objects.filter(league="L1")
     fixture_UEFA_Champions_League = Fixture.objects.filter(league="UCL")
-    fixture_UEFA_Europa_League = Fixture.objects.filter(league="UEL")
+    fixture_UEFA_Europa_League = Fixture.objects.filter(league="FRN")
     max_stake_amount = StakeAmount.objects.first()
 
     # base_url = "https://api-football-v1.p.rapidapi.com/v3"

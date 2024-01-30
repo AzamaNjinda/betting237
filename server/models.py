@@ -10,7 +10,9 @@ LEAGUE_CHOICES = (
     ('SA', 'Serie A'),
     ('L1', 'Legue 1'),
     ('UCL', 'UEFA Champions League'),
-    ('UEL', 'UEFA Europa League')
+    ('UEL', 'UEFA Europa League'),
+    ('FRN', 'Club Friendly'),
+    
 )
 
 STATUS_CHOICES = (
