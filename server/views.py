@@ -412,6 +412,7 @@ def payment_successful(request):
 def bet_history(request):
     user = request.user
     bet_slips = BetSlip.objects.filter(user=request.user)
+    bet_histories = []
     for bet_slip in bet_slips:
         bet_histories = bet_slip.bet_histories.select_related('fixture')
 
