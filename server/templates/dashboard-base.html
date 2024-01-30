@@ -75,6 +75,11 @@
                                 <i class="fa-duotone fa-arrow-right-arrow-left fa-lg" style="font-size: 20px;"></i>
                                 transaction history</a>
                         </li> {% endcomment %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'server:bet-history' %}">
+                                <i class="fa-duotone fa-sack-dollar fa-lg"></i>
+                                Bet History</a>
+                        </li>
                         
                         <li class="nav-item">
                             <a class="nav-link active" href="{% url 'server:deposit' %}">
@@ -186,7 +191,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-6 col-xl-none col-lg-none col-md-block d-flex align-items-center">
-                                <a href="index.html" class="mobile-logo">
+                                <a href="{% url 'server:home' %}" class="mobile-logo">
                                     <img src="{% static 'assets/img/logo/mobile-logo.png' %}" alt="">
                                 </a>
                             </div>
@@ -246,7 +251,7 @@
                                         </div>
                                         <div class="col-2 col-lg-2 d-xl-block d-lg-block d-md-none">
                                             <div class="logo">
-                                                <a href="index.html">
+                                                <a href="{% url 'server:home' %}">
                                                     <img src="{% static 'assets/img/logo/logo-1.png' %}" alt="">
                                                 </a>
                                             </div>
@@ -290,6 +295,9 @@
                                                 {% if request.user.is_authenticated %}
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="#">Balance:{{ request.user.account_balance }}</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{% url 'server:bet-history' %}">Bet History</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="{% url 'server:deposit' %}">Deposit</a>

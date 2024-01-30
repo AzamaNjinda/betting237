@@ -308,6 +308,13 @@ def withdraw(request):
                     'form': form,
                 }
                 return render(request, "dashboard-withdraw.html", context)
+            elif user.can_withdraw is False:
+                context = {
+                    'message': "You Can Not Withdraw Funds at this tie",
+                    'form': form,
+                }
+                return render(request, "dashboard-withdraw.html", context)
+
 
             operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
             try:

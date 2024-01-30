@@ -379,7 +379,7 @@
                                     </div>
                                     <div class="col-2 col-lg-2 d-xl-block d-lg-block d-md-none">
                                         <div class="logo">
-                                            <a href="index.html">
+                                            <a href="{% url 'server:home' %}">
                                                 <img src="{% static 'assets/img/logo/logo-1.png' %}" alt="">
                                             </a>
                                         </div>
@@ -423,6 +423,9 @@
                                             {% if request.user.is_authenticated %}
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#">Balance:{{ request.user.account_balance }}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:bet-history' %}">Bet History</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{% url 'server:deposit' %}">Deposit</a>
