@@ -180,6 +180,7 @@
                                             <form method="POST">
                                                 {% csrf_token %}
                                                 <div class="row">
+                                                    <p style="color:red; text-align:center;">{{message}}</p>
                                                     <div class="col-xl-12 col-lg-12 col-md-12">
                                                         <label for="first_name" class="form-label"><span>Enter amount</span></label>
                                                         {% comment %} <input type="text" id="first_name" placeholder="ex: 5042.00"> {% endcomment %}

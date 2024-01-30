@@ -372,6 +372,11 @@
                                                     {% comment %} <li><a class="dropdown-item" href="match-details.html">bet details</a></li> {% endcomment %}
                                                 </ul>
                                             </li>
+                                            {% if request.user.is_authenticated %}
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:bet-history' %}">Bet History</a>
+                                            </li>
+                                            {% endif %}
                                             {% comment %} <li class="nav-item">
                                                 <a class="nav-link" href="{% url 'server:contact' %}">contact us</a>
                                             </li> {% endcomment %}
@@ -423,9 +428,6 @@
                                             {% if request.user.is_authenticated %}
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#">Balance:{{ request.user.account_balance }}</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:bet-history' %}">Bet History</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{% url 'server:deposit' %}">Deposit</a>
