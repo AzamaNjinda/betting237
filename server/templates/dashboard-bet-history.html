@@ -204,16 +204,13 @@
                                             </div>
                                         </div>
                                     </div>  {% endcomment %}
-                                    {% for bet_slip in bet_slips %}
-                                    {% for bet_history in bet_histories %}
-                                    {% for fixture in fixtures %}
+                                    {% for bet_slip_data in bet_slips_data %}
+                                    {% for bet_history in  bet_slip_data.bet_histories %}
+                                    {% for fixture in  bet_slip_data.fixtures %}
                                     {% if fixture.is_finished is False %}
                                     <div class="single-bs-card singleBS" data-match-id="1689493708888">
                                         <span class="tournament-name">{{ fixture.league }}</span>
                                         <div class="slct-match">
-                                            <span class="sports-category-icon">
-                                                <img src="assets/img/playing-bet/bet-slip/sports-icon.png" alt="">
-                                            </span>
                                             
                                             <span class="team-1">{{ fixture.home }}</span>
                                             vs
@@ -221,8 +218,8 @@
                                         </div>
                                         <div class="bs-card-header">
                                            
-                                            <div class="slct-place"><span class="live-icon"><img src="assets/img/playing-bet/bet-slip/live-icon.png" alt=""></span>
-                                                <span class="team-name">{{ bet_history.predicted_outcome }}</span>
+                                            <div class="slct-place">
+                                                <span class="team-name">STATUS :</span>
                                                 <span class="attherate">@</span>
                                             
                                                 <span class="bet-ratio" style="-webkit-text-fill-color: rgb(255, 99, 71); font-weight: 500;">PENDING</span>
@@ -233,20 +230,15 @@
                                             </button> {% endcomment %}
                                         </div>
                                         <div class="slct-match">
-                                            <span class="sports-category-icon">
-                                                <img src="assets/img/playing-bet/bet-slip/sports-icon.png" alt="">
-                                            </span>
-                                            <span class="team-1"><b> OUTCOME :</b></span>
-                                            <span class="team-1">{{ fixture.home_score }}</span>
-                                            :
-                                            <span class="team-2">{{ fixture.away_score }}</span>
+                                            <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }}</b></span>
+                                            
                                         </div>
                                         
                                         <div class="bs-card-footer">
-                                            <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stake:<span class="stake-number">{{ bet_slip.total_stake_amount }}<span></span></span></button>
+                                            <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stk:<span class="stake-number">{{ bet_slip_data.bet_slip.total_stake_amount }}<span></span></span></button>
                                             <div class="return-amount">
                                                 <span class="text">Return : </span>
-                                                <span class="number">{{ bet_slip.total_payout }}</span>
+                                                <span class="number">{{ bet_slip_data.bet_slip.total_payout }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -254,9 +246,6 @@
                                     <div class="single-bs-card singleBS" data-match-id="1689493708888">
                                         <span class="tournament-name">{{ fixture.league }}</span>
                                         <div class="slct-match">
-                                            <span class="sports-category-icon">
-                                                <img src="assets/img/playing-bet/bet-slip/sports-icon.png" alt="">
-                                            </span>
                                             
                                             <span class="team-1">{{ fixture.home }}</span>
                                             vs
@@ -264,10 +253,10 @@
                                         </div>
                                         <div class="bs-card-header">
                                            
-                                            <div class="slct-place"><span class="live-icon"><img src="assets/img/playing-bet/bet-slip/live-icon.png" alt=""></span>
-                                                <span class="team-name">{{ bet_history.predicted_outcome }}</span>
+                                            <div class="slct-place">
+                                                <span class="team-name">STATUS: </span>
                                                 <span class="attherate">@</span>
-                                                {% if bet_slip.is_winner %}
+                                                {% if bet_slip_data.bet_slip.is_winner %}
                                                 <span class="bet-ratio" style="-webkit-text-fill-color: rgb(77, 142, 83); font-weight: 500;">Won</span>
                                                 {% else %}
                                                 <span class="bet-ratio" style="-webkit-text-fill-color: rgb(255, 99, 71); font-weight: 500;">Loss</span>
@@ -278,9 +267,9 @@
                                             </button> {% endcomment %}
                                         </div>
                                         <div class="slct-match">
-                                            <span class="sports-category-icon">
-                                                <img src="assets/img/playing-bet/bet-slip/sports-icon.png" alt="">
-                                            </span>
+                                            <span class=""><b> PREDICTION : {{ bet_history.predicted_outcome }}</b></span>
+                                        </div>
+                                        <div class="slct-match">
                                             <span class="team-1"><b> Final Score :</b></span>
                                             <span class="team-1">{{ fixture.home_score }}</span>
                                             :
@@ -288,10 +277,10 @@
                                         </div>
                                         
                                         <div class="bs-card-footer">
-                                            <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stake  :<span class="stake-number">{{ bet_slip.total_stake_amount }}<span></span></span></button>
+                                            <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stk:<span class="stake-number">{{ bet_slip.total_stake_amount }}<span></span></span></button>
                                             <div class="return-amount">
                                                 <span class="text">Return : </span>
-                                                <span class="number">{{ bet_slip.total_payout }}</span>
+                                                <span class="number">{{ bet_slip_data.bet_slip.total_payout }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -299,6 +288,7 @@
                                     {% endfor %}
                                     {% endfor %}
                                     {% endfor %}
+
                                     
                                 </div>
                             </div>
@@ -315,9 +305,9 @@
                                     <div class="single-tournament">
                                         <div class="tournament-title"></div>
                                         <div class="all-tournament-match">
-                                            {% for bet_slip in bet_slips %}
-                                            {% for bet_history in bet_histories %}
-                                            {% for fixture in fixtures %}
+                                            {% for bet_slip_data in bet_slips_data %}
+                                            {% for bet_history in  bet_slip_data.bet_histories %}
+                                            {% for fixture in  bet_slip_data.fixtures %}
                                             {% if fixture.is_finished is False %}
                                             <div class="single-t-match">
                                                 <span class="in-play-tag"></span>
@@ -335,7 +325,7 @@
                                                     <span class="event-name">{{ fixture.date }} {{ fixture.league}}</span>
                                                 </div>
                                                 <div class="b-slip">
-                                                    <span class="slip-number">{{ bet_slip.slipID }}</span>
+                                                    <span class="slip-number">{{ bet_slip_data.bet_slip.slipID }}</span>
                                                 </div>
                                                 <div class="date-n-time">
                                                     <span class="date">{{ fixture.date }}</span>
@@ -345,7 +335,7 @@
                                                     <span class="text">Single bet</span>
                                                 </div>
                                                 <div class="bet-amount">
-                                                    <span class="text">{{ bet_slip.total_stake_amount }}</span>
+                                                    <span class="text">{{ bet_slip_data.bet_slip.total_stake_amount }}</span>
                                                 </div>
                                                 <div class="b-odd">
                                                     <span class="text">{{ bet_history.predicted_outcome }}</span>
@@ -371,7 +361,7 @@
                                                     <span class="event-name">{{ fixture.date }} {{ fixture.league}}</span>
                                                 </div>
                                                 <div class="b-slip">
-                                                    <span class="slip-number">{{ bet_slip.slipID }}</span>
+                                                    <span class="slip-number">{{ bet_slip_data.bet_slip.slipID }}</span>
                                                 </div>
                                                 <div class="date-n-time">
                                                     <span class="date">{{ fixture.date }}</span>
@@ -381,7 +371,7 @@
                                                     <span class="text">Single bet</span>
                                                 </div>
                                                 <div class="bet-amount">
-                                                    <span class="text">{{ bet_slip.total_stake_amount }}</span>
+                                                    <span class="text">{{ bet_slip_data.bet_slip.total_stake_amount }}</span>
                                                 </div>
                                                 <div class="b-odd">
                                                     <span class="text">{{ bet_history.predicted_outcome }}</span>

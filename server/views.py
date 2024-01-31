@@ -504,10 +504,15 @@ def payment_successful(request):
 
 def bet_history(request):
     user = request.user
-    bet_slips = BetSlip.objects.filter(user=request.user)
+    bet_slips = BetSlip.objects.filter(user=request.user).order_by('-created_at')
+    bet_slips_data = []
     bet_histories = []
+    fixtures = []
     for bet_slip in bet_slips:
         bet_histories = bet_slip.bet_histories.select_related('fixture')
+        #bet_histories.append(bet_histor)
+        fixtures = [bet_history.fixture for bet_history in bet_histories]
+
         for bet_history in bet_histories:
             fixture = bet_history.fixture
             #for fixture in fixtures_qs:
@@ -559,17 +564,23 @@ def bet_history(request):
                 else:
                     bet_slip.is_winner = False
                     bet_slip.save()
-                
+
+        bet_slip_data = {
+            'bet_slip': bet_slip,
+            'bet_histories': bet_histories,
+            'fixtures': fixtures,
+        }
+
+        bet_slips_data.append(bet_slip_data)        
        
 
-    fixtures = [bet_history.fixture for bet_history in bet_histories]
-
-          
+         
     
     context = {
         'bet_slips': bet_slips,
         'bet_histories': bet_histories,
         'fixtures' : fixtures,
+        'bet_slips_data': bet_slips_data,
     }
 
     return render(request, "dashboard-bet-history.html", context)

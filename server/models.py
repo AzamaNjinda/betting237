@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 import datetime
+from datetime import datetime
 
 LEAGUE_CHOICES = (
     ('PL', 'Premier League'),
@@ -78,6 +79,8 @@ class BetSlip(models.Model):
     total_payout = models.DecimalField(max_digits=10, decimal_places=2)
     is_winner = models.BooleanField(default=False)
     is_paid = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
          return f"Betslip for {self.user}: Total Stake - {self.total_stake_amount}, Total Payout - {self.total_payout}"
