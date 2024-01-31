@@ -51,6 +51,7 @@ class Fixture(models.Model):
     away_win = models.CharField(max_length=50, blank=True, null=True)
     away_status = models.CharField(choices=STATUS_CHOICES, max_length=5,blank=True, null=True)
     in_play = models.BooleanField(default=False)
+    is_finished = models.BooleanField(default=False)
     date = models.CharField(max_length=50, blank=True, null=True)
     time = models.CharField(max_length=50, blank=True, null=True)
    
@@ -76,6 +77,7 @@ class BetSlip(models.Model):
     total_stake_amount = models.DecimalField(max_digits=10, decimal_places=2)
     total_payout = models.DecimalField(max_digits=10, decimal_places=2)
     is_winner = models.BooleanField(default=False)
+    is_paid = models.BooleanField(default=False)
 
     def __str__(self):
          return f"Betslip for {self.user}: Total Stake - {self.total_stake_amount}, Total Payout - {self.total_payout}"
@@ -86,3 +88,13 @@ class StakeAmount(models.Model):
 
     def __str__(self):
         return f"Global Stake amount {self.stake_amount_max }"
+
+class ContactForm(models.Model):
+    firstName = models.CharField( max_length=50,blank=True, null=True)
+    lastName = models.CharField( max_length=50,blank=True, null=True)
+    phoneNumber = models.CharField( max_length=50,blank=True, null=True)
+    email = models.CharField( max_length=50,blank=True, null=True)
+    message = models.TextField( blank=True, null=True)
+
+    def __str__(self):
+        return f"Message from { self.firstName } with  {self.phoneNumber }"

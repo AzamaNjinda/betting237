@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from server.forms import UserRegisterForm, UserLoginForm, PaymentForm, WithdrawalForm
+from server.forms import UserRegisterForm, UserLoginForm, PaymentForm, WithdrawalForm, ContactForm
 from django.http import HttpResponse,JsonResponse
 from django.contrib.auth import (
     authenticate,
@@ -38,14 +38,14 @@ async def fetch_all_data(urls_and_params):
 def home(request):
     user = request.user
     fixtures =  Fixture.objects.all()
-    fixture_Premiere_League = Fixture.objects.filter(league="PL")
-    fixture_La_Liga = Fixture.objects.filter(league="LL")
-    fixture_Bundesliga = Fixture.objects.filter(league="BL")
-    fixture_SerieA = Fixture.objects.filter(league="SA")
-    fixture_Ligue_1= Fixture.objects.filter(league="L1")
-    fixture_UEFA_Champions_League = Fixture.objects.filter(league="UCL")
-    fixture_UEFA_Europa_League = Fixture.objects.filter(league="UEL")
-    fixture_Classified_Game = Fixture.objects.filter(league="CLG")
+    fixture_Premiere_League = Fixture.objects.filter(league="PL",is_finished=False)
+    fixture_La_Liga = Fixture.objects.filter(league="LL",is_finished=False)
+    fixture_Bundesliga = Fixture.objects.filter(league="BL",is_finished=False)
+    fixture_SerieA = Fixture.objects.filter(league="SA",is_finished=False)
+    fixture_Ligue_1= Fixture.objects.filter(league="L1",is_finished=False)
+    fixture_UEFA_Champions_League = Fixture.objects.filter(league="UCL",is_finished=False)
+    fixture_UEFA_Europa_League = Fixture.objects.filter(league="UEL",is_finished=False)
+    fixture_Classified_Game = Fixture.objects.filter(league="CLG",is_finished=False)
 
     max_stake_amount = StakeAmount.objects.first()
 
@@ -405,16 +405,99 @@ def about(request):
     return render(request, "about.html")
 
 def playing(request):
-    return render(request, "playing-bet.html")
+    user = request.user
+    fixtures =  Fixture.objects.all()
+    fixture_Premiere_League = Fixture.objects.filter(league="PL",is_finished=False)
+    fixture_La_Liga = Fixture.objects.filter(league="LL",is_finished=False)
+    fixture_Bundesliga = Fixture.objects.filter(league="BL",is_finished=False)
+    fixture_SerieA = Fixture.objects.filter(league="SA",is_finished=False)
+    fixture_Ligue_1= Fixture.objects.filter(league="L1",is_finished=False)
+    fixture_UEFA_Champions_League = Fixture.objects.filter(league="UCL",is_finished=False)
+    fixture_UEFA_Europa_League = Fixture.objects.filter(league="UEL",is_finished=False)
+    fixture_Classified_Game = Fixture.objects.filter(league="CLG",is_finished=False)
+
+    max_stake_amount = StakeAmount.objects.first()
+    odds_data = []
+    fixtures_data = []
+
+
+    context = {
+        'name': 'index',
+        'class': 'active',
+        'fixtures': fixtures,
+        'fixtures_data': fixtures_data,
+        'fixture_Premiere_League': fixture_Premiere_League,
+        'fixture_La_Liga':fixture_La_Liga,
+        'fixture_Bundesliga':fixture_Bundesliga,
+        'fixture_SerieA':fixture_SerieA,
+        'fixture_Ligue_1':fixture_Ligue_1,
+        'fixture_UEFA_Champions_League':fixture_UEFA_Champions_League,
+        'fixture_UEFA_Europa_League':fixture_UEFA_Europa_League,
+        'max_stake_amount': max_stake_amount.stake_amount_max, 
+        'fixture_Classified_Game':fixture_Classified_Game
+
+    }
+    return render(request, "playing-bet.html", context)
 
 def in_play(request):
     return render(request, "playing-bet-in-play.html")
+
+def finished(request):
+    user = request.user
+    fixtures =  Fixture.objects.all()
+    #fixture_is_finished = Fixture.objects.filter(is_finished=True)
+    fixture_Premiere_League = Fixture.objects.filter(league="PL",is_finished=True)
+    fixture_La_Liga = Fixture.objects.filter(league="LL",is_finished=True)
+    fixture_Bundesliga = Fixture.objects.filter(league="BL",is_finished=True)
+    fixture_SerieA = Fixture.objects.filter(league="SA",is_finished=True)
+    fixture_Ligue_1= Fixture.objects.filter(league="L1",is_finished=True)
+    fixture_UEFA_Champions_League = Fixture.objects.filter(league="UCL",is_finished=True)
+    fixture_UEFA_Europa_League = Fixture.objects.filter(league="UEL",is_finished=True)
+    fixture_Classified_Game = Fixture.objects.filter(league="CLG",is_finished=True)
+
+    max_stake_amount = StakeAmount.objects.first()
+    odds_data = []
+    fixtures_data = []
+
+
+    context = {
+        'name': 'index',
+        'class': 'active',
+        'fixtures': fixtures,
+        'fixtures_data': fixtures_data,
+        'fixture_Premiere_League': fixture_Premiere_League,
+        'fixture_La_Liga':fixture_La_Liga,
+        'fixture_Bundesliga':fixture_Bundesliga,
+        'fixture_SerieA':fixture_SerieA,
+        'fixture_Ligue_1':fixture_Ligue_1,
+        'fixture_UEFA_Champions_League':fixture_UEFA_Champions_League,
+        'fixture_UEFA_Europa_League':fixture_UEFA_Europa_League,
+        'max_stake_amount': max_stake_amount.stake_amount_max, 
+        'fixture_Classified_Game':fixture_Classified_Game
+
+    }
+    return render(request, "playing-bet-finished.html", context)
 
 def upcoming(request):
     return render(request, "playing-bet-upcoming.html")
 
 def contact(request):
-    return render(request, "contact.html")
+    home = request.GET.get('server:home')
+    form = ContactForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            contact = form.save(commit=False)
+            context = {
+                'message':'Message Successfully Sent',
+                'form': form,
+                }
+            return render(request, "contact.html", context)
+            
+
+    context = {
+        'form': form,
+    }
+    return render(request, "contact.html", context)
 
 def payment_successful(request):
     return render(request, "payment-successful.html")
@@ -434,6 +517,13 @@ def bet_history(request):
                 if bet_history.predicted_outcome == bet_history.actual_outcome:
                     bet_slip.is_winner = True
                     bet_slip.save()
+                    if not bet_slip.is_paid:
+                        user.account_balance = user.account_balance + bet_slip.total_payout
+                        bet_slip.is_paid = True
+                        bet_slip.save()
+                        user.save()
+                    else:
+                        pass
                 else:
                     bet_slip.is_winner = False
                     bet_slip.save()
@@ -443,6 +533,13 @@ def bet_history(request):
                 if bet_history.predicted_outcome == bet_history.actual_outcome:
                     bet_slip.is_winner = True
                     bet_slip.save()
+                    if not bet_slip.is_paid:
+                        user.account_balance = user.account_balance + bet_slip.total_payout
+                        bet_slip.is_paid = True
+                        bet_slip.save()
+                        user.save()
+                    else:
+                        pass
                 else:
                     bet_slip.is_winner = False
                     bet_slip.save()
@@ -452,10 +549,17 @@ def bet_history(request):
                 if bet_history.predicted_outcome == bet_history.actual_outcome:
                     bet_slip.is_winner = True
                     bet_slip.save()
+                    if not bet_slip.is_paid:
+                        user.account_balance = user.account_balance + bet_slip.total_payout
+                        bet_slip.is_paid = True
+                        bet_slip.save()
+                        user.save()
+                    else:
+                        pass
                 else:
                     bet_slip.is_winner = False
                     bet_slip.save()
-
+                
        
 
     fixtures = [bet_history.fixture for bet_history in bet_histories]

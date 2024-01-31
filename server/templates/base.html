@@ -366,10 +366,10 @@
                                                 </a>
                                                 <ul class="dropdown-menu" aria-labelledby="betDropdown">
                                                     <li><a class="dropdown-item" href="{% url 'server:playing' %}">all bets</a></li>
-                                                    <li><a class="dropdown-item" href="{% url 'server:in_play' %}">in-play</a></li>
+                                                    {% comment %} <li><a class="dropdown-item" href="{% url 'server:in_play' %}">in-play</a></li>
                                                     <li><a class="dropdown-item" href="{% url 'server:upcoming' %}">upcoming</a></li>
-                                                    {% comment %} <li><a class="dropdown-item" href="playing-bet-finished.html">finished</a></li> {% endcomment %}
-                                                    {% comment %} <li><a class="dropdown-item" href="match-details.html">bet details</a></li> {% endcomment %}
+                                                    <li><a class="dropdown-item" href="playing-bet-finished.html">finished</a></li> 
+                                                    <li><a class="dropdown-item" href="match-details.html">bet details</a></li> {% endcomment %}
                                                 </ul>
                                             </li>
                                             {% if request.user.is_authenticated %}

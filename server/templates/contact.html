@@ -44,27 +44,31 @@
                         <div class="part-contact poklotto-form" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
                             <h3 class="title">Get in touch with us</h3>
                             <div class="part-form">
-                                <form>
+                                <form type="POST">
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-6">
                                             <label for="first_name" class="form-label"><span>First name</span></label>
-                                            <input type="text" id="first_name" placeholder="Ex: john">
+                                            {% comment %} <input type="text" id="first_name" placeholder="Ex: john">  {% endcomment %}
+                                            {{ form.firstName }}
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6">
                                             <label for="last_name" class="form-label"><span>Last name</span></label>
-                                            <input type="text" id="last_name" placeholder="Ex: doe">
+                                            {% comment %} <input type="text" id="last_name" placeholder="Ex: doe"> {% endcomment %}
+                                            {{ form.lastName }}
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6">
                                             <label for="mail_address" class="form-label"><span>Mail address</span></label>
-                                            <input type="email" id="mail_address" placeholder="Ex: yourmail@address">
+                                            {% comment %} <input type="email" id="mail_address" placeholder="Ex: yourmail@address"> {% endcomment %}
+                                            {{ form.email }}
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6">
                                             <label for="phone_number" class="form-label"><span>phone number</span></label>
-                                            <input type="text" id="phone_number" placeholder="Ex: +96 xxx xxx xxx x">
+                                            {% comment %} <input type="text" id="phone_number" placeholder="Ex: +96 xxx xxx xxx x"> {% endcomment %}
+                                            {{ form.phoneNumber }}
                                         </div>
                                         <div class="col-xl-12 col-lg-12">
                                             <label for="write_message" class="form-label"><span>write a Message</span></label>
-                                            <textarea id="write_message" placeholder="Ex: Hello, admin...."></textarea>
+                                            {{ form.message }}
                                         </div>
                                     </div>
                                     <button class="prd-btn-1">
@@ -140,7 +144,7 @@
                                 <h3 class="sub-title">get our newsletter</h3>
                                 <h2 class="title">Stay Tuned with Us</h2>
                             </div>
-                            <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in">Subscribe to <span class="p-bold">PerediON‘</span>‘s newsletter and never miss  <br/>
+                            <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in">Subscribe to <span class="p-bold">BETTING237</span>‘s newsletter and never miss  <br/>
                                 our latest business newses.
                                 Our newsletter is sent once a week, every monday.</p>
                             <form data-aos="fade-up" data-aos-delay="250" data-aos-duration="500" data-aos-easing="ease-in">

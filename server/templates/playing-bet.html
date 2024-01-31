@@ -47,7 +47,7 @@
                     <h2 class="title">Choose Your Match & Place A Bet</h2>
                 </div>
 
-                <div class="bfilter-control" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500" data-aos-easing="ease-in">
+                {% comment %} <div class="bfilter-control" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500" data-aos-easing="ease-in">
                     <ul class="nav nav-pills" id="bet-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="bet-all-tab" data-bs-toggle="pill" data-bs-target="#bet-all" type="button" role="tab" aria-controls="bet-all" aria-selected="true">all</button>
@@ -59,7 +59,7 @@
                             <button class="nav-link" id="bet-finished-tab" data-bs-toggle="pill" data-bs-target="#bet-finished" type="button" role="tab" aria-controls="bet-finished" aria-selected="false">finished</button>
                         </li>
                     </ul>
-                </div>
+                </div> {% endcomment %}
 
                 <!-- playing bet begin -->
                 <div class="playing-bet">
@@ -163,7 +163,7 @@
                                                             {% if fixture.in_play %}
                                                             <div class="single-t-match match-in-play">
                                                             {% else %}
-                                                            <div class="single-t-match">
+                                                            <div class="single-t-match ">
                                                             {% endif %}
                                                                 <div class="match-time">
                                                                     <span class="time-icon">
@@ -252,6 +252,8 @@
                                                             {% for fixture in fixtures %}
                                                             {% if fixture.in_play %}
                                                             <div class="single-t-match match-in-play">
+                                                            {% elif fixture.is_finished %}
+                                                            <div class="single-t-match finsihed">
                                                             {% else %}
                                                             <div class="single-t-match">
                                                             {% endif %}
@@ -1187,7 +1189,7 @@
                     </div>
                 </div>
                 <!-- playing bet end -->
-
+               
             </div>
         </div>
         <!-- playing bet end -->

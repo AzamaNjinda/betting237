@@ -14,6 +14,7 @@ urlpatterns = [
     path('withdraw/', views.withdraw, name='withdraw'), 
     path('about/', views.about, name='about'), 
     path('playing/', views.playing, name='playing'), 
+    path('finished/', views.finished, name='finished'), 
     path('in_play/', views.in_play, name='in_play'), 
     path('upcoming/', views.upcoming, name='upcoming'), 
     path('contact/', views.contact, name='contact'), 
