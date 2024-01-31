@@ -135,8 +135,8 @@
                                                 <div class="all-tournament-match">
                                                     {% comment %} {% for odds_data_entry in odds_data %} {% endcomment %}
                                                     {% for fixture in fixture_Classified_Game %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
+                                                   
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match ">
                                                     {% endif %}
@@ -145,14 +145,9 @@
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
                                                             <span class="m-date">{{fixture.date}}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            <span class="fixture-id">{{ fixture.id }}</span>
-                                                            {% else %}
+                                                           
                                                             <span class="m-time">{{fixture.time}}</span>
-                                                            <span class="fixture-id">{{ fixture.id }}</span>
-
-                                                            {% endif %}
+                                                          
                                                         </div>
                                                         <div class="playing-teams">
                                                             <div class="single-team">
@@ -225,24 +220,15 @@
                                                 <div class="all-tournament-match">
                                                     {% comment %} {% for odds_data_entry in odds_data %} {% endcomment %}
                                                     {% for fixture in fixture_Premiere_League %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
-                                                    {% else %}
-                                                    <div class="single-t-match">
-                                                    {% endif %}
+                                                   
+                                                    <div class="single-t-match finished">
                                                         <div class="match-time">
                                                             <span class="time-icon">
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
                                                             <span class="m-date">{{fixture.date}}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            <span class="fixture-id">{{ fixture.id }}</span>
-                                                            {% else %}
-                                                            <span class="m-time">{{fixture.time}}</span>
-                                                            <span class="fixture-id">{{ fixture.id }}</span>
-
-                                                            {% endif %}
+                                                             <span class="m-time">{{fixture.time}}</span>
+                                                           
                                                         </div>
                                                         <div class="playing-teams">
                                                             <div class="single-team">
@@ -314,21 +300,16 @@
                                                 </div>
                                                 <div class="all-tournament-match">
                                                     {% for fixture in fixture_La_Liga %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
-                                                    {% else %}
-                                                    <div class="single-t-match">
-                                                    {% endif %}
+                                                   
+                                                    <div class="single-t-match finished">
                                                         <div class="match-time">
                                                             <span class="time-icon">
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
-                                                            <span class="m-date">{{ fixture.date }}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            {% else %}
+                                                            <span class="m-date">{{ fixture.date }}</span>                                                        
+                                                            
                                                             <span class="m-time">{{fixture.time}}</span>
-                                                            {% endif %}
+                                                        
                                                             
                                                         </div>
                                                         <div class="playing-teams">
@@ -400,21 +381,16 @@
                                                 </div>
                                                 <div class="all-tournament-match">
                                                     {% for fixture in fixture_Bundesliga %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
-                                                    {% else %}
-                                                    <div class="single-t-match">
-                                                    {% endif %}
+                                                   
+                                                    <div class="single-t-match finished">
                                                         <div class="match-time">
                                                             <span class="time-icon">
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
-                                                            <span class="m-date">{{fixture.date}}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            {% else %}
+                                                            <span class="m-date">{{fixture.date}}</span>                                                        
+                                                            
                                                             <span class="m-time">{{fixture.time}}</span>
-                                                            {% endif %}
+                                                        
                                                         </div>
                                                         <div class="playing-teams">
                                                             <div class="single-team">
@@ -484,22 +460,17 @@
                                                     <span class="match-quantity">(3)</span>
                                                 </div>
                                                 <div class="all-tournament-match">
-                                                    {% for fixture in fixtures %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
-                                                    {% else %}
-                                                    <div class="single-t-match">
-                                                    {% endif %}
+                                                    {% for fixture in fixture_SerieA  %}
+                                                   
+                                                    <div class="single-t-match finished">
                                                         <div class="match-time">
                                                             <span class="time-icon">
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
-                                                            <span class="m-date">{{fixture.date}}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            {% else %}
+                                                            <span class="m-date">{{fixture.date}}</span>                                                        
+                                                            
                                                             <span class="m-time">{{fixture.time}}</span>
-                                                            {% endif %}
+                                                        
                                                         </div>
                                                         <div class="playing-teams">
                                                             <div class="single-team">
@@ -575,21 +546,16 @@
                                             </div>
                                             <div class="all-tournament-match">
                                                 {% for fixture in fixture_Premiere_League  %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
-                                                    {% else %}
-                                                    <div class="single-t-match">
-                                                    {% endif %}
+                                                   
+                                                    <div class="single-t-match finished">
                                                         <div class="match-time">
                                                             <span class="time-icon">
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
-                                                            <span class="m-date">{{fixture.date}}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            {% else %}
+                                                            <span class="m-date">{{fixture.date}}</span>                                                        
+                                                            
                                                             <span class="m-time">{{fixture.time}}</span>
-                                                            {% endif %}
+                                                        
                                                         </div>
                                                         <div class="playing-teams">
                                                             <div class="single-team">
@@ -662,21 +628,16 @@
                                             </div>
                                             <div class="all-tournament-match">
                                                 {% for fixture in fixture_La_Liga %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
-                                                    {% else %}
-                                                    <div class="single-t-match">
-                                                    {% endif %}
+                                                   
+                                                    <div class="single-t-match finished">
                                                         <div class="match-time">
                                                             <span class="time-icon">
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
-                                                            <span class="m-date">{{fixture.date}}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            {% else %}
+                                                            <span class="m-date">{{fixture.date}}</span>                                                        
+                                                            
                                                             <span class="m-time">{{fixture.time}}</span>
-                                                            {% endif %}
+                                                        
                                                         </div>
                                                         <div class="playing-teams">
                                                             <div class="single-team">
@@ -749,21 +710,16 @@
                                             </div>
                                             <div class="all-tournament-match">
                                                 {% for fixture in fixture_Bundesliga %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
-                                                    {% else %}
-                                                    <div class="single-t-match">
-                                                    {% endif %}
+                                                   
+                                                    <div class="single-t-match finished">
                                                         <div class="match-time">
                                                             <span class="time-icon">
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
-                                                            <span class="m-date">{{fixture.date}}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            {% else %}
+                                                            <span class="m-date">{{fixture.date}}</span>                                                        
+                                                            
                                                             <span class="m-time">{{fixture.time}}</span>
-                                                            {% endif %}
+                                                        
                                                         </div>
                                                         <div class="playing-teams">
                                                             <div class="single-team">
@@ -835,21 +791,16 @@
                                             </div>
                                             <div class="all-tournament-match">
                                                 {% for fixture in fixture_SerieA %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
-                                                    {% else %}
-                                                    <div class="single-t-match">
-                                                    {% endif %}
+                                                   
+                                                    <div class="single-t-match finished">
                                                         <div class="match-time">
                                                             <span class="time-icon">
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
-                                                            <span class="m-date">{{fixture.date}}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            {% else %}
+                                                            <span class="m-date">{{fixture.date}}</span>                                                        
+                                                            
                                                             <span class="m-time">{{fixture.time}}</span>
-                                                            {% endif %}
+                                                        
                                                         </div>
                                                         <div class="playing-teams">
                                                             <div class="single-team">
@@ -921,21 +872,16 @@
                                             </div>
                                             <div class="all-tournament-match">
                                                 {% for fixture in fixture_Ligue_1 %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
-                                                    {% else %}
-                                                    <div class="single-t-match">
-                                                    {% endif %}
+                                                   
+                                                    <div class="single-t-match finished">
                                                         <div class="match-time">
                                                             <span class="time-icon">
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
-                                                            <span class="m-date">{{fixture.date}}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            {% else %}
+                                                            <span class="m-date">{{fixture.date}}</span>                                                        
+                                                            
                                                             <span class="m-time">{{fixture.time}}</span>
-                                                            {% endif %}
+                                                        
                                                         </div>
                                                         <div class="playing-teams">
                                                             <div class="single-team">
@@ -1007,21 +953,16 @@
                                             </div>
                                             <div class="all-tournament-match">
                                                 {% for fixture in fixture_UEFA_Champions_League  %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
-                                                    {% else %}
-                                                    <div class="single-t-match">
-                                                    {% endif %}
+                                                   
+                                                    <div class="single-t-match finished">
                                                         <div class="match-time">
                                                             <span class="time-icon">
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
-                                                            <span class="m-date">{{fixture.date}}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            {% else %}
+                                                            <span class="m-date">{{fixture.date}}</span>                                                        
+                                                            
                                                             <span class="m-time">{{fixture.time}}</span>
-                                                            {% endif %}
+                                                        
                                                         </div>
                                                         <div class="playing-teams">
                                                             <div class="single-team">
@@ -1093,21 +1034,16 @@
                                             </div>
                                             <div class="all-tournament-match">
                                                 {% for fixture in fixture_UEFA_Europa_League %}
-                                                    {% if fixture.in_play %}
-                                                    <div class="single-t-match match-in-play">
-                                                    {% else %}
-                                                    <div class="single-t-match">
-                                                    {% endif %}
+                                                   
+                                                    <div class="single-t-match finished">
                                                         <div class="match-time">
                                                             <span class="time-icon">
                                                                 <i class="fa-regular fa-clock"></i>
                                                             </span>
-                                                            <span class="m-date">{{fixture.date}}</span>
-                                                            {% if fixture.in_play %}
-                                                            <span class="m-in-play">in-play</span>
-                                                            {% else %}
+                                                            <span class="m-date">{{fixture.date}}</span>                                                        
+                                                            
                                                             <span class="m-time">{{fixture.time}}</span>
-                                                            {% endif %}
+                                                        
                                                         </div>
                                                         <div class="playing-teams">
                                                             <div class="single-team">
