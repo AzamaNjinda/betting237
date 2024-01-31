@@ -173,7 +173,7 @@
                             </h4>
                             <div class="pending-slips-scrollable">
                                 <div class="pending-slips">
-                                     <div class="single-bs-card singleBS disabled" data-match-id="1689493708887">
+                                     {% comment %} <div class="single-bs-card singleBS disabled" data-match-id="1689493708887">
                                         <span class="locked">
                                             <i class="fa-regular fa-lock"></i> Closed
                                         </span>
@@ -203,7 +203,7 @@
                                                 <span class="number">0.25</span>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>  {% endcomment %}
                                     {% for bet_slip in bet_slips %}
                                     {% for bet_history in bet_histories %}
                                     {% for fixture in fixtures %}
