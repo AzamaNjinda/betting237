@@ -249,7 +249,7 @@
                                                         </div>
                                                         <div class="all-tournament-match">
                                                             {% comment %} {% for odds_data_entry in odds_data %} {% endcomment %}
-                                                            {% for fixture in fixtures %}
+                                                            {% for fixture in fixture_Premiere_League  %}
                                                             {% if fixture.in_play %}
                                                             <div class="single-t-match match-in-play">
                                                             {% elif fixture.is_finished %}
@@ -351,10 +351,13 @@
                                                                         <i class="fa-regular fa-clock"></i>
                                                                     </span>
                                                                     <span class="m-date">{{ fixture.date }}</span>
-                                                                    {% if fixture.in_play %}
+                                                                     {% if fixture.in_play %}
                                                                     <span class="m-in-play">in-play</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
                                                                     {% else %}
                                                                     <span class="m-time">{{fixture.time}}</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
+
                                                                     {% endif %}
                                                                     
                                                                 </div>
@@ -423,7 +426,7 @@
                                                     <div class="single-tournament">
                                                         <div class="tournament-title">
                                                             <span class="title-text">Bundesliga</span>
-                                                            <span class="match-quantity">(3)</span>
+                                                            <span class="match-quantity"></span>
                                                         </div>
                                                         <div class="all-tournament-match">
                                                             {% for fixture in fixture_Bundesliga %}
@@ -437,10 +440,13 @@
                                                                         <i class="fa-regular fa-clock"></i>
                                                                     </span>
                                                                     <span class="m-date">{{fixture.date}}</span>
-                                                                    {% if fixture.in_play %}
+                                                                     {% if fixture.in_play %}
                                                                     <span class="m-in-play">in-play</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
                                                                     {% else %}
                                                                     <span class="m-time">{{fixture.time}}</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
+
                                                                     {% endif %}
                                                                 </div>
                                                                 <div class="playing-teams">
@@ -508,10 +514,10 @@
                                                     <div class="single-tournament">
                                                         <div class="tournament-title">
                                                             <span class="title-text">Serie A</span>
-                                                            <span class="match-quantity">(3)</span>
+                                                            <span class="match-quantity"></span>
                                                         </div>
                                                         <div class="all-tournament-match">
-                                                            {% for fixture in fixtures %}
+                                                            {% for fixture in fixture_SerieA %}
                                                             {% if fixture.in_play %}
                                                             <div class="single-t-match match-in-play">
                                                             {% else %}
@@ -522,10 +528,13 @@
                                                                         <i class="fa-regular fa-clock"></i>
                                                                     </span>
                                                                     <span class="m-date">{{fixture.date}}</span>
-                                                                    {% if fixture.in_play %}
+                                                                     {% if fixture.in_play %}
                                                                     <span class="m-in-play">in-play</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
                                                                     {% else %}
                                                                     <span class="m-time">{{fixture.time}}</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
+
                                                                     {% endif %}
                                                                 </div>
                                                                 <div class="playing-teams">
@@ -612,10 +621,13 @@
                                                                         <i class="fa-regular fa-clock"></i>
                                                                     </span>
                                                                     <span class="m-date">{{fixture.date}}</span>
-                                                                    {% if fixture.in_play %}
+                                                                     {% if fixture.in_play %}
                                                                     <span class="m-in-play">in-play</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
                                                                     {% else %}
                                                                     <span class="m-time">{{fixture.time}}</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
+
                                                                     {% endif %}
                                                                 </div>
                                                                 <div class="playing-teams">
@@ -699,10 +711,13 @@
                                                                         <i class="fa-regular fa-clock"></i>
                                                                     </span>
                                                                     <span class="m-date">{{fixture.date}}</span>
-                                                                    {% if fixture.in_play %}
+                                                                     {% if fixture.in_play %}
                                                                     <span class="m-in-play">in-play</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
                                                                     {% else %}
                                                                     <span class="m-time">{{fixture.time}}</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
+
                                                                     {% endif %}
                                                                 </div>
                                                                 <div class="playing-teams">
@@ -786,10 +801,13 @@
                                                                         <i class="fa-regular fa-clock"></i>
                                                                     </span>
                                                                     <span class="m-date">{{fixture.date}}</span>
-                                                                    {% if fixture.in_play %}
+                                                                     {% if fixture.in_play %}
                                                                     <span class="m-in-play">in-play</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
                                                                     {% else %}
                                                                     <span class="m-time">{{fixture.time}}</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
+
                                                                     {% endif %}
                                                                 </div>
                                                                 <div class="playing-teams">
@@ -872,10 +890,13 @@
                                                                         <i class="fa-regular fa-clock"></i>
                                                                     </span>
                                                                     <span class="m-date">{{fixture.date}}</span>
-                                                                    {% if fixture.in_play %}
+                                                                     {% if fixture.in_play %}
                                                                     <span class="m-in-play">in-play</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
                                                                     {% else %}
                                                                     <span class="m-time">{{fixture.time}}</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
+
                                                                     {% endif %}
                                                                 </div>
                                                                 <div class="playing-teams">
@@ -958,10 +979,13 @@
                                                                         <i class="fa-regular fa-clock"></i>
                                                                     </span>
                                                                     <span class="m-date">{{fixture.date}}</span>
-                                                                    {% if fixture.in_play %}
+                                                                     {% if fixture.in_play %}
                                                                     <span class="m-in-play">in-play</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
                                                                     {% else %}
                                                                     <span class="m-time">{{fixture.time}}</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
+
                                                                     {% endif %}
                                                                 </div>
                                                                 <div class="playing-teams">
@@ -1044,10 +1068,13 @@
                                                                         <i class="fa-regular fa-clock"></i>
                                                                     </span>
                                                                     <span class="m-date">{{fixture.date}}</span>
-                                                                    {% if fixture.in_play %}
+                                                                     {% if fixture.in_play %}
                                                                     <span class="m-in-play">in-play</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
                                                                     {% else %}
                                                                     <span class="m-time">{{fixture.time}}</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
+
                                                                     {% endif %}
                                                                 </div>
                                                                 <div class="playing-teams">
@@ -1130,10 +1157,13 @@
                                                                         <i class="fa-regular fa-clock"></i>
                                                                     </span>
                                                                     <span class="m-date">{{fixture.date}}</span>
-                                                                    {% if fixture.in_play %}
+                                                                     {% if fixture.in_play %}
                                                                     <span class="m-in-play">in-play</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
                                                                     {% else %}
                                                                     <span class="m-time">{{fixture.time}}</span>
+                                                                    <span class="fixture-id">{{ fixture.id }}</span>
+
                                                                     {% endif %}
                                                                 </div>
                                                                 <div class="playing-teams">
