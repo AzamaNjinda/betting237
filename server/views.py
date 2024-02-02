@@ -286,12 +286,13 @@ def deposit_view(request):
     #             }
     #         return render(request, "dashboard-deposit.html", context)
 
-    #     else:
-    #         context = {
-    #             'message': form.errors,
-    #             'form': form,
-    #         }
-    #         return render(request, "dashboard-deposit.html", context)
+        else:
+            context = {
+                'message': form.errors,
+                'form': form,
+            }
+            
+            return render(request, "dashboard-deposit.html", context)
 
     
     context = {
