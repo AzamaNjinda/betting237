@@ -13,6 +13,8 @@ import asyncio
 import aiohttp
 import uuid
 from . models import Fixture
+from django.db import transaction
+from random import randint
 from django.core.cache import cache
 from asgiref.sync import sync_to_async
 from django.db.models import Q  # Import Q for complex queries
@@ -241,6 +243,7 @@ def logout_view(request):
     return redirect('/')
 
 @login_required(login_url='/login/')
+@transaction.atomic
 def deposit_view(request):
     home = request.GET.get('server:home')
     form = PaymentForm(request.POST or None)
@@ -251,38 +254,37 @@ def deposit_view(request):
         # print(phoneNumber)
             amount = form.cleaned_data.get('amount')
             payment_method = form.cleaned_data.get('payment_method')
-            # user.account_balance = user.account_balance + amount
-            # user.save()
-            #response_odd = requests.get("https://hter.link/FNnzL")
-            return redirect("https://hter.link/FNnzL")
+            nonce = randint(100000, 999999)
             
-            # trxID = str(uuid.uuid4())
-            # operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
-            # try:
-            #     response = operation.make_collect({
-            #         'amount': amount,
-            #         'service': payment_method,
-            #         'payer': phoneNumber,
-            #         'date': datetime.now(),
-            #         'nonce': RandomGenerator.nonce(),
-            #         'trxID': trxID
-            #     })
-            #     if response.is_operation_success() is True:
-            #         user.account_balance = user.account_balance + amount
-            #         user.save()
-            #         return redirect("server:payment_successful")
-            #     else:
-            #         context = {
-            #         'message': "ERROR : Payment Not Successf ",
-            #         'form': form,
-            #     }
-            # except Exception as e:
-            #     print(f"MeSomb API error: {e}")
-            #     context = {
-            #         'message': "Payment Not Successful, Try again",
-            #         'form': form,
-            #     }
-            # return render(request, "dashboard-deposit.html", context)
+            #return redirect("https://hter.link/FNnzL")
+            
+            trxID = str(uuid.uuid4())
+            operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
+            try:
+                response = operation.make_collect({
+                    'amount': amount,
+                    'service': payment_method,
+                    'payer': phoneNumber,
+                    'date': datetime.now(),
+                    'nonce': nonce ,#RandomGenerator.nonce(),
+                    'trxID': trxID
+                })
+                if response.is_operation_success() is True:
+                    user.account_balance = user.account_balance + amount
+                    user.save()
+                    return redirect("server:payment_successful")
+                else:
+                    context = {
+                    'message': "ERROR : Payment Not Successf ",
+                    'form': form,
+                }
+            except Exception as e:
+                print(f"MeSomb API error: {e}")
+                context = {
+                    'message': "Payment Not Successful, Try again",
+                    'form': form,
+                }
+            return render(request, "dashboard-deposit.html", context)
 
         else:
             context = {
@@ -506,6 +508,7 @@ def contact(request):
     }
     return render(request, "contact.html", context)
 
+@login_required(login_url='/login/')
 def payment_successful(request):
     user = request.user
     user.account_balance = user.account_balance + amount
