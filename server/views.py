@@ -294,11 +294,11 @@ def deposit_view(request):
     #         return render(request, "dashboard-deposit.html", context)
 
     
-    # context = {
-    #     'form': form,
-    # }
+    context = {
+        'form': form,
+    }
 
-    # return render(request, "dashboard-deposit.html", context )
+    return render(request, "dashboard-deposit.html", context )
 
 @login_required(login_url='/login/')
 def withdraw(request):
