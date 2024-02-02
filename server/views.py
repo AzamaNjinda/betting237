@@ -510,9 +510,9 @@ def contact(request):
 
 @login_required(login_url='/login/')
 def payment_successful(request):
-    user = request.user
-    user.account_balance = user.account_balance + amount
-    user.save()
+    # user = request.user
+    # user.account_balance = user.account_balance + amount
+    # user.save()
     return render(request, "payment-successful.html")
 
 def bet_history(request):
