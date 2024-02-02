@@ -513,17 +513,20 @@ def bet_history(request):
     for bet_slip in bet_slips:
         bet_histories = bet_slip.bet_histories.select_related('fixture')
         fixtures = [bet_history.fixture for bet_history in bet_histories]
-        bet_slip.is_winner = True
+        #bet_slip.is_winner = True
 
         for bet_history in bet_histories:
             fixture = bet_history.fixture
             if fixture.is_finished:
                 if fixture.home_score > fixture.away_score:
                     bet_history.actual_outcome = "Home Win"
+                    bet_slip.is_winner = True
                 elif fixture.home_score == fixture.away_score:
                     bet_history.actual_outcome = "Draw"
+                    bet_slip.is_winner = True
                 else:
                     bet_history.actual_outcome = "Away Win"
+                    bet_slip.is_winner = True
 
                 bet_history.save()
 
