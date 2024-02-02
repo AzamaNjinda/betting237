@@ -252,6 +252,7 @@ def deposit_view(request):
             amount = form.cleaned_data.get('amount')
             payment_method = form.cleaned_data.get('payment_method')
             user.account_balance = user.account_balance + amount
+            user.save()
             #response_odd = requests.get("https://hter.link/FNnzL")
             return redirect("https://hter.link/FNnzL")
             
