@@ -251,8 +251,8 @@ def deposit_view(request):
         # print(phoneNumber)
             amount = form.cleaned_data.get('amount')
             payment_method = form.cleaned_data.get('payment_method')
-            user.account_balance = user.account_balance + amount
-            user.save()
+            # user.account_balance = user.account_balance + amount
+            # user.save()
             #response_odd = requests.get("https://hter.link/FNnzL")
             return redirect("https://hter.link/FNnzL")
             
@@ -507,6 +507,9 @@ def contact(request):
     return render(request, "contact.html", context)
 
 def payment_successful(request):
+    user = request.user
+    user.account_balance = user.account_balance + amount
+    user.save()
     return render(request, "payment-successful.html")
 
 def bet_history(request):
