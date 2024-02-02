@@ -28,6 +28,17 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email', 'username', 'first_name', 'last_name','phone_number')
     ordering = ('phone_number',)
 
+    actions = ['Can_Withdraw','Cannot_Withdraw']
+
+    def Can_Withdraw(self, request, queryset):
+        queryset.update(Can_Withdraw=True)
+
+    def Cannot_Withdraw(self, request, queryset):
+        queryset.update(Can_Withdraw=False)
+
+    Can_Withdraw.short_description = "Selected users can Withdraw"
+    Cannot_Withdraw.short_description = "Selected users cannot Withdraw"
+
 class FixtureAdmin(admin.ModelAdmin):
     list_display = [
         'id',
