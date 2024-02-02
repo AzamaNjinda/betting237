@@ -268,13 +268,13 @@ def deposit_view(request):
                     return redirect("server:payment_successful")
                 else:
                     context = {
-                    'message': "ERROR : Payment Not Successful",
+                    'message': "ERROR : Payment Not Successf ",
                     'form': form,
                 }
             except Exception as e:
                 print(f"MeSomb API error: {e}")
                 context = {
-                    'message': "Payment Not Successful",
+                    'message': "Payment Not Successful, Try again",
                     'form': form,
                 }
             return render(request, "dashboard-deposit.html", context)
