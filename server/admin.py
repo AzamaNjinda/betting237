@@ -31,10 +31,10 @@ class UserAdmin(BaseUserAdmin):
     actions = ['Can_Withdraw','Cannot_Withdraw']
 
     def Can_Withdraw(self, request, queryset):
-        queryset.update(Can_Withdraw=True)
+        queryset.update(can_withdraw=True)
 
     def Cannot_Withdraw(self, request, queryset):
-        queryset.update(Can_Withdraw=False)
+        queryset.update(can_withdraw=False)
 
     Can_Withdraw.short_description = "Selected users can Withdraw"
     Cannot_Withdraw.short_description = "Selected users cannot Withdraw"
