@@ -380,6 +380,8 @@ def place_bet(request):
         
         if bet_slip_query.exists():
             bet_slip = bet_slip_query.first()
+            bet_slip.is_combo = True
+            bet_slip.save()
         else:
             bet_slip = BetSlip.objects.create(slipID=slip_id, user=user, total_stake_amount=float(total_stake_amount), total_payout=float(total_payout))
 
@@ -510,60 +512,78 @@ def bet_history(request):
     fixtures = []
     for bet_slip in bet_slips:
         bet_histories = bet_slip.bet_histories.select_related('fixture')
-        #bet_histories.append(bet_histor)
         fixtures = [bet_history.fixture for bet_history in bet_histories]
+        bet_slip.is_winner = True
 
         for bet_history in bet_histories:
             fixture = bet_history.fixture
-            if fixture.is_finished is True:
+            if fixture.is_finished:
                 if fixture.home_score > fixture.away_score:
                     bet_history.actual_outcome = "Home Win"
-                    bet_history.save()
-                    if bet_history.predicted_outcome == bet_history.actual_outcome:
-                        bet_slip.is_winner = True
-                        bet_slip.save()
-                        if not bet_slip.is_paid:
-                            user.account_balance = user.account_balance + bet_slip.total_payout
-                            bet_slip.is_paid = True
-                            bet_slip.save()
-                            user.save()
-                        else:
-                            pass
-                    else:
-                        bet_slip.is_winner = False
-                        bet_slip.save()
                 elif fixture.home_score == fixture.away_score:
                     bet_history.actual_outcome = "Draw"
-                    bet_history.save()
-                    if bet_history.predicted_outcome == bet_history.actual_outcome:
-                        bet_slip.is_winner = True
-                        bet_slip.save()
-                        if not bet_slip.is_paid:
-                            user.account_balance = user.account_balance + bet_slip.total_payout
-                            bet_slip.is_paid = True
-                            bet_slip.save()
-                            user.save()
-                        else:
-                            pass
-                    else:
-                        bet_slip.is_winner = False
-                        bet_slip.save()
-                elif fixture.home_score < fixture.away_score:
+                else:
                     bet_history.actual_outcome = "Away Win"
-                    bet_history.save()
-                    if bet_history.predicted_outcome == bet_history.actual_outcome:
-                        bet_slip.is_winner = True
-                        bet_slip.save()
-                        if not bet_slip.is_paid:
-                            user.account_balance = user.account_balance + bet_slip.total_payout
-                            bet_slip.is_paid = True
-                            bet_slip.save()
-                            user.save()
-                        else:
-                            pass
-                    else:
-                        bet_slip.is_winner = False
-                        bet_slip.save()
+
+                bet_history.save()
+
+                if bet_history.predicted_outcome != bet_history.actual_outcome:
+                    bet_slip.is_winner = False
+
+        if bet_slip.is_winner and not bet_slip.is_paid:
+            user.account_balance += bet_slip.total_payout
+            bet_slip.is_paid = True
+            bet_slip.save()
+            user.save()
+            # if fixture.is_finished is True:
+            #     if fixture.home_score > fixture.away_score:
+            #         bet_history.actual_outcome = "Home Win"
+            #         bet_history.save()
+            #         if bet_history.predicted_outcome == bet_history.actual_outcome:
+            #             bet_slip.is_winner = True
+            #             bet_slip.save()
+            #             if not bet_slip.is_paid:
+            #                 user.account_balance = user.account_balance + bet_slip.total_payout
+            #                 bet_slip.is_paid = True
+            #                 bet_slip.save()
+            #                 user.save()
+            #             else:
+            #                 pass
+            #         else:
+            #             bet_slip.is_winner = False
+            #             bet_slip.save()
+            #     elif fixture.home_score == fixture.away_score:
+            #         bet_history.actual_outcome = "Draw"
+            #         bet_history.save()
+            #         if bet_history.predicted_outcome == bet_history.actual_outcome:
+            #             bet_slip.is_winner = True
+            #             bet_slip.save()
+            #             if not bet_slip.is_paid:
+            #                 user.account_balance = user.account_balance + bet_slip.total_payout
+            #                 bet_slip.is_paid = True
+            #                 bet_slip.save()
+            #                 user.save()
+            #             else:
+            #                 pass
+            #         else:
+            #             bet_slip.is_winner = False
+            #             bet_slip.save()
+            #     elif fixture.home_score < fixture.away_score:
+            #         bet_history.actual_outcome = "Away Win"
+            #         bet_history.save()
+            #         if bet_history.predicted_outcome == bet_history.actual_outcome:
+            #             bet_slip.is_winner = True
+            #             bet_slip.save()
+            #             if not bet_slip.is_paid:
+            #                 user.account_balance = user.account_balance + bet_slip.total_payout
+            #                 bet_slip.is_paid = True
+            #                 bet_slip.save()
+            #                 user.save()
+            #             else:
+            #                 pass
+            #         else:
+            #             bet_slip.is_winner = False
+            #             bet_slip.save()
 
         bet_slip_data = {
             'bet_slip': bet_slip,

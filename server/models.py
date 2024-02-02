@@ -79,6 +79,7 @@ class BetSlip(models.Model):
     total_payout = models.DecimalField(max_digits=10, decimal_places=2)
     is_winner = models.BooleanField(default=False)
     is_paid = models.BooleanField(default=False)
+    is_combo = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
