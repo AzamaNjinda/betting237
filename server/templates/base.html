@@ -1,5 +1,5 @@
 {% load static %}
-{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
 <!DOCTYPE html>
 <html lang="zxx">
     <head>
@@ -270,7 +270,7 @@
                                     </a>
                                 </div>
                                 
-                                {% comment %} <div class="single-bar dropdown">
+                               <div class="single-bar dropdown">
                                     <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"  class="dashboard-overview">
                                         <span class="part-icon">
                                             <i class="fa-regular fa-globe"></i>
@@ -279,15 +279,10 @@
                                     </a>
                                     <ul class="dropdown-menu lang-item" aria-labelledby="dropdownMenuLink">
                                         <li><a class="dropdown-item" href="#">ENG</a></li>
-                                        <li><a class="dropdown-item" href="#">বাংলা</a></li>
-                                        <li><a class="dropdown-item" href="#">عربي</a></li>
-                                        <li><a class="dropdown-item" href="#">हिन्दी</a></li>
-                                        <li><a class="dropdown-item" href="#">Español</a></li>
-                                        <li><a class="dropdown-item" href="#">贛語</a></li>
-                                        <li><a class="dropdown-item" href="#">Հայերեն</a></li>
-                                        <li><a class="dropdown-item" href="#">Ўзбек</a></li>
+                                        <li><a class="dropdown-item" href="#">FR</a></li>
+                                       
                                     </ul>
-                                </div> {% endcomment %}
+                                </div> 
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-5 col-md-5">
@@ -358,7 +353,7 @@
                                                 </ul> {% endcomment %}
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:about' %}">about us</a>
+                                                <a class="nav-link" href="{% url 'server:about' %}">About us</a>
                                             </li>
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="betDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -439,11 +434,11 @@
                                                 <a class="nav-link" href="{% url 'server:contact' %}">Contact Us</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:logout' %}">Sign Out</a>
+                                                <a class="nav-link" href="{% url 'server:logout' %}">Log Out</a>
                                             </li>
                                             {% else %}
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:register' %}">Sign Up</a>
+                                                <a class="nav-link" href="{% url 'server:register' %}">Create Acount</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{% url 'server:login' %}">Log In</a>
@@ -525,7 +520,7 @@
                         <div class="footer-menu">
                             <ul>
                                 <li>
-                                    <a href="{% url 'server:home' %}" class="single-menu">homepage</a>
+                                    <a href="{% url 'server:home' %}" class="single-menu">Home</a>
                                 </li>
                                 <li>
                                     <a href="{% url 'server:about' %}" class="single-menu">About Us</a>

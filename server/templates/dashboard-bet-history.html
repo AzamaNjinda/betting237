@@ -173,7 +173,7 @@
                             </h4>
                             <div class="pending-slips-scrollable">
                                 <div class="pending-slips">
-{% comment %}                                     
+                               {% comment %}                                     
                                     {% for bet_slip_data in bet_slips_data %}
                                     {% if bet_slip_data.bet_slip.is_combo %}                            
                                     <div class="single-bs-card singleBS" data-match-id="1689493708888">
@@ -313,60 +313,8 @@
                                     {% endif %}
                                     {% endfor %} {% endcomment %}
                                     
-                                        {% for bet_slip_data in bet_slips_data %}
-                                            {% if bet_slip_data.bet_slip.is_combo %}                            
-                                                <div class="single-bs-card singleBS" data-match-id="1689493708888">
-                                                    {% comment %} <span class="tournament-name">{{ fixture.league }}</span> {% endcomment %}
-                                                    {% for bet_history in bet_slip_data.bet_histories %}
-                                                    {% for fixture in bet_slip_data.fixtures  %}
-                                                        {% if not fixture.is_finished %}
-                                                            <div class="slct-match">
-                                                                <span class="team-1">{{ fixture.home }}</span>
-                                                                vs
-                                                                <span class="team-2">{{ fixture.away }}</span>
-                                                                :
-                                                                <span class="bet-ratio" style="-webkit-text-fill-color: rgb(255, 99, 71); font-weight: 500;">PENDING</span>
-                                                            </div>
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }}</b></span>
-                                                            </div>
-                                                        {% else %}
-                                                            <div class="slct-match">
-                                                                <span class="team-1">{{ fixture.home }}</span>
-                                                                vs
-                                                                <span class="team-2">{{ fixture.away }}</span>
-                                                                :
-                                                                {% if bet_history.predicted_outcome == bet_history.actual_outcome  %}
-                                                                    <span class="bet-ratio" style="-webkit-text-fill-color: rgb(77, 142, 83); font-weight: 500;">Won</span>
-                                                                {% else %}
-                                                                    <span class="bet-ratio" style="-webkit-text-fill-color: rgb(255, 99, 71); font-weight: 500;">Loss</span>
-                                                                {% endif %}
-                                                            </div>
-                                                            <div class="slct-match">
-                                                                <span class=""><b> PREDICTION : {{ bet_history.predicted_outcome }}</b></span>
-                                                            </div>
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> Final Score :</b></span>
-                                                                <span class="team-1">{{ fixture.home_score }}</span>
-                                                                :
-                                                                <span class="team-2">{{ fixture.away_score }}</span>
-                                                            </div>
-                                                        {% endif %}
-                                                        {% endfor %}
-                                                    
-                                                    {% endfor %}
-                                                    
-                                                    <div class="bs-card-footer">
-                                                        <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stk:<span class="stake-number">{{ bet_slip_data.bet_slip.total_stake_amount }}</span></button>
-                                                        <div class="return-amount">
-                                                            <span class="text">Return : </span>
-                                                            <span class="number">{{ bet_slip_data.bet_slip.total_payout }}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            {% else %}
-                                                
-                                                {% for bet_history in bet_slip_data.bet_histories %}
+                                        {% for bet_slip_data in bet_slips_data %}                                                 
+                                            {% for bet_history in bet_slip_data.bet_histories %}
                                                 {% for fixture in bet_slip_data.fixtures  %}
 
                                                     {% if not fixture.is_finished %}
@@ -432,9 +380,8 @@
                                                             </div>
                                                         </div>
                                                     {% endif %}
-                                                 {% endfor %}   
-                                                {% endfor %}
-                                            {% endif %}
+                                                {% endfor %}   
+                                            {% endfor %}
                                         {% endfor %}   
                                 </div>
                             </div>

@@ -24,7 +24,7 @@ class UserAdmin(BaseUserAdmin):
             'fields': ('is_superuser', 'is_staff','is_active', "user_permissions")
         })
     )
-    list_display = ['username','phone_number','first_name', 'last_name','email', 'is_active', 'can_withdraw']
+    list_display = ['username','phone_number','account_balance','is_active', 'can_withdraw']
     search_fields = ('email', 'username', 'first_name', 'last_name','phone_number')
     ordering = ('phone_number',)
 
