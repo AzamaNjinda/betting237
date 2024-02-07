@@ -18,7 +18,7 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {
             'fields': ('first_name', 'last_name','email', 'username', 
-             'password', 'phone_number','account_balance','can_withdraw')
+             'password', 'phone_number','account_balance','can_withdraw', 'deposit_amount')
         }),
         ('Permissions', {
             'fields': ('is_superuser', 'is_staff','is_active', "user_permissions")
