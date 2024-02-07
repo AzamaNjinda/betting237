@@ -726,13 +726,23 @@
                                 'total_payout':  $('.bet-slip-calculation').find('.total-est-return').text()
 
                             },
-                            success: function (data) {
-                                // Handle the successful response
-                                console.log(data.message);
+                            success: function (response) {
+                                window.location.href = 'error2/';
+                                if (response && response.error) {
+                                    // Redirect to the error route
+                                    console.log(response.error);
+                                    window.location.href = 'error2/';
+                                } else {
+                                    // Handle success scenario (optional)
+                                    console.log(response.message);
+                                    
+                                }
                             },
-                            error: function (error) {
+                            error: function (xhr, status, error) {
                                 // Handle the error
-                                console.log('Error:', error);
+                                console.log(xhr.responseText);
+                
+                                window.location.href = 'error2/';
                             }
                         });
 

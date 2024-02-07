@@ -3,6 +3,55 @@
 
 
 {% block content %}
+ <!-- dashboard header begin -->
+ <div class="dashboard-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-6 col-lg-4 order-lg-0 order-2">
+                <div class="db-breadcrumb">
+                    <h2 class="page-name">
+                        {{ all_base_2 }}
+                    </h2>
+                    <ul class="page-dir">
+                        <li>
+                            <span class="icon"><i class="fa-light fa-house"></i></span>
+                            Home
+                        </li>
+                        <li>
+                            <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
+                            {{ all_base_2 }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-8">
+                <div class="part-user">
+                    <div class="user-info">
+                        <span class="user-name">{{ request.user.username }}</span>
+                        <div class="user-bet-id">
+                            <span class="text">Bet ID :</span>
+                            <span class="descr"> bet_237125c66n40p01{{ request.user.id }}</span>
+                        </div>
+                        {% comment %} <ul class="user-stats">
+                            <li>
+                                <span class="text">loosing bet :</span>
+                                <span class="percentage"> 34%</span>
+                            </li>
+                            <li>
+                                <span class="text">winning bet :</span>
+                                <span class="percentage"> 66%</span>
+                            </li>
+                        </ul> {% endcomment %}
+                    </div>
+                    <div class="user-pic">
+                        <img src="{% static 'assets-2/img/dashboard-header/user-1.jpg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- dashboard header end -->
 	    
         <!-- dashboard menu begin -->
         <div class="container">
@@ -20,17 +69,17 @@
                         </li> {% endcomment %}
                         <li class="nav-item">
                             <a class="nav-link " href="{% url 'server:bet-history' %}">
-                                <i class="fa-duotone fa-dice fa-lg"></i>bet history</a>
+                                <i class="fa-duotone fa-dice fa-lg"></i>{{ all_base_8 }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{% url 'server:deposit' %}">
                                 <i class="fa-duotone fa-sack-dollar fa-lg"></i>
-                                deposit</a>
+                                {{ all_base_2 }}</a>
                         </li>
                         
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'server:withdraw' %}">
-                                <i class="fa-duotone fa-upload fa-lg"></i>withdraw <span class="d-xxl-inline d-xl-none">funds</span></a>
+                                <i class="fa-duotone fa-upload fa-lg"></i>{{ all_base_11 }}<span class="d-xxl-inline d-xl-none">funds</span></a>
                         </li>
                         
                         {% comment %} <li class="nav-item">
@@ -66,7 +115,7 @@
                                 <img src="{% static 'assets-2/img/db-statics/image-1.png' %}" alt="">
                             </div>
                             <div class="part-text">
-                                <span class="text">Main balance</span>
+                                <span class="text">{{ all_base_9 }}</span>
                                 <span class="descr">{{ request.user.account_balance }} </span>
                             </div>
                         </div>
@@ -90,7 +139,7 @@
                                 <span class="icon wallet">
                                     <img src="{% static 'assets-2/img/icon/wallet-deposit.png' %}" alt="">
                                 </span>
-                                <span class="text">deposit into Account</span>
+                                <span class="text">{{ deposit_deposit_1 }}</span>
                                 
                             </h4>
                             <div class="part-form">
@@ -99,18 +148,18 @@
                                     <div class="row">
                                         <p style="color:red; text-align:center;">{{message}}</p>
                                         <div class="col-xl-12 col-lg-12 col-md-12">
-                                            <label for="deposit_first_name" class="form-label"><span>Enter amount</span></label>
+                                            <label for="deposit_first_name" class="form-label"><span>{{ deposit_deposit_2 }}</span></label>
                                             {% comment %} <input type="text" id="deposit_first_name" placeholder="ex: 5042.00"> {% endcomment %}
                                             {{ form.amount }}
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12">
-                                            <label for="deposit_first_name" class="form-label"><span>Enter Phone Number</span></label>
+                                            <label for="deposit_first_name" class="form-label"><span>{{ deposit_deposit_3 }}</span></label>
                                             {% comment %} <input type="text" id="deposit_first_name" placeholder="ex: 5042.00"> {% endcomment %}
                                             {{ form.phoneNumber }}
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12">
                                           
-                                            <label class="form-label"><span>Select your payment wallet</span></label>
+                                            <label class="form-label"><span>{{ deposit_deposit_4 }}</span></label>
                                             <div class="dropdown select-list wallet-select">
                                                 {% comment %} <button class="dropdown-toggle" type="button" id="wallet-select" data-bs-toggle="dropdown" aria-expanded="false"> {% endcomment %}
                                                     {{ form.payment_method }}
@@ -126,7 +175,7 @@
                                         </div> 
                                     </div>
                                     <button class="prd-btn-1">
-                                        deposit <i class="fa-duotone fa-arrow-right"></i>
+                                        {{ all_base_10 }} <i class="fa-duotone fa-arrow-right"></i>
                                     </button>
                                 </form>
                             </div>

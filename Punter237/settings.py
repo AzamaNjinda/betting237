@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-l(((%m(io$a6ht_^3=%v8cq%snqqswyp2@j48y&+4cnq@^d!%('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','betting237.com']
 
@@ -129,6 +129,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
+
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_ROOT = '/home/bettingc/public_html/static/'
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')

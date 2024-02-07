@@ -53,19 +53,19 @@
                 <div class="row justify-content-lg-between justify-content-center">
                     <div class="col-xl-5 col-lg-6" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
                         <div class="poklotto-form">
-                            <h3 class="title">Fill the form as well</h3>
+                            <h3 class="title">{{ login_login_1 }}</h3>
                             <div class="part-form">
                                 <form method="POST">
                                     {% csrf_token %}
                                     <div class="row">
                                         <div class="col-xl-12">
-                                            <label for="first_name" class="form-label"><span>Mobile Number</span></label>
+                                            <label for="first_name" class="form-label"><span>{{ signup_signup_3 }}</span></label>
                                             {% comment %} <input type="text" id="first_name" placeholder="Ex: john"> {% endcomment %}
                                             {{ form.phoneNumber }}
                                         </div>
                                         
                                         <div class="col-xl-12">
-                                            <label for="last_name" class="form-label"><span>Password</span></label>
+                                            <label for="last_name" class="form-label"><span>{{ signup_signup_4 }}</span></label>
                                             {% comment %} <input type="password" id="last_name" placeholder="Password here..."> {% endcomment %}
                                             {{ form.password }}
                                         </div>
@@ -74,13 +74,13 @@
                                         <button class="prd-btn-1">
                                             Log In <i class="fa-duotone fa-arrow-right"></i>
                                         </button>
-                                        <p>No account yet in Peredion?<br/>
-                                            <a href="{% url 'server:register' %}" class="reg-link">Create Account</a> here to signup.</p>
+                                        <p>{{ login_login_2 }}<br/>
+                                            <a href="{% url 'server:register' %}" class="reg-link">{{ login_login_3 }}</a> {{ login_login_4 }}</p>
                                     </div>
                                 </form>
                                 <div class="part-connect-social-info">
                                     <div class="title-overlap">
-                                        <h4 class="title">or sign in with</h4>
+                                        <h4 class="title">{{ login_login_5 }}</h4>
                                     </div>
                                     <ul>
                                         <li>
@@ -105,11 +105,11 @@
                             </div>
                             <div class="part-text" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
                                 <div class="section-title if-lines-break">
-                                    <h3 class="sub-title">Welcome to BETTING237</h3>
+                                    <h3 class="sub-title">{{ login_login_6 }}</h3>
                                     <h2 class="title">
                                         <span>
-                                            Sign in & Start Betting <br/>
-                                            with Just One Click
+                                            {{ login_login_7 }}<br/>
+                                            {{ login_login_8 }}
                                         </span>
                                     </h2>
                                 </div>

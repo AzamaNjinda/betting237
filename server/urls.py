@@ -2,26 +2,28 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static 
+from server import candy
 
 app_name = 'server'
 
 urlpatterns = [
-    path('', views.home, name='home'), 
-    path('register/', views.register_view, name='register'), 
-    path('login/', views.login_view, name='login'), 
-    path('logout/', views.logout_view, name='logout'), 
-    path('deposit/', views.deposit_view, name='deposit'), 
-    path('withdraw/', views.withdraw, name='withdraw'), 
-    path('about/', views.about, name='about'), 
-    path('playing/', views.playing, name='playing'), 
-    path('finished/', views.finished, name='finished'), 
-    path('in_play/', views.in_play, name='in_play'), 
-    path('upcoming/', views.upcoming, name='upcoming'), 
-    path('contact/', views.contact, name='contact'), 
-    path('payment_successful/', views.payment_successful, name='payment_successful'), 
+    *candy.path('', views.home, name='home'), 
+    *candy.path('register/', views.register_view, name='register'), 
+    *candy.path('login/', views.login_view, name='login'), 
+    *candy.path('logout/', views.logout_view, name='logout'), 
+    *candy.path('deposit/', views.deposit_view, name='deposit'), 
+    *candy.path('withdraw/', views.withdraw, name='withdraw'), 
+    *candy.path('about/', views.about, name='about'), 
+    *candy.path('playing/', views.playing, name='playing'), 
+    *candy.path('finished/', views.finished, name='finished'), 
+    *candy.path('in_play/', views.in_play, name='in_play'), 
+    *candy.path('upcoming/', views.upcoming, name='upcoming'), 
+    *candy.path('contact/', views.contact, name='contact'), 
+    *candy.path('payment_successful/', views.payment_successful, name='payment_successful'), 
     path('error/', views.error, name='error'), 
+    path('error2/', views.error_2, name='error2'), 
     path('place-bet/', views.place_bet, name='place-bet'), 
-    path('bet-history/', views.bet_history, name='bet-history'), 
+    *candy.path('bet-history/', views.bet_history, name='bet-history'), 
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

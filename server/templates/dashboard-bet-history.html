@@ -4,58 +4,107 @@
 
 {% block content %}
 
-        <!-- dashboard menu begin -->
-        <div class="container">
-            <div class="d-xl-block d-none">
-                <div class="db-menu">
-                    <ul class="nav nav-pills">
-                        {% comment %} <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.html">
-                                <i class="fa-duotone fa-gauge fa-lg"></i>overview</a>
-                        </li> {% endcomment %}
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'server:bet-history' %}">
-                                <i class="fa-duotone fa-dice fa-lg"></i>bet history</a>
-                        </li>
-                        {% comment %} <li class="nav-item">
-                            <a class="nav-link" href="dashboard-transaction-history.html">
-                                <i class="fa-duotone fa-arrow-right-arrow-left fa-lg" style="font-size: 20px;"></i>
-                                transaction <span class="d-xxl-inline d-xl-none">history</span></a>
-                        </li> {% endcomment %}
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'server:deposit' %}">
-                                <i class="fa-duotone fa-sack-dollar fa-lg"></i>
-                                deposit</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'server:withdraw' %}">
-                                <i class="fa-duotone fa-upload fa-lg"></i>withdraw <span class="d-xxl-inline d-xl-none">funds</span></a>
-                        </li>
-                        
-                        {% comment %} <li class="nav-item">
-                            <a class="nav-link" href="dashboard-referral.html">
-                                <i class="fa-duotone fa-users fa-lg" style="font-size: 18px;"></i>referral</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard-settings.html"><i class="fa-duotone fa-gear fa-lg" style="--fa-primary-opacity: 0.4; --fa-secondary-opacity: 1;"></i>
-                                settings</a>
-                        </li> {% endcomment %}
-                    </ul>
-                </div>
-            </div>
-            <div class="d-xl-none d-block">
-                <div class="db-offset-menu-control">
-                    <span class="text">dashboard menu</span>
-                    <button class="btn-for-bs-offset" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" id="offcanvasExampleLabel">
-                        <i class="fa-regular fa-bars"></i>
-                    </button>
+        <!-- dashboard header begin -->
+        <div class="dashboard-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-4 order-lg-0 order-2">
+                        <div class="db-breadcrumb">
+                            <h2 class="page-name">
+                                {{ all_base_8 }}
+                            </h2>
+                            <ul class="page-dir">
+                                <li>
+                                    <span class="icon"><i class="fa-light fa-house"></i></span>
+                                    Home
+                                </li>
+                                <li>
+                                    <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
+                                    {{ all_base_8 }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-8">
+                        <div class="part-user">
+                            <div class="user-info">
+                                <span class="user-name">{{ request.user.username }}</span>
+                                <div class="user-bet-id">
+                                    <span class="text">Bet ID :</span>
+                                    <span class="descr"> bet_237125c66n40p01{{ request.user.id }}</span>
+                                </div>
+                                {% comment %} <ul class="user-stats">
+                                    <li>
+                                        <span class="text">loosing bet :</span>
+                                        <span class="percentage"> 34%</span>
+                                    </li>
+                                    <li>
+                                        <span class="text">winning bet :</span>
+                                        <span class="percentage"> 66%</span>
+                                    </li>
+                                </ul> {% endcomment %}
+                            </div>
+                            <div class="user-pic">
+                                <img src="{% static 'assets-2/img/dashboard-header/user-1.jpg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- dashboard menu end -->
+        <!-- dashboard header end -->
+
+       <!-- dashboard menu begin -->
+       <div class="container">
+        <div class="d-xl-block d-none">
+            <div class="db-menu">
+                <ul class="nav nav-pills">
+                    {% comment %} <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">
+                            <i class="fa-duotone fa-gauge fa-lg"></i>overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard-transaction-history.html">
+                            <i class="fa-duotone fa-arrow-right-arrow-left fa-lg" style="font-size: 20px;"></i>
+                            transaction <span class="d-xxl-inline d-xl-none">history</span></a>
+                    </li> {% endcomment %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'server:bet-history' %}">
+                            <i class="fa-duotone fa-dice fa-lg"></i>{{ all_base_8 }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'server:deposit' %}">
+                            <i class="fa-duotone fa-sack-dollar fa-lg"></i>
+                            {{ all_base_2 }}</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'server:withdraw' %}">
+                            <i class="fa-duotone fa-upload fa-lg"></i>{{ all_base_11 }}<span class="d-xxl-inline d-xl-none">funds</span></a>
+                    </li>
+                    
+                    {% comment %} <li class="nav-item">
+                        <a class="nav-link" href="dashboard-referral.html">
+                            <i class="fa-duotone fa-users fa-lg" style="font-size: 18px;"></i>referral</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard-settings.html"><i class="fa-duotone fa-gear fa-lg" style="--fa-primary-opacity: 0.4; --fa-secondary-opacity: 1;"></i>
+                            settings</a>
+                    </li> {% endcomment %}
+                </ul>
+            </div>
+        </div>
+        <div class="d-xl-none d-block">
+            <div class="db-offset-menu-control">
+                <span class="text">dashboard menu</span>
+                <button class="btn-for-bs-offset" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" id="offcanvasExampleLabel">
+                    <i class="fa-regular fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- dashboard menu end -->
 
         <!-- dashboard-statics begin  -->
         <div class="dashboard-statics">
@@ -67,7 +116,7 @@
                                 <img src="{% static 'assets-2/img/db-statics/image-1.png' %}" alt="">
                             </div>
                             <div class="part-text">
-                                <span class="text">Main balance</span>
+                                <span class="text">{{ all_base_9 }}</span>
                                 <span class="descr">FCFA {{ request.user.account_balance }}</span>
                             </div>
                         </div>

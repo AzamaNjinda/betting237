@@ -107,287 +107,256 @@
         </div>
 
         <!-- header begin -->
-               <!-- header begin -->
-               <div class="header animated">
-                <div class="top-bar">
-                    <div class="container">
-                        <div class="row justify-content-between">
-                            <div class="col-xl-5 col-lg-5 col-md-7">
-                                <div class="left-side">
-                                    <div class="single-bar">
-                                        <a class="dashboard-overview" href="{% url 'server:register' %}">
-                                            <span class="part-icon">
-                                                <i class="fa-regular fa-circle-user"></i>
-                                            </span>
-                                            {% if request.user.is_authenticated %}
-                                            <span class="part-text">hi, <span class="user-name">{{ user.username }}</span></span>
-                                            <div class="single-bar">
-                                                <a class="dashboard-overview" href="{% url 'server:deposit' %}">
-                                                    <span class="part-icon">
-                                                        <i class="fa-regular fa-user"></i>
-                                                    </span>
-                                                    <span class="part-text">Deposit</span>
-                                                </a>
-                                            </div>
-                                            <div class="single-bar">
-                                                <a class="dashboard-overview" href="mailto: abc@example.com">
-                                                    <span class="part-icon">
-                                                        <i class="fa-regular fa-dollar"></i>
-                                                    </span>
-                                                    <span class="part-text">{{request.user.account_balance}}</span>
-                                                </a>
-                                            </div>
-                                            {% else %}
-                                            <span class="part-text">Hey, <span class="user-name">Sign Up or Log in</span></span>
-                                            {% endif %}
-                                            
-                                        </a>
-                                    </div>
-                                  
-                                    {% comment %} <div class="single-bar dropdown">
-                                        <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"  class="dashboard-overview">
-                                            <span class="part-icon">
-                                                <i class="fa-regular fa-globe"></i>
-                                            </span>
-                                            <span class="part-text lang-display">eng</span>
-                                        </a>
-                                        <ul class="dropdown-menu lang-item" aria-labelledby="dropdownMenuLink">
-                                            <li><a class="dropdown-item" href="#">ENG</a></li>
-                                            <li><a class="dropdown-item" href="#">বাংলা</a></li>
-                                            <li><a class="dropdown-item" href="#">عربي</a></li>
-                                            <li><a class="dropdown-item" href="#">हिन्दी</a></li>
-                                            <li><a class="dropdown-item" href="#">Español</a></li>
-                                            <li><a class="dropdown-item" href="#">贛語</a></li>
-                                            <li><a class="dropdown-item" href="#">Հայերեն</a></li>
-                                            <li><a class="dropdown-item" href="#">Ўзбек</a></li>
-                                        </ul>
-                                    </div> {% endcomment %}
+        <div class="header animated">
+            <div class="top-bar">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-5 col-lg-5 col-md-7">
+                            <div class="left-side">
+                                {% if request.user.is_authenticated %}
+                                
+                                <div class="single-bar">
+                                    <a class="dashboard-overview" href="{% url 'server:home' %}">
+                                        <span class="part-icon">
+                                            <i class="fa-regular fa-futbol"></i>
+                                        </span>
+                                        <span class="part-text"><span class="user-name">{{ all_base_6 }}</span></span>
+                                    </a>
                                 </div>
+                                <div class="single-bar">
+                                    <a class="dashboard-overview" href="{% url 'server:deposit' %}">
+                                        <span class="part-icon">
+                                            <i class="fa-regular fa-money-bill-transfer"></i>
+                                        </span>
+                                        <span class="part-text">{{ all_base_2 }}</span>
+                                    </a>
+                                </div>
+                                <div class="single-bar">
+                                    <a class="dashboard-overview" href="mailto: abc@example.com">
+                                        <span class="part-icon">
+                                            <i class="fa-regular fa-money-bill"></i>
+                                        </span>
+                                        <span class="part-text account-balance">{{request.user.account_balance}} XAF</span>
+                                    </a>
+                                </div> 
+                                {% else %}
+
+                                <div class="single-bar">
+                                    <a class="dashboard-overview" href="{% url 'server:register' %}">
+                                        <span class="part-icon">
+                                            <i class="fa-regular fa-circle-user"></i>
+                                        </span>
+                                        <span class="part-text"><span class="user-name">{{ all_base_3 }}</span></span>
+                                        
+                                    </a>
+                                </div>
+                                <div class="single-bar">
+                                    <a class="dashboard-overview" href="{% url 'server:login' %}">
+                                        <span class="part-icon">
+                                            <i class="fa-regular fa-circle-user"></i>
+                                        </span>
+                                        <span class="part-text"> <span class="user-name">Log in</span></span>
+                                        
+                                    </a>
+                                </div>
+                                
+                                
+                                {% endif %}
+
                             </div>
-                            <div class="col-xl-5 col-lg-5 col-md-5">
-                                <div class="right-side">
-                                    <div class="single-bar">
+                        </div>
+                        <div class="col-xl-5 col-lg-5 col-md-5">
+                            <div class="right-side">
+                                <div class="single-bar">
+                                    {{languageMenu|safe}}
+                                    {% comment %} <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"  class="dashboard-overview">
                                         <span class="part-icon">
-                                            <i class="fa-regular fa-calendars"></i>
+                                            <i class="fa-regular fa-globe"></i>
                                         </span>
-                                        <span class="part-text">
-                                            <span id="date"></span>
-                                            <span id="month"></span>
-                                            <span id="year"></span>
-                                        </span>
-                                    </div>
-                                    <div class="single-bar">
-                                        <span class="part-icon">
-                                            <i class="fa-solid fa-timer"></i>
-                                        </span>
-                                        <span class="part-text"><span class="timer" id="hours"></span>:<span class="timer" id="minutes"></span>:<span class="timer" id="seconds"></span></span>
-                                    </div>
+                                        <span class="part-text lang-display">eng</span>
+                                    </a>
+                                    <ul class="dropdown-menu lang-item" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#">ENG</a></li>
+                                        <li><a class="dropdown-item" href="#">FR</a></li>
+                                        
+                                       
+                                    </ul> {% endcomment %}
+                                </div>
+                                <div class="single-bar">
+                                    <span class="part-icon">
+                                        <i class="fa-regular fa-calendars"></i>
+                                    </span>
+                                    <span class="part-text">
+                                        <span id="date"></span>
+                                        <span id="month"></span>
+                                        <span id="year"></span>
+                                    </span>
+                                </div>
+                                <div class="single-bar">
+                                    <span class="part-icon">
+                                        <i class="fa-solid fa-timer"></i>
+                                    </span>
+                                    <span class="part-text"><span class="timer" id="hours"></span>:<span class="timer" id="minutes"></span>:<span class="timer" id="seconds"></span></span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="mobile-navbar">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-6 col-xl-none col-lg-none col-md-block d-flex align-items-center">
-                                <a href="{% url 'server:home' %}" class="mobile-logo">
-                                    <img src="{% static 'assets/img/logo/mobile-logo.png' %}" alt="">
-                                </a>
-                            </div>
-                            <div class="col-6 col-xl-none col-lg-none col-lg-block">
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                    <i class="fa-light fa-bars"></i>
-                                </button>
-                                <a href="#" class="changing-version">
-                                    <i class="fa-solid fa-moon-stars"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mainmenu">
-                    <div class="container">
-                        <nav class="navbar navbar-expand-lg">
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <div class="scalation">
-                                    <div class="row">
-                                        <div class="col-xl-5 col-lg-5">
-                                            <ul class="navbar-nav nn-left">
-                                                <li class="nav-item dropdown">
-                                                    <a class="nav-link " href="{% url 'server:home' %}" >
-                                                        Home
-                                                    </a>
-                                                    {% comment %} <ul class="dropdown-menu custom-dropdown" aria-labelledby="home-dropdown">
-                                                        <li><a class="dropdown-item" href="index.html">Homepage 01</a></li>
-                                                        <li><a class="dropdown-item" href="index-2.html">Homepage 02</a></li>
-                                                        <li><a class="dropdown-item" href="index-3.html">Homepage 03</a></li>
-                                                        <li><a class="dropdown-item" href="index-4.html">Homepage 04</a></li>
-                                                        <li><a class="dropdown-item" href="index-5.html">Homepage 05</a></li>
-                                                        <li><a class="dropdown-item" href="index-6.html">Homepage 06</a></li>
-                                                        <li><a class="dropdown-item" href="index-7.html">Homepage 07</a></li>
-                                                        <li><a class="dropdown-item" href="index-8.html">Homepage 08</a></li>
-                                                        <li><a class="dropdown-item" href="index-9.html">Homepage 09</a></li>
-                                                        <li><a class="dropdown-item" href="index-10.html">Homepage 10</a></li>
-                                                    </ul> {% endcomment %}
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'server:about' %}">about us</a>
-                                                </li>
-                                                <li class="nav-item dropdown">
-                                                    <a class="nav-link dropdown-toggle" href="#" id="betDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        all bets
-                                                    </a>
-                                                    <ul class="dropdown-menu" aria-labelledby="betDropdown">
-                                                        <li><a class="dropdown-item" href="{% url 'server:home' %}">all bets</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'server:finished' %}"> Finished</a></li>
-                                                        {% comment %} <li><a class="dropdown-item" href="playing-bet-upcoming.html">upcoming</a></li> {% endcomment %}
-                                                        {% comment %} <li><a class="dropdown-item" href="playing-bet-finished.html">finished</a></li> {% endcomment %}
-                                                        {% comment %} <li><a class="dropdown-item" href="match-details.html">bet details</a></li> {% endcomment %}
-                                                    </ul>
-                                                </li>
-                                                {% if request.user.is_authenticated %}
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'server:bet-history' %}">Bet History</a>
-                                                </li>
-                                                {% endif %}
-                                            </ul>
-                                        </div>
-                                        <div class="col-2 col-lg-2 d-xl-block d-lg-block d-md-none">
-                                            <div class="logo">
-                                                <a href="{% url 'server:home' %}">
-                                                    <img src="{% static 'assets/img/logo/logo-1.png' %}" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-5 col-lg-5">
-                                            <ul class="navbar-nav nn-right">
-                                                {% comment %} <li class="nav-item dropdown">
-                                                    <a class="nav-link dropdown-toggle active" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        pages
-                                                    </a>
-                                                    <ul class="dropdown-menu custom-dropdown" aria-labelledby="pagesDropdown">
-                                                        <li><a class="dropdown-item" href="blog-posts.html">blog post</a></li>
-                                                        <li><a class="dropdown-item" href="blog-details.html">blog details</a></li>
-                                                        <li><a class="dropdown-item" href="sign-in.html">login</a></li>
-                                                        <li><a class="dropdown-item active" href="register.html">register</a></li>
-                                                        <li><a class="dropdown-item" href="error.html">error 404</a></li>
-                                                        <li><a class="dropdown-item" href="affiliate.html">affiliate</a></li>
-                                                        <li><a class="dropdown-item" href="promotion.html">promotion</a></li>
-                                                        <li><a class="dropdown-item" href="promotion-details.html">promo details</a></li>
-                                                        <li><a class="dropdown-item" href="ranking.html">ranking</a></li>
-                                                        <li><a class="dropdown-item" href="#">bracket</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="faq.html">faq</a>
-                                                </li> {% endcomment %}
-                                                {% comment %} <li class="nav-item dropdown">
-                                                    <a class="nav-link dropdown-toggle" href="#" id="dashboardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        dashboard
-                                                    </a>
-                                                    <ul class="dropdown-menu" aria-labelledby="dashboardDropdown">
-                                                         <li><a class="dropdown-item" href="peredion-dashboard/index.html">overview <small>(index)</small></a></li>
-                                                        <li><a class="dropdown-item" href="peredion-dashboard/dashboard-bet-history.html">bet history</a></li>
-                                                        <li><a class="dropdown-item" href="peredion-dashboard/dashboard-transaction-history.html">transaction</a></li> 
-                                                        <li><a class="dropdown-item" href="{% url 'server:deposit' %}">deposit</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'server:withdraw' %}">withdrawal</a></li>
-                                                        {% comment %} <li><a class="dropdown-item" href="peredion-dashboard/dashboard-referral.html">referral</a></li>
-                                                        <li><a class="dropdown-item" href="peredion-dashboard/dashboard-settings.html">settings</a></li> 
-                                                    </ul>
-                                                </li> {% endcomment %}
-                                                {% if request.user.is_authenticated %}
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="#">Balance:{{ request.user.account_balance }}</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'server:deposit' %}">Deposit</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'server:withdraw' %}">Withdrawal</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'server:contact' %}">Contact Us</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'server:logout' %}">Sign Out</a>
-                                                </li>
-                                                {% else %}
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'server:register' %}">Sign Up</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'server:login' %}">Log In</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{% url 'server:contact' %}">Contact Us</a>
-                                                </li>
-                                                {% endif %}
-                                                {% comment %} <li class="nav-item version-changing-button">
-                                                    <button class="nav-link" data-bs-toggle="modal" data-bs-target="#comming_soon">dark mode</button>
-                                                </li> {% endcomment %}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </nav>
                     </div>
                 </div>
             </div>
-            <!-- header end -->
-        <!-- header end -->
-
-        <!-- dashboard header begin -->
-        <div class="dashboard-header">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xl-6 col-lg-4 order-lg-0 order-2">
-                        <div class="db-breadcrumb">
-                            <h2 class="page-name">
-                                deposit
-                            </h2>
-                            <ul class="page-dir">
-                                <li>
-                                    <span class="icon"><i class="fa-light fa-house"></i></span>
-                                    Home
-                                </li>
-                                <li>
-                                    <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
-                                    deposit
-                                </li>
-                            </ul>
+            <div class="mobile-navbar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 col-xl-none col-lg-none col-md-block d-flex align-items-center">
+                            <a href="{% url 'server:home' %}" class="mobile-logo">
+                                <img src="{% static 'assets/img/logo/mobile-logo.png' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="col-6 col-xl-none col-lg-none col-lg-block">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fa-light fa-bars"></i>
+                            </button>
+                            <a href="#" class="changing-version">
+                                <i class="fa-solid fa-moon-stars"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-8">
-                        <div class="part-user">
-                            <div class="user-info">
-                                <span class="user-name">{{ request.user.username }}</span>
-                                <div class="user-bet-id">
-                                    <span class="text">Bet ID :</span>
-                                    <span class="descr"> bet_237125c66n40p01{{ request.user.id }}</span>
+                </div>
+            </div>
+            <div class="mainmenu">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div class="scalation">
+                                <div class="row">
+                                    <div class="col-xl-5 col-lg-5">
+                                        <ul class="navbar-nav nn-left">
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link " href="{% url 'server:home' %}" >
+                                                    {{ all_base_4 }}
+                                                </a>
+                                                {% comment %} <ul class="dropdown-menu custom-dropdown" aria-labelledby="home-dropdown">
+                                                    <li><a class="dropdown-item" href="index.html">Homepage 01</a></li>
+                                                    <li><a class="dropdown-item" href="index-2.html">Homepage 02</a></li>
+                                                    <li><a class="dropdown-item" href="index-3.html">Homepage 03</a></li>
+                                                    <li><a class="dropdown-item" href="index-4.html">Homepage 04</a></li>
+                                                    <li><a class="dropdown-item" href="index-5.html">Homepage 05</a></li>
+                                                    <li><a class="dropdown-item" href="index-6.html">Homepage 06</a></li>
+                                                    <li><a class="dropdown-item" href="index-7.html">Homepage 07</a></li>
+                                                    <li><a class="dropdown-item" href="index-8.html">Homepage 08</a></li>
+                                                    <li><a class="dropdown-item" href="index-9.html">Homepage 09</a></li>
+                                                    <li><a class="dropdown-item" href="index-10.html">Homepage 10</a></li>
+                                                </ul> {% endcomment %}
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:about' %}">{{ all_base_5 }}</a>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="betDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    all bets
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="betDropdown">
+                                                    <li><a class="dropdown-item" href="{% url 'server:home' %}">{{ all_base_6 }}</a></li>
+                                                    <li><a class="dropdown-item" href="{% url 'server:finished' %}">{{ all_base_7 }}</a></li>
+                                                     {% comment %} <li><a class="dropdown-item" href="{% url 'server:upcoming' %}">upcoming</a></li>
+                                                    <li><a class="dropdown-item" href="playing-bet-finished.html">finished</a></li> 
+                                                    <li><a class="dropdown-item" href="match-details.html">bet details</a></li> {% endcomment %}
+                                                </ul>
+                                            </li>
+                                            {% if request.user.is_authenticated %}
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:bet-history' %}">{{ all_base_8 }}</a>
+                                            </li>
+                                            {% endif %}
+                                            {% comment %} <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:contact' %}">contact us</a>
+                                            </li> {% endcomment %}
+                                        </ul>
+                                    </div>
+                                    <div class="col-2 col-lg-2 d-xl-block d-lg-block d-md-none">
+                                        <div class="logo">
+                                            <a href="{% url 'server:home' %}">
+                                                <img src="{% static 'assets/img/logo/logo-1.png' %}" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5 col-lg-5">
+                                        <ul class="navbar-nav nn-right">
+                                            {% comment %} <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle active" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    pages
+                                                </a>
+                                                <ul class="dropdown-menu custom-dropdown" aria-labelledby="pagesDropdown">
+                                                    <li><a class="dropdown-item" href="blog-posts.html">blog post</a></li>
+                                                    <li><a class="dropdown-item" href="blog-details.html">blog details</a></li>
+                                                    <li><a class="dropdown-item" href="sign-in.html">login</a></li>
+                                                    <li><a class="dropdown-item active" href="register.html">register</a></li>
+                                                    <li><a class="dropdown-item" href="error.html">error 404</a></li>
+                                                    <li><a class="dropdown-item" href="affiliate.html">affiliate</a></li>
+                                                    <li><a class="dropdown-item" href="promotion.html">promotion</a></li>
+                                                    <li><a class="dropdown-item" href="promotion-details.html">promo details</a></li>
+                                                    <li><a class="dropdown-item" href="ranking.html">ranking</a></li>
+                                                    <li><a class="dropdown-item" href="#">bracket</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="faq.html">faq</a>
+                                            </li> {% endcomment %}
+                                            {% comment %} <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="dashboardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    dashboard
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="dashboardDropdown">
+                                                    {% comment %} <li><a class="dropdown-item" href="peredion-dashboard/index.html">overview <small>(index)</small></a></li>
+                                                    <li><a class="dropdown-item" href="peredion-dashboard/dashboard-bet-history.html">bet history</a></li>
+                                                    <li><a class="dropdown-item" href="peredion-dashboard/dashboard-transaction-history.html">transaction</a></li> 
+                                                    <li><a class="dropdown-item" href="{% url 'server:deposit' %}">deposit</a></li>
+                                                    <li><a class="dropdown-item" href="{% url 'server:withdraw' %}">withdrawal</a></li>
+                                                    {% comment %} <li><a class="dropdown-item" href="peredion-dashboard/dashboard-referral.html">referral</a></li>
+                                                    <li><a class="dropdown-item" href="peredion-dashboard/dashboard-settings.html">settings</a></li> 
+                                                </ul>
+                                            </li> {% endcomment %}
+                                            {% if request.user.is_authenticated %}
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">{{ all_base_9 }}{{ request.user.account_balance }}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:deposit' %}">{{ all_base_10 }}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:withdraw' %}">{{ all_base_11 }}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:contact' %}">{{ all_base_12 }}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:logout' %}">Log Out</a>
+                                            </li>
+                                            {% else %}
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:register' %}">{{ all_base_3 }}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:login' %}">Log In</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'server:contact' %}">{{ all_base_12 }}</a>
+                                            </li>
+                                            {% endif %}
+                                            {% comment %} <li class="nav-item version-changing-button">
+                                                <button class="nav-link" data-bs-toggle="modal" data-bs-target="#comming_soon">dark mode</button>
+                                            </li> {% endcomment %}
+                                        </ul>
+                                    </div>
                                 </div>
-                                {% comment %} <ul class="user-stats">
-                                    <li>
-                                        <span class="text">loosing bet :</span>
-                                        <span class="percentage"> 34%</span>
-                                    </li>
-                                    <li>
-                                        <span class="text">winning bet :</span>
-                                        <span class="percentage"> 66%</span>
-                                    </li>
-                                </ul> {% endcomment %}
-                            </div>
-                            <div class="user-pic">
-                                <img src="{% static 'assets-2/img/dashboard-header/user-1.jpg' %}" alt="">
                             </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
             </div>
         </div>
-        <!-- dashboard header end -->
+        <!-- header end -->
+
+       
         {% block content %}
 	    {% endblock content %}
  <!-- footer begin -->

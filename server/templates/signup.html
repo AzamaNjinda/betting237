@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="brd-content">
                     <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in">
-                        <span class="sub-title">Create Account</span>
+                        <span class="sub-title">{{ signup_signup_1 }}</span>
                     </div>
                     <h2 class="title" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">Sign up to having an account</h2>
                     <div class="page-direction">
@@ -27,7 +27,7 @@
                             </li>
                             <li>
                                 <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
-                                <span class="text">SIGN UP</span>
+                                <span class="text">{{ signup_signup_1 }}</span>
                             </li>
                         </ul>
                     </div>
@@ -56,7 +56,7 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-10 col-lg-10" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
                         <div class="poklotto-form" id="poklotto_register_form">
-                            <h3 class="steps-heading-title title">Win with Us</h3>
+                            <h3 class="steps-heading-title title">{{ signup_signup_2 }}</h3>
                             <div class="part-form">
                                 <form method="POST"> 
                                     {% csrf_token %}
@@ -69,17 +69,17 @@
                                                     {{ form.username }}
                                                 </div> {% endcomment %}
                                                 <div class="col-xl-12 col-lg-12 col-md-12">
-                                                    <label for="mobile_number" class="form-label"><span>Mobile Number</span></label>
+                                                    <label for="mobile_number" class="form-label"><span>{{ signup_signup_3 }}</span></label>
                                                     {% comment %} <input type="text" id="mobile_number" placeholder="Ex: +1 000 00 0000"> {% endcomment %}
                                                     {{ form.phoneNumber }}
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                                    <label for="password" class="form-label"><span>password</span></label>
+                                                    <label for="password" class="form-label"><span>{{ signup_signup_4 }}</span></label>
                                                     {% comment %} <input type="password" id="password" placeholder="Your password here"> {% endcomment %}
                                                     {{ form.password }}
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                                    <label for="re-password" class="form-label"><span>Re-enter password</span></label>
+                                                    <label for="re-password" class="form-label"><span>{{ signup_signup_5 }}</span></label>
                                                     {% comment %} <input type="password" id="re-password" placeholder="Re-enter your same password"> {% endcomment %}
                                                     {{ form.cpassword }}
                                                 </div>
@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="form-controller">
                                         <button class="prd-btn-1 medium placed-to-dashboard" id="btn1">
-                                            Create Account <i class="fa-duotone fa-arrow-right"></i>
+                                            {{ signup_signup_1 }} <i class="fa-duotone fa-arrow-right"></i>
                                         </button>
                                        </div>
                                     <button id="big-screen" class="btn-pok"><i class="fa-solid fa-expand"></i></button>

@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Betting237 - Sports Prediction HTML Template</title>
+        <title>Betting237 - Sports Prediction</title>
         
         {% csrf_token %}
         <!-- favicon -->
@@ -44,7 +44,7 @@
                 <img src="{% static 'assets/img/preloader/preload-3.gif' %}" alt="">
             </div>
             <span class="text">
-                Betting237 is loading
+                Betting237 {{all_base_1}}
             </span>
         </div>
         <!-- preloader end -->
@@ -59,7 +59,7 @@
         <div class="bet-slip">
             <button class="bet-slip-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBetSlip" aria-expanded="false" aria-controls="collapseBetSlip">
                 <span class="icon"><i class="fa-light fa-clipboard-list"></i></span>
-                <span class="text">betslip</span>
+                <span class="text">{{ betslip_base_1 }}</span>
                 <span class="slip-quantity-badge">3</span>
             </button>
             <div class="collapse" id="collapseBetSlip">
@@ -81,16 +81,16 @@
                                 <div class="all-bs-card">
                                     <div class="empty-card">
                                         <img src="{% static 'assets/img/playing-bet/bet-slip/empty-icon.png' %}" alt="">
-                                        <h4 class="empty-title">Your bet slip is empty!</h4>
-                                        <p>looks like you haven’t placed <br/> a bet yet to your bet slip.</p>
+                                        <h4 class="empty-title">{{ betslip_base_2 }}</h4>
+                                        <p>{{ betslip_base_3 }}<br/> {{ betslip_base_4 }}</p>
                                     </div>
                                     <div class="successfull-card">
                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" style="display: inline-block;">
                                             <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"></circle>
                                             <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "></polyline>
                                         </svg>
-                                        <h4 class="empty-title">Bet is placed successfully!</h4>
-                                        <p>so, you can check your placed  <br/> bets in dashboard.</p>
+                                        <h4 class="empty-title">{{ betslip_base_5 }}</h4>
+                                        <p>{{ betslip_base_6 }}  <br/> {{ betslip_base_7 }}</p>
                                     </div>
                                     <div class="single-bs-card singleBS hidden"></div>
                                 </div>
@@ -108,13 +108,13 @@
                                             <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"></circle>
                                             <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "></polyline>
                                         </svg>
-                                        <h4 class="empty-title">Bet is placed successfully!</h4>
-                                        <p>so, you can check your placed  <br/> bets in dashboard.</p>
+                                        <h4 class="empty-title">{{ betslip_base_5 }}</h4>
+                                        <p>{{ betslip_base_6 }}  <br/>{{ betslip_base_7 }}</p>
                                     </div>
                                     <div class="empty-card combo-system-empty">
                                         <img src="{% static 'assets/img/playing-bet/bet-slip/empty-icon.png' %}" alt="">
-                                        <h4 class="empty-title">Your bet slip is empty!</h4>
-                                        <p>looks like you haven’t placed <br/> a bet yet to your bet slip.</p>
+                                        <h4 class="empty-title">{{ betslip_base_2 }}</h4>
+                                        <p>{{ betslip_base_3 }}<br/> {{ betslip_base_4 }}</p>
                                     </div>
                                     <div class="single-bs-card card-combo hidden"></div>
                                 </div>
@@ -124,7 +124,7 @@
                                     <span class="title-text">multy bet</span>
                                 </div>
                                 <div class="single-list">
-                                    <span class="text">overall odds :</span>
+                                    <span class="text">overall odds:</span>
                                     <span class="number">1</span>
                                 </div>
                                 <div class="single-list">
@@ -149,13 +149,13 @@
                                             <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"></circle>
                                             <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "></polyline>
                                         </svg>
-                                        <h4 class="empty-title">Bet is placed successfully!</h4>
-                                        <p>so, you can check your placed  <br/> bets in dashboard.</p>
+                                        <h4 class="empty-title">{{ betslip_base_5 }}</h4>
+                                        <p>{{ betslip_base_6 }} <br/> {{ betslip_base_7 }}</p>
                                     </div>
                                     <div class="empty-card combo-system-empty">
                                         <img src="{% static 'assets/img/playing-bet/bet-slip/empty-icon.png' %}" alt="">
-                                        <h4 class="empty-title">Your bet slip is empty!</h4>
-                                        <p>looks like you haven’t placed <br/> a bet yet to your bet slip.</p>
+                                        <h4 class="empty-title">{{ betslip_base_2 }}</h4>
+                                        <p>{{ betslip_base_3 }}<br/> {{ betslip_base_4 }}</p>
                                     </div>
                                     <div class="single-bs-card card-system hidden"></div>
                                 </div>
@@ -177,7 +177,7 @@
                                     </div>
                                 </div>
                                 <div class="single-list">
-                                    <span class="text">overall odds :</span>
+                                    <span class="text">{{ betslip_base_8 }}:</span>
                                     <span class="number">1</span>
                                 </div>
                                 <div class="single-list">
@@ -198,16 +198,16 @@
                     <div class="bet-slip-calculation">
                         <div class="total-calc">
                             <div class="single-calc">
-                                <span class="text">Total stake :</span>
+                                <span class="text">{{ betslip_base_9 }}</span>
                                 <span class="number total-stake">1</span>
                             </div>
                             <div class="single-calc">
-                                <span class="text">Total est. return :</span>
+                                <span class="text">{{ betslip_base_10 }} :</span>
                                 <span class="number total-est-return">1.00</span>
                             </div>
                         </div>
                         <div class="calc-finish">
-                            <button class="prd-btn-1 medium placed-to-dashboard" id="btn1">place your bet <i class="fa-duotone fa-arrow-right"></i></button>
+                            <button class="prd-btn-1 medium placed-to-dashboard" id="btn1">{{ betslip_base_11 }}<i class="fa-duotone fa-arrow-right"></i></button>
                             <button class="calc-dlt">
                                 <i class="fa-light fa-trash-can"></i>
                             </button>
@@ -241,37 +241,63 @@
                     <div class="row justify-content-between">
                         <div class="col-xl-5 col-lg-5 col-md-7">
                             <div class="left-side">
+                                {% if request.user.is_authenticated %}
+                                
+                                <div class="single-bar">
+                                    <a class="dashboard-overview" href="{% url 'server:home' %}">
+                                        <span class="part-icon">
+                                            <i class="fa-regular fa-futbol"></i>
+                                        </span>
+                                        <span class="part-text"><span class="user-name">{{ all_base_6 }}</span></span>
+                                    </a>
+                                </div>
+                                <div class="single-bar">
+                                    <a class="dashboard-overview" href="{% url 'server:deposit' %}">
+                                        <span class="part-icon">
+                                            <i class="fa-regular fa-money-bill-transfer"></i>
+                                        </span>
+                                        <span class="part-text">{{ all_base_2 }}</span>
+                                    </a>
+                                </div>
+                                <div class="single-bar">
+                                    <a class="dashboard-overview" href="mailto: abc@example.com">
+                                        <span class="part-icon">
+                                            <i class="fa-regular fa-money-bill"></i>
+                                        </span>
+                                        <span class="part-text account-balance">{{request.user.account_balance}} XAF</span>
+                                    </a>
+                                </div> 
+                                {% else %}
+
                                 <div class="single-bar">
                                     <a class="dashboard-overview" href="{% url 'server:register' %}">
                                         <span class="part-icon">
                                             <i class="fa-regular fa-circle-user"></i>
                                         </span>
-                                        {% if request.user.is_authenticated %}
-                                        <span class="part-text">hi, <span class="user-name">{{ user.username }}</span></span>
-                                        <div class="single-bar">
-                                            <a class="dashboard-overview" href="{% url 'server:deposit' %}">
-                                                <span class="part-icon">
-                                                    <i class="fa-regular fa-user"></i>
-                                                </span>
-                                                <span class="part-text">Deposit</span>
-                                            </a>
-                                        </div>
-                                        <div class="single-bar">
-                                            <a class="dashboard-overview" href="mailto: abc@example.com">
-                                                <span class="part-icon">
-                                                    <i class="fa-regular fa-dollar"></i>
-                                                </span>
-                                                <span class="part-text account-balance">{{request.user.account_balance}}</span>
-                                            </a>
-                                        </div>
-                                        {% else %}
-                                        <span class="part-text">Hey, <span class="user-name">Sign Up or Log in</span></span>
-                                        {% endif %}
+                                        <span class="part-text"><span class="user-name">{{ all_base_3 }}</span></span>
+                                        
+                                    </a>
+                                </div>
+                                <div class="single-bar">
+                                    <a class="dashboard-overview" href="{% url 'server:login' %}">
+                                        <span class="part-icon">
+                                            <i class="fa-regular fa-circle-user"></i>
+                                        </span>
+                                        <span class="part-text"> <span class="user-name">Log in</span></span>
+                                        
                                     </a>
                                 </div>
                                 
-                               <div class="single-bar dropdown">
-                                    <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"  class="dashboard-overview">
+                                
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-5 col-md-5">
+                            <div class="right-side">
+                                <div class="single-bar">
+                                    {{languageMenu|safe}}
+                                    {% comment %} <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"  class="dashboard-overview">
                                         <span class="part-icon">
                                             <i class="fa-regular fa-globe"></i>
                                         </span>
@@ -280,13 +306,10 @@
                                     <ul class="dropdown-menu lang-item" aria-labelledby="dropdownMenuLink">
                                         <li><a class="dropdown-item" href="#">ENG</a></li>
                                         <li><a class="dropdown-item" href="#">FR</a></li>
+                                        
                                        
-                                    </ul>
-                                </div> 
-                            </div>
-                        </div>
-                        <div class="col-xl-5 col-lg-5 col-md-5">
-                            <div class="right-side">
+                                    </ul> {% endcomment %}
+                                </div>
                                 <div class="single-bar">
                                     <span class="part-icon">
                                         <i class="fa-regular fa-calendars"></i>
@@ -337,7 +360,7 @@
                                         <ul class="navbar-nav nn-left">
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link " href="{% url 'server:home' %}" >
-                                                    Home
+                                                    {{ all_base_4 }}
                                                 </a>
                                                 {% comment %} <ul class="dropdown-menu custom-dropdown" aria-labelledby="home-dropdown">
                                                     <li><a class="dropdown-item" href="index.html">Homepage 01</a></li>
@@ -353,15 +376,15 @@
                                                 </ul> {% endcomment %}
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:about' %}">About us</a>
+                                                <a class="nav-link" href="{% url 'server:about' %}">{{ all_base_5 }}</a>
                                             </li>
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="betDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     all bets
                                                 </a>
                                                 <ul class="dropdown-menu" aria-labelledby="betDropdown">
-                                                    <li><a class="dropdown-item" href="{% url 'server:home' %}">all bets</a></li>
-                                                    <li><a class="dropdown-item" href="{% url 'server:finished' %}">Finished</a></li>
+                                                    <li><a class="dropdown-item" href="{% url 'server:home' %}">{{ all_base_6 }}</a></li>
+                                                    <li><a class="dropdown-item" href="{% url 'server:finished' %}">{{ all_base_7 }}</a></li>
                                                      {% comment %} <li><a class="dropdown-item" href="{% url 'server:upcoming' %}">upcoming</a></li>
                                                     <li><a class="dropdown-item" href="playing-bet-finished.html">finished</a></li> 
                                                     <li><a class="dropdown-item" href="match-details.html">bet details</a></li> {% endcomment %}
@@ -369,7 +392,7 @@
                                             </li>
                                             {% if request.user.is_authenticated %}
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:bet-history' %}">Bet History</a>
+                                                <a class="nav-link" href="{% url 'server:bet-history' %}">{{ all_base_8 }}</a>
                                             </li>
                                             {% endif %}
                                             {% comment %} <li class="nav-item">
@@ -422,29 +445,29 @@
                                             </li> {% endcomment %}
                                             {% if request.user.is_authenticated %}
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Balance:{{ request.user.account_balance }}</a>
+                                                <a class="nav-link" href="#">{{ all_base_9 }}{{ request.user.account_balance }}</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:deposit' %}">Deposit</a>
+                                                <a class="nav-link" href="{% url 'server:deposit' %}">{{ all_base_10 }}</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:withdraw' %}">Withdrawal</a>
+                                                <a class="nav-link" href="{% url 'server:withdraw' %}">{{ all_base_11 }}</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:contact' %}">Contact Us</a>
+                                                <a class="nav-link" href="{% url 'server:contact' %}">{{ all_base_12 }}</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{% url 'server:logout' %}">Log Out</a>
                                             </li>
                                             {% else %}
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:register' %}">Create Acount</a>
+                                                <a class="nav-link" href="{% url 'server:register' %}">{{ all_base_3 }}</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{% url 'server:login' %}">Log In</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'server:contact' %}">Contact Us</a>
+                                                <a class="nav-link" href="{% url 'server:contact' %}">{{ all_base_12 }}</a>
                                             </li>
                                             {% endif %}
                                             {% comment %} <li class="nav-item version-changing-button">
@@ -499,7 +522,7 @@
             <div class="footer-bottom">
                 <div class="container">
                     <div class="footer-bottom-content">
-                        <p class="copyright-text">Copyright © 2024. All Right Reserved By Betting237</p>
+                        <p class="copyright-text">{{ all_base_14 }}</p>
                         <ul class="social-link">
                             <li class="single-social">
                                 <a href="#0">

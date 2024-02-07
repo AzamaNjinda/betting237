@@ -24,6 +24,8 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from . models import BetHistory, BetSlip, StakeAmount
 from django.db.models import Case, When, Value, F, IntegerField
+from . import candy
+from django.utils.safestring import mark_safe
 
 
 account_balance_amount = 0
@@ -126,7 +128,7 @@ def home(request):
 
     }
 
-    return render(request, "index.html", context)
+    return candy.render(request, "index.html", context)
 
 
 
@@ -151,7 +153,7 @@ def login_view(request):
     context = {
         'form': form,
     }
-    return render(request, "sign-in.html", context)
+    return candy.render(request, "sign-in.html", context)
 
 def extract_fixtures_odds_data(response_odd):
     fixtures_odds_data = []
@@ -238,7 +240,7 @@ def register_view(request):
     context = {
         'form': form,
     }
-    return render(request, "signup.html", context)
+    return candy.render(request, "signup.html", context)
 
 
 def logout_view(request):
@@ -296,14 +298,14 @@ def deposit_view(request):
                 'form': form,
             }
             
-            return render(request, "dashboard-deposit.html", context)
+            return candy.render(request, "dashboard-deposit.html", context)
 
     
     context = {
         'form': form,
     }
 
-    return render(request, "dashboard-deposit.html", context )
+    return candy.render(request, "dashboard-deposit.html", context )
 
 @login_required(login_url='/login/')
 def withdraw(request):
@@ -319,16 +321,16 @@ def withdraw(request):
             payment_method = form.cleaned_data.get('payment_method')
             if user.account_balance < amount:
                 context = {
-                    'message': "You do Not have Enough Funds to Withdraw",
+                    'message': mark_safe("You do Not have Enough Funds to Withdraw <br>Vous n'avez pas assez de fonds pour effectuer un retrait, "),
                     'form': form,
                 }
-                return render(request, "dashboard-withdraw.html", context)
+                return candy.render(request, "dashboard-withdraw.html", context)
             elif user.can_withdraw is False:
                 context = {
-                    'message': "You Can Not Withdraw Funds at this tie",
+                    'message': mark_safe("You Can Not Withdraw Funds at this time <br> Vous ne pouvez pas retirer de fonds pour le moment. "),
                     'form': form,
                 }
-                return render(request, "dashboard-withdraw.html", context)
+                return candy.render(request, "dashboard-withdraw.html", context)
 
 
             operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
@@ -347,14 +349,14 @@ def withdraw(request):
                     return redirect("server:home")
                 else:
                     context = {
-                    'message': "Withdrawal Not Successful",
+                    'message': mark_safe("Withdrawal Not Successful <br> Le retrait n'a pas réussi"),
                     'form': form,
                 }
-                return render(request, "dashboard-withdraw.html", context)
+                return candy.render(request, "dashboard-withdraw.html", context)
             except Exception as e:
                 print(f"MeSomb API error: {e}")
                 context = {
-                    'message': "Withdrawal Not Successful",
+                    'message': mark_safe("Withdrawal Not Successful <br> Le retrait n'a pas réussi"),
                     'form': form,
                 }
         else:
@@ -362,14 +364,14 @@ def withdraw(request):
                 'message': form.errors,
                 'form': form,
             }
-            return render(request, "dashboard-withdraw.html", context)
+            return candy.render(request, "dashboard-withdraw.html", context)
 
     
     context = {
         'form': form,
     }
 
-    return render(request, "dashboard-withdraw.html", context)
+    return candy.render(request, "dashboard-withdraw.html", context)
 
 @login_required(login_url='/login/')
 def place_bet(request):
@@ -386,6 +388,12 @@ def place_bet(request):
         fixture = get_object_or_404(Fixture, id=fixture_id)
 
         print("Hello" + total_stake_amount )
+
+        if BetSlip.objects.filter(user=user, bet_histories__fixture=fixture).exists():
+            #return redirect("server:error_2")
+            print("Hello")
+            response = {'error': 'You have already placed a bet on this fixture.'}
+            return JsonResponse(response)
         
     
         bet_slip_query = BetSlip.objects.filter(slipID=slip_id)
@@ -408,15 +416,15 @@ def place_bet(request):
         user.save()
 
         
-        data = {'message': f'Hello from Django! You entered: { slip_id,fixture_id,stake_amount,predicted_outcome,total_stake_amount,total_payout}'}
+        response = {'message': f'Hello from Django! You entered: { slip_id,fixture_id,stake_amount,predicted_outcome,total_stake_amount,total_payout}'}
 
-        return JsonResponse(data)
+        return JsonResponse(response)
     else:
         # If the request is not a POST request, return an error response
         return JsonResponse({'error': 'Invalid request method'})
 
 def about(request):
-    return render(request, "about.html")
+    return candy.render(request, "about.html")
 
 def playing(request):
     user = request.user
@@ -451,10 +459,10 @@ def playing(request):
         'fixture_Classified_Game':fixture_Classified_Game
 
     }
-    return render(request, "playing-bet.html", context)
+    return candy.render(request, "playing-bet.html", context)
 
 def in_play(request):
-    return render(request, "playing-bet-in-play.html")
+    return candy.render(request, "playing-bet-in-play.html")
 
 def finished(request):
     user = request.user
@@ -490,10 +498,10 @@ def finished(request):
         'fixture_Classified_Game':fixture_Classified_Game
 
     }
-    return render(request, "playing-bet-finished.html", context)
+    return candy.render(request, "playing-bet-finished.html", context)
 
 def upcoming(request):
-    return render(request, "playing-bet-upcoming.html")
+    return candy.render(request, "playing-bet-upcoming.html")
 
 def contact(request):
     home = request.GET.get('server:home')
@@ -505,13 +513,13 @@ def contact(request):
                 'message':'Message Successfully Sent',
                 'form': form,
                 }
-            return render(request, "contact.html", context)
+            return candy.render(request, "contact.html", context)
             
 
     context = {
         'form': form,
     }
-    return render(request, "contact.html", context)
+    return candy.render(request, "contact.html", context)
 
 @login_required(login_url='/login/')
 def payment_successful(request):
@@ -519,7 +527,7 @@ def payment_successful(request):
     present_user.save()
     account_balance_amount = 0
     #present_user = None
-    return render(request, "payment-successful.html")
+    return candy.render(request, "payment-successful.html")
 
 def bet_history(request):
     user = request.user
@@ -623,13 +631,19 @@ def bet_history(request):
         'bet_slips_data': bet_slips_data,
     }
 
-    return render(request, "dashboard-bet-history.html", context)
+    return candy.render(request, "dashboard-bet-history.html", context)
 
   
 def error(request):
     context = {
-        'title': "Inadequate Balance",
-        'message': "Your Account Balance is not Sufficient to Place this Bet, Please Deposit into Account",
+        'title': mark_safe("Inadequate Balance <br> Équilibre insuffisant"),
+        'message': mark_safe("Your Account Balance is not Sufficient to Place this Bet, Please Deposit into Account <br> Le solde de votre compte n'est pas suffisant pour placer ce pari, veuillez effectuer un dépôt sur votre compte."),
         }
-    return render(request, "error.html", context)
+    return candy.render(request, "error.html", context)
 
+def error_2(request):
+    context = {
+        'title': mark_safe("Can't Place Bet. <br> Impossible de parier "),
+        'message': mark_safe("You have already placed a bet on this fixture.<br> Vous avez déjà parié sur ce match."),
+        }
+    return candy.render(request, "error_2.html", context)
