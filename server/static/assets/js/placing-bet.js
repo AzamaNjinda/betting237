@@ -727,7 +727,7 @@
 
                             },
                             success: function (response) {
-                                window.location.href = 'error2/';
+                                
                                 if (response && response.error) {
                                     // Redirect to the error route
                                     console.log(response.error);
