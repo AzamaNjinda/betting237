@@ -28,8 +28,7 @@ from . import candy
 from django.utils.safestring import mark_safe
 
 
-account_balance_amount = 0
-present_user = None
+
 
 async def fetch_data(url, params):
     async with aiohttp.ClientSession() as session:
@@ -260,8 +259,8 @@ def deposit_view(request):
             amount = form.cleaned_data.get('amount')
             payment_method = form.cleaned_data.get('payment_method')
             #nonce = randint(100000, 999999)
-            account_balance_amount = amount
-            present_user = user
+            user.deposit_amount = amount
+            user.save()
             return redirect("https://hter.link/FNnzL")
             
     #         trxID = str(uuid.uuid4())
@@ -523,9 +522,10 @@ def contact(request):
 
 @login_required(login_url='/login/')
 def payment_successful(request):
-    present_user.account_balance = present_user.account_balance + account_balance_amount
-    present_user.save()
-    account_balance_amount = 0
+    user = request.user
+    user.account_balance = user.account_balance + user.deposit_amount
+    user.deposit_amount = 0
+    user.save()
     #present_user = None
     return candy.render(request, "payment-successful.html")
 

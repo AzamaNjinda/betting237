@@ -32,6 +32,7 @@ BET_STATUS_CHOICES = (
 class User(AbstractUser):
     phone_number= models.CharField(max_length=50, blank=True, null=True)
     account_balance = models.IntegerField(default=0, blank=True, null=True)
+    deposit_amount = models.IntegerField(default=0, blank=True, null=True)
     can_withdraw = models.BooleanField(default= False)
 
     def __str__(self):
