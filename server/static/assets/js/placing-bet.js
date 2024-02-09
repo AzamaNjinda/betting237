@@ -693,14 +693,14 @@
                 } else if (parseInt(stake_amount) > parseInt(max_stake_amount)){
                     $.ajax({
                         type: 'GET',
-                        url: 'error/',
+                        url: 'error3/',
                         headers: {
                             'X-CSRFToken': csrfToken // Include the CSRF token in the headers
                         },
                         success: function (data) {
                             // Handle the successful response
                             console.log(data.message);
-                            window.location.href = 'error/';
+                            window.location.href = 'error3/';
                         },
                         error: function (error) {
                             // Handle the error

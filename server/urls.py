@@ -22,6 +22,7 @@ urlpatterns = [
     path('payment_successful/', views.payment_successful, name='payment_successful'), 
     path('error/', views.error, name='error'), 
     path('error2/', views.error_2, name='error2'), 
+    path('error3/', views.error_3, name='error3'), 
     path('place-bet/', views.place_bet, name='place-bet'), 
     *candy.path('bet-history/', views.bet_history, name='bet-history'), 
 

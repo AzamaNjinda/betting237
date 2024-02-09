@@ -244,7 +244,8 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    return candy.redirect('/')
+    return candy.render(request, "index.html")
+    #return candy.redirect('/')
 
 @login_required(login_url='/login/')
 @transaction.atomic
@@ -647,3 +648,11 @@ def error_2(request):
         'message': mark_safe("You have already placed a bet on this fixture.<br> Vous avez déjà parié sur ce match."),
         }
     return candy.render(request, "error_2.html", context)
+
+
+def error_3(request):
+    context = {
+        'title': mark_safe("Can't Place Bet. <br> Impossible de parier "),
+        'message': mark_safe("Maximum stake is 900 xaf.<br> La mise maximum est de 900 xaf"),
+        }
+    return candy.render(request, "error_3.html", context)
