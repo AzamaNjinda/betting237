@@ -268,7 +268,7 @@ def deposit_view(request):
             #nonce = randint(100000, 999999)
             user.deposit_amount = amount
             user.save()
-            return redirect("https://hter.link/FNnzL")
+            return redirect("https://hter.link/KKwOh")
             
     #         trxID = str(uuid.uuid4())
     #         operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
@@ -349,7 +349,7 @@ def withdraw(request):
 
 
 
-            operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
+            operation = PaymentOperation('051c62612a257c0d3a74f9126a78c1743b8cc8fb', '92292895-9e33-42e0-b503-2d274e625891', '5b4e363d-383c-48d7-af7f-4252bfdaf06f')
             try:
                 response = operation.make_deposit({
                     'amount': amount,
