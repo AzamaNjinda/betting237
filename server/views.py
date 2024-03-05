@@ -54,6 +54,12 @@ def home(request):
     fixture_Classified_Game = Fixture.objects.filter(league="CLG",is_finished=False)
 
     max_stake_amount = StakeAmount.objects.first()
+    # if user:
+    #     user.account_balance = user.account_balance + user.deposit_amount
+    #     user.deposit_amount = 0
+    #     user.save()
+    # else:
+    #     pass
 
     # base_url = "https://api-football-v1.p.rapidapi.com/v3"
 
@@ -314,6 +320,8 @@ def withdraw(request):
     if request.method == 'POST':
         if form.is_valid():
             user = request.user
+            withdrawMessageEng = user.withdraw_message_eng
+            withdrawMessageFr = user.withdraw_message_fr
             phoneNumber = form.cleaned_data.get('phoneNumber')
             trxID = str(uuid.uuid4())
         # print(phoneNumber)
@@ -331,6 +339,14 @@ def withdraw(request):
                     'form': form,
                 }
                 return candy.render(request, "dashboard-withdraw.html", context)
+            elif user.can_withdraw is False and user.show_withdraw_message is True:
+                context = {
+                    'message': withdrawMessageEng,
+                    'message_fr': withdrawMessageFr,
+                    'form': form,
+                }
+                return candy.render(request, "dashboard-withdraw.html", context)
+
 
 
             operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')

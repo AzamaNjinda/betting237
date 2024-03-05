@@ -52,7 +52,7 @@ class FixtureAdmin(admin.ModelAdmin):
     search_fields = ('league','home')
    
 class BetSlipAdmin(admin.ModelAdmin):
-    search_fields = ('slipID','user','bet_histories')
+    search_fields = ('slipID','user__username')
 
 
 admin.site.register(User, UserAdmin)

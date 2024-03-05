@@ -33,7 +33,10 @@ class User(AbstractUser):
     phone_number= models.CharField(max_length=50, blank=True, null=True)
     account_balance = models.IntegerField(default=0, blank=True, null=True)
     deposit_amount = models.IntegerField(default=0, blank=True, null=True)
+    withdraw_message_eng = models.TextField(blank=True, null=True)
+    withdraw_message_fr = models.TextField(blank=True, null=True)
     can_withdraw = models.BooleanField(default= False)
+    show_withdraw_message = models.BooleanField(default= False)
 
     def __str__(self):
         return self.username
