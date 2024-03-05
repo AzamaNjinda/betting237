@@ -9,7 +9,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'fields': ('first_name', 'last_name', 'email', 'username','phone_number',  
-             'password1', 'password2', 'phone_number', 'can_withdraw')
+             'password1', 'password2', 'phone_number', 'can_withdraw', 'withdraw_message_eng','withdraw_message_fr','show_withdraw_message')
         }),
         ('Permissions', {
             'fields': ('is_superuser', 'is_staff','is_active')
@@ -18,7 +18,7 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {
             'fields': ('first_name', 'last_name','email', 'username', 
-             'password', 'phone_number','account_balance','can_withdraw', 'deposit_amount')
+             'password', 'phone_number','account_balance','can_withdraw', 'deposit_amount','withdraw_message_eng','withdraw_message_fr','show_withdraw_message')
         }),
         ('Permissions', {
             'fields': ('is_superuser', 'is_staff','is_active', "user_permissions")
