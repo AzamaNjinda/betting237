@@ -59,7 +59,7 @@ html ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
 }
 html ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135.89deg, #D03355 -5.11%, #FB7A6B 97.89%);
+  background: linear-gradient(135.89deg, #335fd0 -5.11%, #fbf96b 97.89%);
 }
 html ::-webkit-scrollbar-thumb:hover {
   background: #4D8E53;
@@ -111,7 +111,7 @@ body.modal-open {
   display: table;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(135.89deg, #D03355 -5.11%, #FB7A6B 97.89%);
+  background-image: linear-gradient(135.89deg, #d0be33 -5.11%, #4D8E53 97.89%);
   font-weight: 600;
   font-size: 20px;
   line-height: 30px;
@@ -157,7 +157,7 @@ body.modal-open {
 .section-title h2.title {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   font-weight: 700;
   font-size: 50px;
   line-height: 60px;
@@ -406,7 +406,7 @@ body.modal-open {
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   z-index: -1;
   transition: all 0.3s ease-in;
 }
@@ -469,7 +469,7 @@ body.modal-open {
   text-transform: uppercase;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   text-align: center;
   letter-spacing: 6.7px;
   border-top: 1px dashed rgba(63, 60, 106, 0.5);
@@ -626,7 +626,7 @@ a.prd-btn-2:before {
   top: 0;
   bottom: 0;
   right: 0;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   z-index: -1;
   border-radius: 50px;
   transition: all 0.3s ease-in;
@@ -703,7 +703,7 @@ a.prd-btn-3:before {
   top: 2px;
   bottom: 2px;
   right: 2px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   z-index: -1;
   border-radius: 50px;
   transition: all 0.3s ease-in;
@@ -771,7 +771,7 @@ a.prd-btn-4:before {
   top: -1px;
   bottom: -1px;
   right: -1px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   z-index: -1;
   border-radius: 50px;
   transition: all 0.3s ease-in;
@@ -1791,7 +1791,7 @@ ul {
   color: #fff;
 }
 .header .top-bar .single-bar.dropdown .dropdown-menu {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border-radius: 0;
   border: none;
 }
@@ -1853,7 +1853,7 @@ ul {
 }
 .header .mobile-navbar {
   display: none;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   padding: 15px 0;
 }
 @media (max-width: 767.98px) {
@@ -1924,7 +1924,7 @@ ul {
   bottom: 1px;
   right: 1px;
   z-index: -1;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border-radius: 50%;
 }
 @media (max-width: 767.98px) {
@@ -2075,7 +2075,7 @@ ul {
   }
 }
 .header .mainmenu .navbar .scalation .navbar-nav .nav-item.dropdown .dropdown-menu {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border: none;
   margin-top: 10px;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
@@ -2092,7 +2092,7 @@ ul {
     max-height: 0;
     margin-top: 0;
     padding: 0;
-    background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+    background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
     box-shadow: none;
     border-top-width: 0;
     display: grid;
@@ -2273,7 +2273,7 @@ ul {
   top: 1px;
   bottom: 1px;
   right: 1px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   z-index: -1;
   border-radius: 3px;
   transition: all 0.3s ease-in;
@@ -2498,7 +2498,7 @@ ul {
   align-items: center;
 }
 .header .mainmenu .navbar .scalation .logo-2.logo-3 {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 1399.98px) {
   .header .mainmenu .navbar .scalation .logo-2 {
@@ -2534,7 +2534,7 @@ ul {
 .header .mainmenu .navbar .scalation .logo-4 {
   height: calc(100% + 51px);
   width: 290px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   margin-top: -51px;
   position: relative;
   z-index: 55;
@@ -2764,7 +2764,7 @@ ul {
   border-radius: 0;
   border: none;
   transition: all 0.3s ease;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 .mainmenu-9 .navbar-nav .nav-item.dropdown .dropdown-menu.show {
   max-height: 1000px;
@@ -2809,7 +2809,7 @@ ul {
 }
 
 .offcanvas {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #9f3039 123.42%);
   border-right: none;
 }
 @media (max-width: 1199.98px) {
@@ -4354,7 +4354,7 @@ ul {
   height: 800px;
   z-index: 2;
   transform: rotate(141.1deg);
-  background: linear-gradient(276deg, #643c70 -11.44%, #305B9F 123.42%);
+  background: linear-gradient(276deg, #643c70 -11.44%, #fbf96b 123.42%);
   opacity: 0;
   transition: opacity 0.6s ease-in;
   transition-delay: 0.6s;
@@ -4378,7 +4378,7 @@ ul {
   height: 800px;
   z-index: 2;
   transform: rotate(-129deg);
-  background: linear-gradient(276deg, #305B9F -11.44%, #643c70 123.42%);
+  background: linear-gradient(276deg, #fbf96b -11.44%, #643c70 123.42%);
   opacity: 0;
   transition: opacity 0.6s ease-in;
   transition-delay: 0.6s;
@@ -4584,7 +4584,7 @@ ul {
   bottom: -70px;
   width: 673px;
   height: 483px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.9;
   filter: blur(148.5px);
   border-radius: 1000px;
@@ -4754,7 +4754,7 @@ ul {
 }
 
 .banner-8 {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #a5a202 123.42%);
   position: relative;
   z-index: 2;
   overflow: hidden;
@@ -4935,7 +4935,7 @@ ul {
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(98.11deg, #4D233F 0%, #222A4C 0.02%, rgba(48, 91, 159, 0) 550.8%);
+  background: linear-gradient(98.11deg, #4D8E53 0%, #222A4C 0.02%, rgba(48, 91, 159, 0) 550.8%);
 }
 .banner-8 .banner-content .slide-img:before {
   position: absolute;
@@ -5044,7 +5044,7 @@ ul {
 }
 .banner-8 .banner-content .prev-nxt button.customNextBtn:after {
   left: -6px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 1399.98px) {
   .banner-8 .banner-content .prev-nxt button {
@@ -5357,7 +5357,7 @@ ul {
   bottom: 18px;
   right: 3px;
   border-radius: 3px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   z-index: -1;
 }
 @media (max-width: 1399.98px) {
@@ -5663,7 +5663,7 @@ ul {
   width: 35px;
   height: 110px;
   display: inline-flex;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   flex-direction: column;
   align-items: center;
   border-radius: 50px;
@@ -5794,7 +5794,7 @@ ul {
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   z-index: -1;
   border-radius: 50%;
   transition: all 0.3s ease-in;
@@ -5946,7 +5946,7 @@ ul {
   bottom: 0;
   width: 100%;
   height: 1px;
-  background: #4d233f;
+  background: #4D8E53;
   opacity: 0.1;
 }
 .about .part-img {
@@ -6401,7 +6401,7 @@ ul {
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.07;
   z-index: -1;
   border-radius: 20px;
@@ -6409,7 +6409,7 @@ ul {
 .about.affiliate-about .part-bottom .part-feature .single-feature span.text {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   font-weight: 600;
   font-size: 20px;
   line-height: 30px;
@@ -6473,7 +6473,7 @@ ul {
 .about.affiliate-about .part-bottom .part-descr p span.special {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   font-weight: 600;
 }
 .about.affiliate-about .part-bottom .part-descr p:last-child {
@@ -6724,7 +6724,7 @@ ul {
   padding: 20px 30px;
   border: none;
   box-shadow: none;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border-radius: 10px 10px 0 0 !important;
   position: relative;
   overflow: hidden;
@@ -7294,7 +7294,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.8;
 }
 @media (max-width: 575.98px) {
@@ -7318,7 +7318,7 @@ ul {
   opacity: 0.3;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   position: relative;
   bottom: -2px;
 }
@@ -7503,7 +7503,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   margin: -8px 0 5px;
 }
 @media (max-width: 575.98px) {
@@ -7782,7 +7782,7 @@ ul {
   overflow: hidden;
 }
 .placing-bet-modal .pb-modal-header {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7902,7 +7902,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 1199.98px) {
   .placing-bet-modal .pb-modal-body .selected-team span.slct-bet-ratio {
@@ -7996,7 +7996,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   display: block;
   margin: -6px 0 -8px;
 }
@@ -8082,7 +8082,7 @@ ul {
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   z-index: -2;
   border-radius: 50px;
 }
@@ -8103,7 +8103,7 @@ ul {
   padding: 0 25px;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   font-size: 16px;
   height: 100%;
 }
@@ -8121,7 +8121,7 @@ ul {
   background: unset;
   -webkit-text-fill-color: unset;
   -webkit-background-clip: unset;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   color: #fff;
 }
 .placing-bet-modal .pb-ctrl-stake .prd-btn-group span.stake-digit {
@@ -8147,7 +8147,7 @@ ul {
   }
 }
 .placing-bet-modal .pb-calc {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   padding: 12px 0 13px;
 }
 .placing-bet-modal .pb-calc span {
@@ -8241,7 +8241,7 @@ ul {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.1;
   transition: all 0.3s ease-in;
 }
@@ -8636,7 +8636,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   display: block;
   margin: -6px 0 -8px;
 }
@@ -8753,7 +8753,7 @@ ul {
   display: inline-block;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   font-weight: 600;
   font-size: 16px;
   letter-spacing: 0.02em;
@@ -8961,7 +8961,7 @@ ul {
   }
 }
 .bet-slip button.bet-slip-header {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   width: 100%;
   border: none;
   text-align: left;
@@ -9192,7 +9192,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 .bet-slip .bet-slip-body .part-slip-header .all-bs-card .single-bs-card .bs-card-header .slct-place span.attherate {
   font-weight: 600;
@@ -9274,7 +9274,7 @@ ul {
   text-transform: lowercase;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 .bet-slip .bet-slip-body .part-slip-header .all-bs-card .empty-card {
   padding: 20px;
@@ -9657,12 +9657,12 @@ ul {
   height: 30px;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   width: 70px;
   text-align: center;
 }
 .bet-slip .bet-slip-body .bet-slip-calculation {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   padding: 0 15px;
 }
 .bet-slip .bet-slip-body .bet-slip-calculation .total-calc {
@@ -9973,7 +9973,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   display: block;
   margin: -6px 0 -8px;
 }
@@ -10085,7 +10085,7 @@ ul {
   display: inline-block;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   font-weight: 600;
   font-size: 16px;
   letter-spacing: 0.02em;
@@ -10423,7 +10423,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   display: block;
   margin: -6px 0 -8px;
 }
@@ -10746,7 +10746,7 @@ ul {
 .working-process .single-process .part-text span.step-number span.gradient-number {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   display: inline;
 }
 @media (max-width: 1399.98px) {
@@ -10850,7 +10850,7 @@ ul {
   margin: -7px 0 13px;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 1199.98px) {
   .working-process .single-process .part-text span.step-title {
@@ -11375,7 +11375,7 @@ ul {
   letter-spacing: 0.03em;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   text-transform: capitalize;
   margin: -6px 0 9px;
 }
@@ -11947,7 +11947,7 @@ ul {
   right: -1px;
   bottom: -1px;
   z-index: -1;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border-radius: 50%;
   transition: all 0.3s ease-in;
 }
@@ -12173,7 +12173,7 @@ ul {
   }
 }
 .prd-breadcrumb .brd-content .page-direction {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   display: inline-block;
   padding: 12px 25px 11px;
   border-radius: 50px;
@@ -12355,7 +12355,7 @@ ul {
   bottom: 0;
   width: 100%;
   height: 1px;
-  background: #4d233f;
+  background: #4D8E53;
   opacity: 0.1;
 }
 @media (max-width: 479.98px) {
@@ -12441,7 +12441,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.8;
 }
 @media (max-width: 1399.98px) {
@@ -12464,7 +12464,7 @@ ul {
   text-transform: uppercase;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.7;
   margin-bottom: -8px;
 }
@@ -12860,7 +12860,7 @@ ul {
   line-height: 32px;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   margin-right: 15px;
   position: relative;
   bottom: -1px;
@@ -12883,7 +12883,7 @@ ul {
   letter-spacing: 0.02em;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 1399.98px) {
   .promotion .promocode-area .promo-content span.promo-text {
@@ -13242,7 +13242,7 @@ ul {
   line-height: 34px;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   text-transform: capitalize;
   display: inline-block;
   margin: -7px 0 23px;
@@ -13369,7 +13369,7 @@ ul {
   top: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.2;
 }
 .promotion.promotion-details .deposit-limitation:before {
@@ -13379,7 +13379,7 @@ ul {
   bottom: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.2;
 }
 .promotion.promotion-details .deposit-limitation span {
@@ -13391,7 +13391,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   position: relative;
   padding: 0 30px;
 }
@@ -13426,7 +13426,7 @@ ul {
   top: 0;
   width: 1px;
   height: 100%;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.2;
 }
 @media (max-width: 767.98px) {
@@ -13454,7 +13454,7 @@ ul {
   line-height: 34px;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   text-transform: capitalize;
   display: inline-block;
   margin: -7px 0 23px;
@@ -13540,7 +13540,7 @@ ul {
   bottom: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.2;
 }
 .promotion.promotion-details form.promo-form {
@@ -13632,7 +13632,7 @@ ul {
   }
 }
 .match-details .match-details-view {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border-radius: 15px;
   padding: 60px 0 52px;
   margin-bottom: 80px;
@@ -14119,7 +14119,7 @@ ul {
   transform: translateY(-50%);
   width: 100%;
   height: 1px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   z-index: -2;
   opacity: 0.15;
 }
@@ -14127,7 +14127,7 @@ ul {
   display: inline-block;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   position: relative;
   padding-right: 20px;
 }
@@ -14250,7 +14250,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 479.98px) {
   .match-details .match-results .result-line .single-result span.number {
@@ -14417,7 +14417,7 @@ ul {
   letter-spacing: 0.01em;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   text-transform: capitalize;
   margin-bottom: 5px;
 }
@@ -14967,7 +14967,7 @@ ul {
   line-height: 34px;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.9;
 }
 @media (max-width: 1399.98px) {
@@ -15065,7 +15065,7 @@ ul {
   letter-spacing: 0.01em;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   font-weight: 600;
   opacity: 0.8;
 }
@@ -15176,7 +15176,7 @@ ul {
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   z-index: -1;
   opacity: 0.1;
   border-radius: 50%;
@@ -15200,7 +15200,7 @@ ul {
 .blog-posts .pok-pagination ul li.dotted i {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   background-clip: text;
   text-fill-color: transparent;
   font-size: 25px;
@@ -15563,7 +15563,7 @@ ul {
   bottom: 0;
   z-index: -2;
   transition: all 0.3s ease-in;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.5;
 }
 .blog-posts .pok-sidebar .single-element .tag-words a.single-tag:before {
@@ -15640,7 +15640,7 @@ ul {
   width: 46px;
   height: 46px;
   color: #fff;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border-radius: 50%;
   position: absolute;
   right: 2px;
@@ -15751,7 +15751,7 @@ ul {
   transform: translateY(-50%);
   width: 4px;
   height: 4px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border-radius: 50%;
 }
 @media (max-width: 575.98px) {
@@ -15790,7 +15790,7 @@ ul {
 .blog-details .post-element h2.post-title span {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 1199.98px) {
   .blog-details .post-element h2.post-title {
@@ -15884,7 +15884,7 @@ ul {
   letter-spacing: 0.01em;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.8;
 }
 @media (max-width: 767.98px) {
@@ -16215,7 +16215,7 @@ ul {
   font-size: 30px;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 991.98px) {
   .blog-details .post-comment-element .post-comment-form .part-form form button {
@@ -16279,7 +16279,7 @@ ul {
 .blog-details .post-comment-element .all-comments h4.element-titl span {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 1399.98px) {
   .blog-details .post-comment-element .all-comments h4.element-titl {
@@ -16424,7 +16424,7 @@ ul {
   letter-spacing: 0.01em;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.8;
   padding-right: 19px;
   margin-right: 15px;
@@ -16570,7 +16570,7 @@ ul {
 .blog-details .recommended-post-element h4.element-title span {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 1399.98px) {
   .blog-details .recommended-post-element h4.element-title {
@@ -16617,7 +16617,7 @@ ul {
 .blog-details .recommended-post-element .recommended-post-slider .single-blog .part-text h3.blog-post-title a {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   transition: all 0.3s ease-in;
 }
 .blog-details .recommended-post-element .recommended-post-slider .single-blog .part-text .post-info-stats {
@@ -16648,7 +16648,7 @@ ul {
   letter-spacing: 0.01em;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.8;
   margin: -8px 0 -7px;
   transition: all 0.3s ease-in;
@@ -16748,7 +16748,7 @@ ul {
   width: 70px;
   height: 70px;
   color: #fff;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border-radius: 50%;
   position: absolute;
   right: 0;
@@ -16803,7 +16803,7 @@ ul {
   bottom: 0;
   width: 100%;
   height: 250px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 @media (max-width: 1399.98px) {
@@ -16938,7 +16938,7 @@ ul {
   line-height: 32px;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.9;
 }
 @media (max-width: 991.98px) {
@@ -16954,7 +16954,7 @@ ul {
   top: 10px;
   right: 10px;
   bottom: 10px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   z-index: -2;
   border-radius: 12px;
   opacity: 0;
@@ -17048,7 +17048,7 @@ ul {
   border-bottom: 1px solid rgba(13, 59, 84, 0.1);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 1399.98px) {
   .faq .faq-content .single-faq h3.faq-que {
@@ -17127,7 +17127,7 @@ ul {
   }
 }
 .faq .faq-content .faq-submit-form .form-header {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border-radius: 15px;
   padding: 30px;
   padding-top: 22px;
@@ -17499,7 +17499,7 @@ ul {
 }
 .poklotto-form h3.title {
   padding: 0 40px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   font-weight: 600;
   font-size: 28px;
   line-height: 38px;
@@ -17566,7 +17566,7 @@ ul {
 .poklotto-form .part-form form label span {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.8;
 }
 .poklotto-form .part-form form input, .poklotto-form .part-form form textarea {
@@ -17699,7 +17699,7 @@ ul {
 .poklotto-form .part-form form .part-submit p a.reg-link {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   font-weight: 500;
 }
 
@@ -17759,7 +17759,7 @@ ul {
   letter-spacing: 0.01em;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   font-size: 18px;
   line-height: 23px;
   font-weight: 600;
@@ -17961,7 +17961,7 @@ ul {
 .sign-in .part-right .part-text .section-title h2.title span {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 1199.98px) {
   .sign-in .part-right .part-text .section-title h2.title {
@@ -18148,7 +18148,7 @@ ul {
   line-height: 29px;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   margin: -6px 0 -7px;
   transition: all 0.3s ease-in;
   opacity: 0.5;
@@ -18411,7 +18411,7 @@ ul {
   visibility: hidden;
 }
 .sign-up .poklotto-form .part-form form .select-list .dropdown-menu {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border: none;
   border-radius: 0;
 }
@@ -18583,7 +18583,7 @@ ul {
   width: 20px;
   height: 20px;
   box-shadow: none;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   border-radius: 0;
   border: none;
   top: -4px;
@@ -18691,7 +18691,7 @@ ul {
 }
 
 .mc-picker__body {
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 
 .mc-date--active {
@@ -19090,7 +19090,7 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   display: inline-block;
   transition: all 0.3s ease-in;
   opacity: 0.8;
@@ -19175,7 +19175,7 @@ ul {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.1;
   transition: all 0.3s ease-in;
 }
@@ -19776,7 +19776,7 @@ ul {
   right: -20px;
   height: 1px;
   width: 10px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.5;
 }
 .bettor-ranking .sports-body .playing-sports-all .single-tournament .all-tournament-match .single-t-match .event .part-team .s-team img.team-icon {
@@ -19790,7 +19790,7 @@ ul {
   letter-spacing: 0.01em;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
   opacity: 0.8;
 }
 .bettor-ranking .sports-body .playing-sports-all .single-tournament .all-tournament-match .single-t-match .event .event-name {
@@ -19815,7 +19815,7 @@ ul {
   letter-spacing: 0.05em;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 991.98px) {
   .bettor-ranking .sports-body .playing-sports-all .single-tournament .all-tournament-match .single-t-match .b-slip span.slip-number, .bettor-ranking .sports-body .playing-sports-all .single-tournament .all-tournament-match .single-t-match .bet-type span.text,
@@ -19865,7 +19865,7 @@ ul {
   letter-spacing: 0.05em;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 @media (max-width: 991.98px) {
   .bettor-ranking .sports-body .playing-sports-all .single-tournament .all-tournament-match .single-t-match .profit span.text {
@@ -19883,7 +19883,7 @@ ul {
   top: 50%;
   width: 100%;
   height: 1px;
-  background: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  background: linear-gradient(144.14deg, #4D8E53 -11.44%, #fbf96b 123.42%);
 }
 .bettor-ranking .sports-body .playing-sports-all .single-tournament .all-tournament-match .single-t-match .profit span.text.win {
   background: unset;
