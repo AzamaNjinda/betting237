@@ -54,7 +54,7 @@ def translation_dictionary(lang):
         'index_index_5':'''Recent bet''',
         'index_index_6':'''Choose Your Match & Place A Bet''',
         'index_index_7':'''All Games''',
-        'index_index_8':'''Classified Game''',
+        'index_index_8':'''XXBET GAMES''',
         'index_index_9':'''Still Need Help or Confused to Placing A Bet?''',
         'index_index_10':'''Get Help ''',
         'index_index_11':'''How it works''',

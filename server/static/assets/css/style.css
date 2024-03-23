@@ -871,7 +871,7 @@ body {
   font-family: "Asap", sans-serif;
   font-size: 16px;
   margin: 0;
-  color: #3f3c57;
+  color:  #4D8E53 ;
   overflow-x: hidden;
 }
 
@@ -1863,7 +1863,7 @@ ul {
 }
 .header .mobile-navbar .navbar-toggler {
   outline: none;
-  background: linear-gradient(135.89deg, #D03355 -5.11%, #FB7A6B 97.89%);
+  background: linear-gradient(135.89deg, #163518 -5.11%, #163518  97.89%);
   border: none;
   box-shadow: none;
   border-radius: 0;
@@ -1896,7 +1896,7 @@ ul {
 }
 .header .mobile-navbar .changing-version {
   outline: none;
-  background: linear-gradient(135.89deg, #D03355 -5.11%, #FB7A6B 97.89%);
+  background: linear-gradient(135.89deg, #163518 -5.11%, #163518 97.89%);
   border: none;
   box-shadow: none;
   border-radius: 0;
@@ -1905,7 +1905,7 @@ ul {
   padding: 0;
   line-height: 0;
   display: flex;
-  color: #ff7079;
+  color: #163518;
   font-size: 20px;
   line-height: 45px;
   justify-content: center;
@@ -6680,8 +6680,8 @@ ul {
   text-transform: capitalize;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(135.89deg, #D03355 -5.11%, #FB7A6B 97.89%);
-  background-image: linear-gradient(144.14deg, rgba(77, 35, 63, 0.8) -11.44%, rgba(48, 91, 159, 0.8) 123.42%);
+  background-image: linear-gradient(135.89deg, #8f8c0b -5.11%, #fbf96b 97.89%);
+  background-image: linear-gradient(144.14deg, #4D8E53 -11.44%, #02570a 123.42%);
   margin-bottom: -4px;
 }
 @media (max-width: 1399.98px) {
@@ -6704,7 +6704,7 @@ ul {
 .playing-bet .sports-menu .nav .nav-item .nav-link.active span.sport-name {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-image: linear-gradient(135.89deg, #D03355 -5.11%, #FB7A6B 97.89%);
+  background-image: linear-gradient(135.89deg, #cac706 -5.11%, #fbf96b 97.89%);
   animation: opacity-to-hover 0.4s cubic-bezier(0.5, 0, 0.5, 1);
   white-space: nowrap;
 }
