@@ -268,39 +268,35 @@ def deposit_view(request):
             #nonce = randint(100000, 999999)
             user.deposit_amount = amount
             user.save()
-            #return redirect("https://hter.link/KKwOh")
+            return redirect("https://hter.link/KKwOh")
             
-            trxID = str(uuid.uuid4())
-            operation = PaymentOperation('051c62612a257c0d3a74f9126a78c1743b8cc8fb', '92292895-9e33-42e0-b503-2d274e625891', '5b4e363d-383c-48d7-af7f-4252bfdaf06f')
-
-            try:
-                response = operation.make_collect({
-                    'amount': amount,
-                    'service': payment_method,
-                    'payer': phoneNumber,
-                    'date': datetime.now(),
-                    'nonce': RandomGenerator.nonce(),
-                    'trxID': trxID,
-                    'mode': 'asynchronous'
-
-                })
-                if response.is_operation_success() is True:
-                    user.account_balance = user.account_balance + amount
-                    user.save()
-                    return redirect("server:payment_successful")
-                else:
-                    context = {
-                    'message': "ERROR : Payment Not Successful",
-                    'form': form,
-                    }
-                    return render(request, "dashboard-deposit.html", context)
-            except Exception as e:
-                print(f"MeSomb API error: {e}")
-                context = {
-                    'message': "Payment Not Successful, Try again",
-                    'form': form,
-                }
-            return candy.render(request, "dashboard-deposit.html", context)
+    #         trxID = str(uuid.uuid4())
+    #         operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
+    #         try:
+    #             response = operation.make_collect({
+    #                 'amount': amount,
+    #                 'service': payment_method,
+    #                 'payer': phoneNumber,
+    #                 'date': datetime.now(),
+    #                 'nonce': nonce ,#RandomGenerator.nonce(),
+    #                 'trxID': trxID
+    #             })
+    #             if response.is_operation_success() is True:
+    #                 user.account_balance = user.account_balance + amount
+    #                 user.save()
+    #                 return redirect("server:payment_successful")
+    #             else:
+    #                 context = {
+    #                 'message': "ERROR : Payment Not Successf ",
+    #                 'form': form,
+    #             }
+    #         except Exception as e:
+    #             print(f"MeSomb API error: {e}")
+    #             context = {
+    #                 'message': "Payment Not Successful, Try again",
+    #                 'form': form,
+    #             }
+    #         return render(request, "dashboard-deposit.html", context)
 
         else:
             context = {
@@ -543,10 +539,10 @@ def contact(request):
 
 @login_required(login_url='/login/')
 def payment_successful(request):
-    # user = request.user
-    # user.account_balance = user.account_balance + user.deposit_amount
-    # user.deposit_amount = 0
-    # user.save()
+    user = request.user
+    user.account_balance = user.account_balance + user.deposit_amount
+    user.deposit_amount = 0
+    user.save()
     #present_user = None
     return candy.render(request, "payment-successful.html")
 
