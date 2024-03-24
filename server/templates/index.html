@@ -582,6 +582,8 @@
                                                     {% for fixture in fixture_Classified_Game %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -672,6 +674,8 @@
                                                     {% for fixture in fixture_Premiere_League  %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -761,6 +765,8 @@
                                                     {% for fixture in fixture_La_Liga %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -849,6 +855,8 @@
                                                     {% for fixture in fixture_Bundesliga %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -937,6 +945,8 @@
                                                     {% for fixture in fixture_SerieA  %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -1030,6 +1040,8 @@
                                                 {% for fixture in fixture_Classified_Game  %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -1120,6 +1132,8 @@
                                                 {% for fixture in fixture_Premiere_League  %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -1210,6 +1224,8 @@
                                                 {% for fixture in fixture_La_Liga %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -1299,6 +1315,8 @@
                                                 {% for fixture in fixture_Bundesliga %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -1387,6 +1405,8 @@
                                                 {% for fixture in fixture_SerieA %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -1475,6 +1495,8 @@
                                                 {% for fixture in fixture_Ligue_1 %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -1563,6 +1585,8 @@
                                                 {% for fixture in fixture_UEFA_Champions_League  %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}
@@ -1651,6 +1675,8 @@
                                                 {% for fixture in fixture_UEFA_Europa_League %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
                                                     {% else %}
                                                     <div class="single-t-match">
                                                     {% endif %}

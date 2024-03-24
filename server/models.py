@@ -57,6 +57,7 @@ class Fixture(models.Model):
     away_status = models.CharField(choices=STATUS_CHOICES, max_length=5,blank=True, null=True)
     in_play = models.BooleanField(default=False)
     is_finished = models.BooleanField(default=False)
+    can_bet = models.BooleanField(default=True)
     date = models.CharField(max_length=50, blank=True, null=True)
     time = models.CharField(max_length=50, blank=True, null=True)
    
