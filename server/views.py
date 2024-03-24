@@ -524,7 +524,7 @@ def contact(request):
     form = ContactForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-            contact = form.save(commit=False)
+            contact = form.save()
             context = {
                 'message':'Message Successfully Sent',
                 'form': form,

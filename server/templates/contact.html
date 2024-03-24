@@ -38,13 +38,24 @@
 
         <!-- contact begin -->
         <div class="contact-us">
+            
             <div class="container">
                 <div class="row justify-content-center">
+                    <div style="color:green;"> 
+                        {% if message %}
+                            <ul class="messages">
+                                <li>SUCCESS: {{ message }}</li>
+                            </ul>
+                        {% endif %}
+                    </div> 
+                    <br>
+                    <br>
                     <div class="col-xl-8 col-lg-8">
                         <div class="part-contact poklotto-form" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
                             <h3 class="title">Get in touch with us</h3>
                             <div class="part-form">
-                                <form type="POST">
+                                <form method="POST">
+                                    {% csrf_token %}
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-6">
                                             <label for="first_name" class="form-label"><span>First name</span></label>

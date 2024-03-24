@@ -4,6 +4,7 @@ from django.contrib.auth import (
     get_user_model
 
 )
+from .models import ContactForm
 
 PAYMENT_CHOICES = [
     ('MTN', 'Mobile Money (MTN)'),
@@ -84,22 +85,7 @@ class WithdrawalForm(forms.Form):
         return super(WithdrawalForm, self).clean(*args, **kwargs)
 
 
-class ContactForm(forms.Form):
-    firstName = forms.CharField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: John'}))
-    lastName = forms.CharField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: Doe'}))
-    email = forms.CharField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: youremail@address.com'}))
-    phoneNumber = forms.CharField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: 671 234 567'}))
-    message = forms.CharField(required=True,widget=forms.Textarea(attrs={ 'placeholder':'Ex: Hello Admin....'}))
-
-    
-
-    def clean(self, *args, **kwargs):
-
-        firstName = self.cleaned_data.get('firstName')
-        lastName = self.cleaned_data.get('lastName')
-        email = self.cleaned_data.get('email')
-        phoneNumber = self.cleaned_data.get('phoneNumber')
-        message = self.cleaned_data.get('message')
-        
-
-        return super(ContactForm, self).clean(*args, **kwargs)
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactForm
+        fields = ['firstName','lastName', 'phoneNumber', 'email', 'message']
