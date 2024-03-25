@@ -230,6 +230,7 @@
                                                 <div class="row">
                                                     <p style="color:red; text-align:center;">{{message}}</p>
                                                     <p style="color:red; text-align:center;">{{message_fr}}</p>
+                                                    <p style="color:gren; text-align:center;">{{message_success}}</p>
                                                     <div class="col-xl-12 col-lg-12 col-md-12">
                                                         <label for="first_name" class="form-label"><span>{{ deposit_deposit_2 }}</span></label>
                                                         {% comment %} <input type="text" id="first_name" placeholder="ex: 5042.00"> {% endcomment %}
@@ -243,16 +244,15 @@
                                                     <div class="col-xl-12 col-lg-12 col-md-12">
                                                         <label class="form-label"><span>{{ deposit_deposit_4 }}</span></label>
                                                         <div class="dropdown select-list wallet-select">
-                                                            {{ form.payment_method }}
-                                                            {% comment %} <button class="dropdown-toggle" type="button" id="wallet-select" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                Bitcoin (BTC)
+                                                           
+                                                            <button class="dropdown-toggle" type="button" id="wallet-select" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                Select Payment Method
                                                             </button>
                                                             <ul class="dropdown-menu" aria-labelledby="wallet-select">
-                                                                <li><a class="dropdown-item active" href="#">Bitcoin (BTC)</a></li>
-                                                                <li><a class="dropdown-item" href="#">Ethereum (ETH) </a></li>
-                                                                <li><a class="dropdown-item" href="#">Litecoin (LTC)</a></li>
-                                                                <li><a class="dropdown-item" href="#">Local (USD)</a></li>
-                                                            </ul> {% endcomment %}
+                                                                {% for value, label in form.payment_method.field.choices %}
+                                                                <li><a class="dropdown-item active" href="#">{{ label }}</a></li>
+                                                                {% endfor %}
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -4,7 +4,7 @@ from django.contrib.auth import (
     get_user_model
 
 )
-from .models import ContactForm
+from .models import ContactForm, Withdrawal
 
 PAYMENT_CHOICES = [
     ('MTN', 'Mobile Money (MTN)'),
@@ -72,17 +72,21 @@ class PaymentForm(forms.Form):
         return super(PaymentForm, self).clean(*args, **kwargs)
 
 
-class WithdrawalForm(forms.Form):
-    phoneNumber = forms.CharField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: 671 234 567'}))
-    amount = forms.IntegerField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: 5000'}))
-    payment_method = forms.ChoiceField(label='Select your Payment Method', choices=PAYMENT_CHOICES, widget=forms.Select(attrs={'class': 'dropdown-toggle', 'id': 'wallet-select', 'data-bs-toggle': 'dropdown', "aria-expanded":"false"}))
+class WithdrawalForm(forms.ModelForm):
+    class Meta:
+        model = Withdrawal
+        fields = [ 'phoneNumber', 'amount',  'email', 'payment_method']
 
-    def clean(self, *args, **kwargs):
-        phoneNumber = self.cleaned_data.get('phoneNumber')
-        amount = self.cleaned_data.get('amount')
-        payment_method = self.cleaned_data.get('payment_method')
+    # phoneNumber = forms.CharField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: 671 234 567'}))
+    # amount = forms.IntegerField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: 5000'}))
+    # payment_method = forms.ChoiceField(label='Select your Payment Method', choices=PAYMENT_CHOICES, widget=forms.Select(attrs={'class': 'dropdown-toggle', 'id': 'wallet-select', 'data-bs-toggle': 'dropdown', "aria-expanded":"false"}))
 
-        return super(WithdrawalForm, self).clean(*args, **kwargs)
+    # def clean(self, *args, **kwargs):
+    #     phoneNumber = self.cleaned_data.get('phoneNumber')
+    #     amount = self.cleaned_data.get('amount')
+    #     payment_method = self.cleaned_data.get('payment_method')
+
+    #     return super(WithdrawalForm, self).clean(*args, **kwargs)
 
 
 class ContactForm(forms.ModelForm):

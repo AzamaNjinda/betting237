@@ -325,7 +325,7 @@ def withdraw(request):
             phoneNumber = form.cleaned_data.get('phoneNumber')
             trxID = str(uuid.uuid4())
         # print(phoneNumber)
-            amount = form.cleaned_data.get('amount')
+            amount = int(form.cleaned_data.get('amount'))
             payment_method = form.cleaned_data.get('payment_method')
             if user.account_balance < amount:
                 context = {
@@ -346,35 +346,42 @@ def withdraw(request):
                     'form': form,
                 }
                 return candy.render(request, "dashboard-withdraw.html", context)
-
-
-
-            operation = PaymentOperation('051c62612a257c0d3a74f9126a78c1743b8cc8fb', '92292895-9e33-42e0-b503-2d274e625891', '5b4e363d-383c-48d7-af7f-4252bfdaf06f')
-            try:
-                response = operation.make_deposit({
-                    'amount': amount,
-                    'service': payment_method,
-                    'receiver': phoneNumber,
-                    'date': datetime.now(),
-                    'nonce': RandomGenerator.nonce(),
-                    'trxID': trxID
-                })
-                if response.is_operation_success() is True:
-                    user.account_balance = user.account_balance - amount
-                    user.save()
-                    return redirect("server:home")
-                else:
-                    context = {
-                    'message': mark_safe("Withdrawal Not Successful <br> Le retrait n'a pas réussi"),
+            
+            form.save()
+            context = {
+                    'message_success': mark_safe("Withdrawal initiated successfully. Your Request will be processed Shortly, Check your mail box for Details <br> Le retrait a été initié avec succès. Votre demande sera traitée sous peu, vérifiez votre boîte aux lettres pour plus de détails. "),
                     'form': form,
                 }
-                return candy.render(request, "dashboard-withdraw.html", context)
-            except Exception as e:
-                print(f"MeSomb API error: {e}")
-                context = {
-                    'message': mark_safe("Withdrawal Not Successful <br> Le retrait n'a pas réussi"),
-                    'form': form,
-                }
+            return candy.render(request, "dashboard-withdraw.html", context)
+
+
+
+            # operation = PaymentOperation('051c62612a257c0d3a74f9126a78c1743b8cc8fb', '92292895-9e33-42e0-b503-2d274e625891', '5b4e363d-383c-48d7-af7f-4252bfdaf06f')
+            # try:
+            #     response = operation.make_deposit({
+            #         'amount': amount,
+            #         'service': payment_method,
+            #         'receiver': phoneNumber,
+            #         'date': datetime.now(),
+            #         'nonce': RandomGenerator.nonce(),
+            #         'trxID': trxID
+            #     })
+            #     if response.is_operation_success() is True:
+            #         user.account_balance = user.account_balance - amount
+            #         user.save()
+            #         return redirect("server:home")
+            #     else:
+            #         context = {
+            #         'message': mark_safe("Withdrawal Not Successful <br> Le retrait n'a pas réussi"),
+            #         'form': form,
+            #     }
+            #     return candy.render(request, "dashboard-withdraw.html", context)
+            # except Exception as e:
+            #     print(f"MeSomb API error: {e}")
+            #     context = {
+            #         'message': mark_safe("Withdrawal Not Successful <br> Le retrait n'a pas réussi"),
+            #         'form': form,
+            #     }
         else:
             context = {
                 'message': form.errors,

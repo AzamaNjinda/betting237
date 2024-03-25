@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User,Fixture, BetHistory, BetSlip, StakeAmount, ContactForm
+from .models import User,Fixture, BetHistory, BetSlip, StakeAmount, ContactForm, Withdrawal
 
 
 
@@ -61,3 +61,4 @@ admin.site.register(BetSlip, BetSlipAdmin)
 admin.site.register(BetHistory)
 admin.site.register(StakeAmount)
 admin.site.register(ContactForm)
+admin.site.register(Withdrawal)

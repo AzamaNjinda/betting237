@@ -27,6 +27,10 @@ BET_STATUS_CHOICES = (
     ('Draw', 'Draw')
 )
 
+PAYMENT_CHOICES = [
+    ('MTN', 'Mobile Money (MTN)'),
+    ('OM', 'Orange Money (OM)'),
+]
 
 # Create your models here.
 class User(AbstractUser):
@@ -35,7 +39,7 @@ class User(AbstractUser):
     deposit_amount = models.IntegerField(default=0, blank=True, null=True)
     withdraw_message_eng = models.TextField(blank=True, null=True)
     withdraw_message_fr = models.TextField(blank=True, null=True)
-    can_withdraw = models.BooleanField(default= False)
+    can_withdraw = models.BooleanField(default= True)
     show_withdraw_message = models.BooleanField(default= False)
 
     def __str__(self):
@@ -107,3 +111,14 @@ class ContactForm(models.Model):
 
     def __str__(self):
         return f"Message from { self.firstName } with  {self.phoneNumber }"
+
+
+class Withdrawal(models.Model):
+    phoneNumber = models.CharField( max_length=50,blank=True, null=True)
+    email = models.CharField( max_length=50,blank=True, null=True)
+    amount = models.CharField( max_length=50,blank=True, null=True)
+    payment_method = models.CharField(choices=PAYMENT_CHOICES, max_length=5,blank=True, null=True)
+
+    def __str__(self):
+        return f"Withrawal of { self.amount } from  {self.phoneNumber }"
+

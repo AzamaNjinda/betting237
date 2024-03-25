@@ -114,6 +114,42 @@
                 <div class="container">
                     <div class="row justify-content-between">
                         <div class="col-xl-5 col-lg-5 col-md-7">
+                            
+                            <div class="right-side">
+                                <div class="single-bar">
+                                    {{languageMenu|safe}}
+                                    {% comment %} <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"  class="dashboard-overview">
+                                        <span class="part-icon">
+                                            <i class="fa-regular fa-globe"></i>
+                                        </span>
+                                        <span class="part-text lang-display">eng</span>
+                                    </a>
+                                    <ul class="dropdown-menu lang-item" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#">ENG</a></li>
+                                        <li><a class="dropdown-item" href="#">FR</a></li>
+                                        
+                                       
+                                    </ul> {% endcomment %}
+                                </div>
+                                <div class="single-bar">
+                                    <span class="part-icon">
+                                        <i class="fa-regular fa-calendars"></i>
+                                    </span>
+                                    <span class="part-text">
+                                        <span id="date"></span>
+                                        <span id="month"></span>
+                                        <span id="year"></span>
+                                    </span>
+                                </div>
+                                <div class="single-bar">
+                                    <span class="part-icon">
+                                        <i class="fa-solid fa-timer"></i>
+                                    </span>
+                                    <span class="part-text"><span class="timer" id="hours"></span>:<span class="timer" id="minutes"></span>:<span class="timer" id="seconds"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-5 col-md-5">
                             <div class="left-side">
                                 {% if request.user.is_authenticated %}
                                 
@@ -166,41 +202,7 @@
                                 {% endif %}
 
                             </div>
-                        </div>
-                        <div class="col-xl-5 col-lg-5 col-md-5">
-                            <div class="right-side">
-                                <div class="single-bar">
-                                    {{languageMenu|safe}}
-                                    {% comment %} <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"  class="dashboard-overview">
-                                        <span class="part-icon">
-                                            <i class="fa-regular fa-globe"></i>
-                                        </span>
-                                        <span class="part-text lang-display">eng</span>
-                                    </a>
-                                    <ul class="dropdown-menu lang-item" aria-labelledby="dropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">ENG</a></li>
-                                        <li><a class="dropdown-item" href="#">FR</a></li>
-                                        
-                                       
-                                    </ul> {% endcomment %}
-                                </div>
-                                <div class="single-bar">
-                                    <span class="part-icon">
-                                        <i class="fa-regular fa-calendars"></i>
-                                    </span>
-                                    <span class="part-text">
-                                        <span id="date"></span>
-                                        <span id="month"></span>
-                                        <span id="year"></span>
-                                    </span>
-                                </div>
-                                <div class="single-bar">
-                                    <span class="part-icon">
-                                        <i class="fa-solid fa-timer"></i>
-                                    </span>
-                                    <span class="part-text"><span class="timer" id="hours"></span>:<span class="timer" id="minutes"></span>:<span class="timer" id="seconds"></span></span>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
