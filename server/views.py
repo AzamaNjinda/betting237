@@ -392,6 +392,8 @@ def withdraw(request):
     
     context = {
         'form': form,
+        'message_1': mark_safe("Make sure your details are correct <br>Assurez-vous que vos données sont correctes "),
+
     }
 
     return candy.render(request, "dashboard-withdraw.html", context)

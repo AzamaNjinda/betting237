@@ -229,6 +229,7 @@
                                                 {% csrf_token %}
                                                 <div class="row">
                                                     <p style="color:red; text-align:center;">{{message}}</p>
+                                                    <p style="color:green; text-align:center;">{{message_1}}</p>
                                                     <p style="color:red; text-align:center;">{{message_fr}}</p>
                                                     <p style="color:gren; text-align:center;">{{message_success}}</p>
                                                     <div class="col-xl-12 col-lg-12 col-md-12">
@@ -240,6 +241,11 @@
                                                         <label for="first_name" class="form-label"><span>{{ deposit_deposit_3}}</span></label>
                                                         {% comment %} <input type="text" id="first_name" placeholder="ex: 5042.00"> {% endcomment %}
                                                         {{ form.phoneNumber }}
+                                                    </div>
+                                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                                        <label for="first_name" class="form-label"><span>{{ deposit_deposit_3_1}}</span></label>
+                                                        {% comment %} <input type="text" id="first_name" placeholder="ex: 5042.00"> {% endcomment %}
+                                                        {{ form.email }}
                                                     </div>
                                                     <div class="col-xl-12 col-lg-12 col-md-12">
                                                         <label class="form-label"><span>{{ deposit_deposit_4 }}</span></label>
