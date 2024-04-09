@@ -77,6 +77,10 @@ class WithdrawalForm(forms.ModelForm):
         model = Withdrawal
         fields = [ 'phoneNumber', 'amount',  'email', 'payment_method']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].required = True
+
     # phoneNumber = forms.CharField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: 671 234 567'}))
     # amount = forms.IntegerField(required=True,widget=forms.TextInput(attrs={ 'placeholder':'Ex: 5000'}))
     # payment_method = forms.ChoiceField(label='Select your Payment Method', choices=PAYMENT_CHOICES, widget=forms.Select(attrs={'class': 'dropdown-toggle', 'id': 'wallet-select', 'data-bs-toggle': 'dropdown', "aria-expanded":"false"}))

@@ -41,6 +41,7 @@ class User(AbstractUser):
     withdraw_message_fr = models.TextField(blank=True, null=True)
     can_withdraw = models.BooleanField(default= True)
     show_withdraw_message = models.BooleanField(default= False)
+    withdrawal_count = models.IntegerField(default=0,blank=True, null=True)
 
     def __str__(self):
         return self.username
