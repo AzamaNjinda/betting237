@@ -346,17 +346,17 @@ def withdraw(request):
                     'form': form,
                 }
                 return candy.render(request, "dashboard-withdraw.html", context)
-            elif user.withdrawal_count >= 2 :
+            # elif user.withdrawal_count >= 2 :
                 
-                context = {
-                    'message': mark_safe("We are working on your withdrawal.  Please be patient. Make sure to check the email address you gave us for update on your WITHDRAWAL REQUEST <br> Nous nous occupons de votre retrait.  Soyez patient. N'oubliez pas de vérifier l'adresse électronique que vous nous avez communiquée pour connaître l'état d'avancement de votre demande de retrait."),
-                    'form': form,
-                }
-                return candy.render(request, "dashboard-withdraw.html", context)
+            #     context = {
+            #         'message': mark_safe("We are working on your withdrawal.  Please be patient. Make sure to check the email address you gave us for update on your WITHDRAWAL REQUEST <br> Nous nous occupons de votre retrait.  Soyez patient. N'oubliez pas de vérifier l'adresse électronique que vous nous avez communiquée pour connaître l'état d'avancement de votre demande de retrait."),
+            #         'form': form,
+            #     }
+            #     return candy.render(request, "dashboard-withdraw.html", context)
             
-            form.save()
-            user.withdrawal_count += 1
-            user.save()
+            # form.save()
+            # user.withdrawal_count += 1
+            #user.save()
             context = {
                     'message_success': mark_safe("Withdrawal initiated successfully. Your Request will be processed Shortly, Check your mail box for Details <br> Le retrait a été initié avec succès. Votre demande sera traitée sous peu, vérifiez votre boîte aux lettres pour plus de détails. "),
                     'form': form,
