@@ -354,7 +354,7 @@ def withdraw(request):
             #     }
             #     return candy.render(request, "dashboard-withdraw.html", context)
             
-            # form.save()
+            form.save()
             # user.withdrawal_count += 1
             #user.save()
             context = {
