@@ -78,7 +78,7 @@ class BetHistory(models.Model):
     actual_outcome = models.CharField( max_length=50, blank=True, null=True)
 
     def __str__(self):
-        return f"Bet on {self.fixture} with stake {self.stake_amount}"
+        return f"Bet on {self.fixture} with for Outcome {self.predicted_outcome}"
     
 
 class BetSlip(models.Model):
