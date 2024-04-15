@@ -671,6 +671,7 @@
                 const slipID =  uuidv4();
                 var user_balance = $("#user-details").data("account-balance");
                 var max_stake_amount = $("#user-details").data("max-stake-amount");
+                var username_max_stake_amount = $("#user-details").data("username-max-stake-amount");
                 console.log(user_balance);
                 if (parseInt(stake_amount) > parseInt(user_balance)) {
                     $.ajax({
@@ -690,7 +691,7 @@
                         }
                     });
 
-                } else if (parseInt(stake_amount) > parseInt(max_stake_amount)){
+                } else if (parseInt(stake_amount) > parseInt(username_max_stake_amount)){
                     $.ajax({
                         type: 'GET',
                         url: 'error3/',

@@ -683,10 +683,12 @@ def error_2(request):
         }
     return candy.render(request, "error_2.html", context)
 
-
+@login_required(login_url='/login/')
 def error_3(request):
+    user = request.user
+    max_stake = user.stake_limit
     context = {
         'title': mark_safe("Can't Place Bet. <br> Impossible de parier "),
-        'message': mark_safe("Maximum stake is 900 xaf.<br> La mise maximum est de 900 xaf"),
-        }
-    return candy.render(request, "error_3.html", context)
+        'message': mark_safe(f"Maximum stake is {max_stake}.<br> La mise maximum est de {max_stake}  xaf "),
+    }
+    return render(request, "error_3.html", context)

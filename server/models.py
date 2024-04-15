@@ -42,6 +42,7 @@ class User(AbstractUser):
     can_withdraw = models.BooleanField(default= True)
     show_withdraw_message = models.BooleanField(default= False)
     withdrawal_count = models.IntegerField(default=0,blank=True, null=True)
+    stake_limit = models.IntegerField(default=2000000,blank=True, null=True)
 
     def __str__(self):
         return self.username

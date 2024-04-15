@@ -52,7 +52,7 @@
         <!-- preloader end -->
 
         <!-- In your Django template -->
-        <div id="user-details" data-username="{{ request.user.username }}" data-account-balance="{{ request.user.account_balance }}" data-max-stake-amount="{{ max_stake_amount }}">
+        <div id="user-details" data-username="{{ request.user.username }}" data-account-balance="{{ request.user.account_balance }}" data-max-stake-amount="{{ max_stake_amount }}", data-username-max-stake-amount="{{ request.user.stake_limit }}">
             <!-- Other content here -->
         </div>
 
