@@ -381,9 +381,28 @@
                                                                     <span class="bet-ratio" style="-webkit-text-fill-color: rgb(255, 99, 71); font-weight: 500;">PENDING</span>
                                                                 </div>
                                                             </div>
+                                                            {% if bet_history.predicted_outcome == "Home Win" %}
                                                             <div class="slct-match">
-                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }}</b></span>
+                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
                                                             </div>
+                                                            <div class="slct-match">
+                                                                <span class="team-1"><b> ODD: {{ fixture.home_win }} </b></span>
+                                                            </div>
+                                                            {% elif bet_history.predicted_outcome == "Draw" %}
+                                                            <div class="slct-match">
+                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
+                                                            </div>
+                                                            <div class="slct-match">
+                                                                <span class="team-1"><b> ODD: {{ fixture.draw }} </b></span>
+                                                            </div>
+                                                            {% elif bet_history.predicted_outcome == "Away Win" %}
+                                                            <div class="slct-match">
+                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
+                                                            </div>
+                                                            <div class="slct-match">
+                                                                <span class="team-1"><b> ODD: {{ fixture.away_win }} </b></span>
+                                                            </div>
+                                                            {% endif %}
                                                             <div class="bs-card-footer">
                                                                 <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stk:<span class="stake-number">{{ bet_slip_data.bet_slip.total_stake_amount }}</span></button>
                                                                 <div class="return-amount">
@@ -411,9 +430,28 @@
                                                                     {% endif %}
                                                                 </div>
                                                             </div>
+                                                            {% if bet_history.predicted_outcome == "Home Win" %}
                                                             <div class="slct-match">
-                                                                <span class=""><b> PREDICTION : {{ bet_history.predicted_outcome }}</b></span>
+                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
                                                             </div>
+                                                            <div class="slct-match">
+                                                                <span class="team-1"><b> ODD: {{ fixture.home_win }} </b></span>
+                                                            </div>
+                                                            {% elif bet_history.predicted_outcome == "Draw" %}
+                                                            <div class="slct-match">
+                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
+                                                            </div>
+                                                            <div class="slct-match">
+                                                                <span class="team-1"><b> ODD: {{ fixture.draw }} </b></span>
+                                                            </div>
+                                                            {% elif bet_history.predicted_outcome == "Away Win" %}
+                                                            <div class="slct-match">
+                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
+                                                            </div>
+                                                            <div class="slct-match">
+                                                                <span class="team-1"><b> ODD: {{ fixture.away_win }} </b></span>
+                                                            </div>
+                                                            {% endif %}
                                                             <div class="slct-match">
                                                                 <span class="team-1"><b> Final Score :</b></span>
                                                                 <span class="team-1">{{ fixture.home_score }}</span>
