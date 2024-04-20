@@ -460,6 +460,7 @@ def place_bet(request):
 def about(request):
     return candy.render(request, "about.html")
 
+@login_required(login_url='/login/')
 def playing(request):
     user = request.user
     fixtures =  Fixture.objects.all()
@@ -564,6 +565,7 @@ def payment_successful(request):
     #present_user = None
     return candy.render(request, "payment-successful.html")
 
+@login_required(login_url='/login/')
 def bet_history(request):
     user = request.user
     bet_slips = BetSlip.objects.filter(user=request.user).order_by('-created_at')
@@ -668,7 +670,7 @@ def bet_history(request):
 
     return candy.render(request, "dashboard-bet-history.html", context)
 
-  
+@login_required(login_url='/login/')  
 def error(request):
     context = {
         'title': mark_safe("Inadequate Balance <br> Équilibre insuffisant"),
@@ -676,6 +678,7 @@ def error(request):
         }
     return candy.render(request, "error.html", context)
 
+@login_required(login_url='/login/')
 def error_2(request):
     context = {
         'title': mark_safe("Can't Place Bet. <br> Impossible de parier "),
@@ -685,6 +688,15 @@ def error_2(request):
 
 @login_required(login_url='/login/')
 def error_3(request):
+    max_stake_amount = StakeAmount.objects.first()
+    context = {
+        'title': mark_safe("Can't Place Bet. <br> Impossible de parier "),
+        'message': mark_safe(f"Maximum stake is {max_stake_amount}.<br> La mise maximum est de {max_stake_amount}  xaf "),
+    }
+    return render(request, "error_3.html", context)
+
+@login_required(login_url='/login/')
+def error_4(request):
     user = request.user
     max_stake = user.stake_limit
     context = {
