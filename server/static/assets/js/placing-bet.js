@@ -562,8 +562,8 @@
                 displayEmptySlip();
                 $('.successfull-card').hide();
             }
-            cardButtonVisiblity();
-            comboPackExec();
+            // cardButtonVisiblity();
+            // comboPackExec();
             if(comboBtnisOn == true) {
                 ComboRatioTotalMultipling();
                 comboStakeCounting();
