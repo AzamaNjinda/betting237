@@ -68,7 +68,7 @@
                         </div>
                         <div class="pb-calc">
                             <span class="stake-line">Stake : <span class="stk-num"></span></span>
-                            <span class="total-return">Total Est. Returns : <span class="ret-num">1.00</span></span>
+                            <span class="total-return">Total Est. Returns : <span class="ret-num">300</span></span>
                         </div>
                         <div class="pb-modal-footer">
                             <button class="prd-btn-1 medium" data-bs-dismiss="modal" id="keepInSlip">keep it in betslip <i class="fa-duotone fa-arrow-right"></i></button>
@@ -896,7 +896,7 @@
         $('.bet-quantity').find('.inc-dec-bet').find('.dec-btn').on('click', function(e){
             e.preventDefault();
             resultNumb = resultNumb - 300 ;
-            if(resultNumb <= 1) {
+            if(resultNumb <= 300) {
                 resultNumb = 300;
             }
             $('.inc-dec-bet').find('.result-num').text(resultNumb);

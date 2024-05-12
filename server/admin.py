@@ -54,6 +54,9 @@ class FixtureAdmin(admin.ModelAdmin):
 class BetSlipAdmin(admin.ModelAdmin):
     search_fields = ('slipID','user__username')
 
+class WithdrawalAdmin(admin.ModelAdmin):
+    search_fields = ('phoneNumber')
+
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Fixture, FixtureAdmin)
@@ -61,4 +64,4 @@ admin.site.register(BetSlip, BetSlipAdmin)
 admin.site.register(BetHistory)
 admin.site.register(StakeAmount)
 admin.site.register(ContactForm)
-admin.site.register(Withdrawal)
+admin.site.register(Withdrawal,WithdrawalAdmin)
