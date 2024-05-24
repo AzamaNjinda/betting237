@@ -44,6 +44,8 @@ async def fetch_all_data(urls_and_params):
 def home(request):
     user = request.user
     fixtures =  Fixture.objects.all()
+    fixture_European_Championship = Fixture.objects.filter(league="UEC",is_finished=False)
+    fixture_Copa_America = Fixture.objects.filter(league="CA",is_finished=False)
     fixture_Premiere_League = Fixture.objects.filter(league="PL",is_finished=False)
     fixture_La_Liga = Fixture.objects.filter(league="LL",is_finished=False)
     fixture_Bundesliga = Fixture.objects.filter(league="BL",is_finished=False)
@@ -121,6 +123,8 @@ def home(request):
         'fixtures': fixtures,
         'odds_data': odds_data,
         'fixtures_data': fixtures_data,
+        'fixture_European_Championship': fixture_European_Championship,
+        'fixture_Copa_America': fixture_Copa_America,
         'fixture_Premiere_League': fixture_Premiere_League,
         'fixture_La_Liga':fixture_La_Liga,
         'fixture_Bundesliga':fixture_Bundesliga,
@@ -464,6 +468,8 @@ def about(request):
 def playing(request):
     user = request.user
     fixtures =  Fixture.objects.all()
+    fixture_European_Championship = Fixture.objects.filter(league="UEC",is_finished=False)
+    fixture_Copa_America = Fixture.objects.filter(league="CA",is_finished=False)
     fixture_Premiere_League = Fixture.objects.filter(league="PL",is_finished=False)
     fixture_La_Liga = Fixture.objects.filter(league="LL",is_finished=False)
     fixture_Bundesliga = Fixture.objects.filter(league="BL",is_finished=False)
@@ -483,6 +489,8 @@ def playing(request):
         'class': 'active',
         'fixtures': fixtures,
         'fixtures_data': fixtures_data,
+        'fixture_European_Championship': fixture_European_Championship,
+        'fixture_Copa_America': fixture_Copa_America,
         'fixture_Premiere_League': fixture_Premiere_League,
         'fixture_La_Liga':fixture_La_Liga,
         'fixture_Bundesliga':fixture_Bundesliga,
@@ -503,6 +511,8 @@ def finished(request):
     user = request.user
     fixtures =  Fixture.objects.all()
     #fixture_is_finished = Fixture.objects.filter(is_finished=True)
+    fixture_European_Championship = Fixture.objects.filter(league="UEC",is_finished=True)
+    fixture_Copa_America = Fixture.objects.filter(league="CA",is_finished=True)
     fixture_Premiere_League = Fixture.objects.filter(league="PL",is_finished=True)
     fixture_La_Liga = Fixture.objects.filter(league="LL",is_finished=True)
     fixture_Bundesliga = Fixture.objects.filter(league="BL",is_finished=True)
@@ -522,6 +532,8 @@ def finished(request):
         'class': 'active',
         'fixtures': fixtures,
         'fixtures_data': fixtures_data,
+        'fixture_European_Championship': fixture_European_Championship,
+        'fixture_Copa_America': fixture_Copa_America,
         'fixture_Premiere_League': fixture_Premiere_League,
         'fixture_La_Liga':fixture_La_Liga,
         'fixture_Bundesliga':fixture_Bundesliga,

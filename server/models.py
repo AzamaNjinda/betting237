@@ -5,6 +5,8 @@ import datetime
 from datetime import datetime
 
 LEAGUE_CHOICES = (
+    ('UEC', 'UEFA European Championship'),
+    ('CA', 'Copa America'),
     ('PL', 'Premier League'),
     ('LL', 'La Liga'),
     ('BL', 'BundesLiga'),

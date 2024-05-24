@@ -495,6 +495,24 @@
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="sports-european-tab" data-bs-toggle="pill" data-bs-target="#sports-football" type="button" role="tab" aria-controls="sports-football" aria-selected="false">
+                                <span class="sport-icon">
+                                    <img src="{% static 'assets/img/home/40.jpg' %}" alt="">
+                                    <img src="{{ league_logo1 }}" alt="">
+                                </span>
+                                <span class="sport-name">UEFA European Championship</span>
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="sports-copa-tab" data-bs-toggle="pill" data-bs-target="#sports-football" type="button" role="tab" aria-controls="sports-football" aria-selected="false">
+                                <span class="sport-icon">
+                                    <img src="{% static 'assets/img/home/41.jpg' %}" alt="">
+                                    <img src="{{ league_logo1 }}" alt="">
+                                </span>
+                                <span class="sport-name">Copa America</span>
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
                             <button class="nav-link" id="sports-football-tab" data-bs-toggle="pill" data-bs-target="#sports-football" type="button" role="tab" aria-controls="sports-football" aria-selected="false">
                                 <span class="sport-icon">
                                     <img src="{% static 'assets/img/home/39.png' %}" alt="">
@@ -580,6 +598,190 @@
                                                 <div class="all-tournament-match">
                                                     {% comment %} {% for odds_data_entry in odds_data %} {% endcomment %}
                                                     {% for fixture in fixture_Classified_Game %}
+                                                    {% if fixture.in_play %}
+                                                    <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
+                                                    {% else %}
+                                                    <div class="single-t-match">
+                                                    {% endif %}
+                                                        <div class="match-time">
+                                                            <span class="time-icon">
+                                                                <i class="fa-regular fa-clock"></i>
+                                                            </span>
+                                                            <span class="m-date">{{fixture.date}}</span>
+                                                            {% if fixture.in_play %}
+                                                            <span class="m-in-play">in-play</span>
+                                                            <span class="fixture-id">{{ fixture.id }}</span>
+                                                            {% else %}
+                                                            <span class="m-time">{{fixture.time}}</span>
+                                                            <span class="fixture-id">{{ fixture.id }}</span>
+
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="playing-teams">
+                                                            <div class="single-team">
+                                                                <div class="team-descr">
+                                                                    <span class="team-icon">
+                                                                        {% comment %} <img src="{% static 'assets/img/playing-bet/team-icon/team-3.png' %}" alt=""> {% endcomment %}
+                                                                    </span>
+                                                                    <span class="team-name">{{ fixture.home }}</span>
+                                                                </div>
+                                                                <div class="team-score">{{ fixture.home_score }}</div>
+                                                            </div>
+                                                            <div class="single-team">
+                                                                <div class="team-descr">
+                                                                    <span class="team-icon">
+                                                                        {% comment %} <img src="{% static 'assets/img/playing-bet/team-icon/team-4.png' %}" alt=""> {% endcomment %}
+                                                                    </span>
+                                                                    <span class="team-name">{{ fixture.away }}</span>
+                                                                </div>
+                                                                <div class="team-score">{{ fixture.away_score }}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="placing-bet">
+                                                            <a href="#0" class="single-bet-place {{ fixture.home_status }}">
+                                                                <span class="bet-ratio">{{ fixture.home_win }}</span>
+                                                                <span class="team-name">Home Win</span>
+                                                            </a>
+                                                            <a href="#0" class="single-bet-place draw-box {{ fixture.draw_status }}">
+                                                                <span class="bet-ratio">{{ fixture.draw }}</span>
+                                                                <span class="team-name">Draw</span>
+                                                            </a>
+                                                            <a href="#0" class="single-bet-place {{ fixture.away_status }}">
+                                                                <span class="bet-ratio">{{ fixture.away_win }}</span>
+                                                                <span class="team-name">Away Win</span>
+                                                            </a>
+                                                        </div>
+                                                        {% comment %} <span class="bet-ratio-details">
+                                                            <a href="match-details.html">33 <i class="fa-regular fa-angle-right"></i></a>
+                                                        </span> {% endcomment %}
+                                                    </div>
+                                                    {% endfor %}
+                                                   
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item single-sports-item">
+                                <h2 class="accordion-header" id="football-matches">
+                                    <button class="accordion-button sports-header" type="button" data-bs-toggle="collapse" data-bs-target="#flush-football-matches" aria-expanded="true" aria-controls="flush-football-matches">
+                                        <span class="single-sports-icon">
+                                            <img src="{% static 'assets/img/home/40.jpg' %}" alt="">
+                                        </span>
+                                        <span class="single-sports-name">UEFA European Championship </span>
+                                        <span class="single-sports-img">
+                                            <img src="{% static 'assets/img/playing-bet/football-bg.png' %}" alt="">
+                                        </span>
+                                        {% comment %} <a href="#" class="see-all-sports-btn">See all <i class="fa-light fa-arrow-right-long"></i></a> {% endcomment %}
+                                    </button>
+                                </h2>
+                                <div id="flush-football-matches" class="accordion-collapse collapse show sports-expanded-list" aria-labelledby="football-matches" data-bs-parent="#accordion-football-matches">
+                                    <div class="accordion-body sports-body">
+                                        <div class="playing-sports-all">
+                                            <div class="single-tournament">
+                                                <div class="tournament-title">
+                                                    <span class="title-text">UEFA European Championship</span>
+                                                    {% comment %} <span class="match-quantity">(3)</span> {% endcomment %}
+                                                </div>
+                                                <div class="all-tournament-match">
+                                                    {% comment %} {% for odds_data_entry in odds_data %} {% endcomment %}
+                                                    {% for fixture in fixture_European_Championship  %}
+                                                    {% if fixture.in_play %}
+                                                    <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
+                                                    {% else %}
+                                                    <div class="single-t-match">
+                                                    {% endif %}
+                                                        <div class="match-time">
+                                                            <span class="time-icon">
+                                                                <i class="fa-regular fa-clock"></i>
+                                                            </span>
+                                                            <span class="m-date">{{fixture.date}}</span>
+                                                            {% if fixture.in_play %}
+                                                            <span class="m-in-play">in-play</span>
+                                                            <span class="fixture-id">{{ fixture.id }}</span>
+                                                            {% else %}
+                                                            <span class="m-time">{{fixture.time}}</span>
+                                                            <span class="fixture-id">{{ fixture.id }}</span>
+
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="playing-teams">
+                                                            <div class="single-team">
+                                                                <div class="team-descr">
+                                                                    <span class="team-icon">
+                                                                        {% comment %} <img src="{% static 'assets/img/playing-bet/team-icon/team-3.png' %}" alt=""> {% endcomment %}
+                                                                    </span>
+                                                                    <span class="team-name">{{ fixture.home }}</span>
+                                                                </div>
+                                                                <div class="team-score">{{ fixture.home_score }}</div>
+                                                            </div>
+                                                            <div class="single-team">
+                                                                <div class="team-descr">
+                                                                    <span class="team-icon">
+                                                                        {% comment %} <img src="{% static 'assets/img/playing-bet/team-icon/team-4.png' %}" alt=""> {% endcomment %}
+                                                                    </span>
+                                                                    <span class="team-name">{{ fixture.away }}</span>
+                                                                </div>
+                                                                <div class="team-score">{{ fixture.away_score }}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="placing-bet">
+                                                            <a href="#0" class="single-bet-place {{ fixture.home_status }}">
+                                                                <span class="bet-ratio">{{ fixture.home_win }}</span>
+                                                                <span class="team-name">Home Win</span>
+                                                            </a>
+                                                            <a href="#0" class="single-bet-place draw-box {{ fixture.draw_status }}">
+                                                                <span class="bet-ratio">{{ fixture.draw }}</span>
+                                                                <span class="team-name">Draw</span>
+                                                            </a>
+                                                            <a href="#0" class="single-bet-place {{ fixture.away_status }}">
+                                                                <span class="bet-ratio">{{ fixture.away_win }}</span>
+                                                                <span class="team-name">Away Win</span>
+                                                            </a>
+                                                        </div>
+                                                        {% comment %} <span class="bet-ratio-details">
+                                                            <a href="match-details.html">33 <i class="fa-regular fa-angle-right"></i></a>
+                                                        </span> {% endcomment %}
+                                                    </div>
+                                                    {% endfor %}
+                                                   
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item single-sports-item">
+                                <h2 class="accordion-header" id="football-matches">
+                                    <button class="accordion-button sports-header" type="button" data-bs-toggle="collapse" data-bs-target="#flush-football-matches" aria-expanded="true" aria-controls="flush-football-matches">
+                                        <span class="single-sports-icon">
+                                            <img src="{% static 'assets/img/home/41.jpg' %}" alt="">
+                                        </span>
+                                        <span class="single-sports-name">Copa America </span>
+                                        <span class="single-sports-img">
+                                            <img src="{% static 'assets/img/playing-bet/football-bg.png' %}" alt="">
+                                        </span>
+                                        {% comment %} <a href="#" class="see-all-sports-btn">See all <i class="fa-light fa-arrow-right-long"></i></a> {% endcomment %}
+                                    </button>
+                                </h2>
+                                <div id="flush-football-matches" class="accordion-collapse collapse show sports-expanded-list" aria-labelledby="football-matches" data-bs-parent="#accordion-football-matches">
+                                    <div class="accordion-body sports-body">
+                                        <div class="playing-sports-all">
+                                            <div class="single-tournament">
+                                                <div class="tournament-title">
+                                                    <span class="title-text">Copa America</span>
+                                                    {% comment %} <span class="match-quantity">(3)</span> {% endcomment %}
+                                                </div>
+                                                <div class="all-tournament-match">
+                                                    {% comment %} {% for odds_data_entry in odds_data %} {% endcomment %}
+                                                    {% for fixture in fixture_Copa_America  %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
                                                     {% elif not fixture.can_bet %}
@@ -1038,6 +1240,190 @@
                                             </div>
                                             <div class="all-tournament-match">
                                                 {% for fixture in fixture_Classified_Game  %}
+                                                    {% if fixture.in_play %}
+                                                    <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
+                                                    {% else %}
+                                                    <div class="single-t-match">
+                                                    {% endif %}
+                                                        <div class="match-time">
+                                                            <span class="time-icon">
+                                                                <i class="fa-regular fa-clock"></i>
+                                                            </span>
+                                                            
+                                                            <span class="m-date">{{fixture.date}}</span>
+                                                            {% if fixture.in_play %}
+                                                            <span class="m-in-play">in-play</span>
+                                                            <span class="fixture-id">{{ fixture.id }}</span>
+                                                            {% else %}
+                                                            <span class="m-time">{{fixture.time}}</span>
+                                                            <span class="fixture-id">{{ fixture.id }}</span>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="playing-teams">
+                                                            <div class="single-team">
+                                                                <div class="team-descr">
+                                                                    <span class="team-icon">
+                                                                        {% comment %} <img src="{% static 'assets/img/playing-bet/team-icon/team-3.png' %}" alt=""> {% endcomment %}
+                                                                    </span>
+                                                                    <span class="team-name">{{ fixture.home }}</span>
+                                                                </div>
+                                                                <div class="team-score">{{ fixture.home_score }}</div>
+                                                            </div>
+                                                            <div class="single-team">
+                                                                <div class="team-descr">
+                                                                    <span class="team-icon">
+                                                                        {% comment %} <img src="{% static 'assets/img/playing-bet/team-icon/team-4.png' %}" alt=""> {% endcomment %}
+                                                                    </span>
+                                                                    <span class="team-name">{{ fixture.away }}</span>
+                                                                </div>
+                                                                <div class="team-score">{{ fixture.away_score }}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="placing-bet">
+                                                            <a href="#0" class="single-bet-place {{ fixture.home_status }}">
+                                                                <span class="bet-ratio">{{ fixture.home_win }}</span>
+                                                                <span class="team-name">Home Win</span>
+                                                            </a>
+                                                            <a href="#0" class="single-bet-place draw-box {{ fixture.draw_status }}">
+                                                                <span class="bet-ratio">{{ fixture.draw }}</span>
+                                                                <span class="team-name">Draw</span>
+                                                            </a>
+                                                            <a href="#0" class="single-bet-place {{ fixture.away_status }}">
+                                                                <span class="bet-ratio">{{ fixture.away_win }}</span>
+                                                                <span class="team-name">Away Win</span>
+                                                            </a>
+                                                        </div>
+                                                        {% comment %} <span class="bet-ratio-details">
+                                                            <a href="match-details.html">33 <i class="fa-regular fa-angle-right"></i></a>
+                                                        </span> {% endcomment %}
+                                                    </div>
+                                                {% endfor %}
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="sports-european" role="tabpanel" aria-labelledby="sports-football-tab">
+                        <div class="single-sports-item">
+                            <h2 class="accordion-header" id="football-matches">
+                                <div class="sports-header">
+                                    <span class="single-sports-icon">
+                                        <img src="{% static 'assets/img/home/39.png' %}" alt="">
+                                    </span>
+                                    <span class="single-sports-name">UEFA European Championship</span>
+                                    <span class="single-sports-img">
+                                        <img src="{% static 'assets/img/playing-bet/football-bg.png' %}" alt="">
+                                    </span>
+                                    <a href="#" class="see-all-sports-btn">See all <i class="fa-light fa-arrow-right-long"></i></a>
+                                </div>
+                            </h2>
+                            <div class="sports-expanded-list">
+                                <div class="sports-body">
+                                    <div class="playing-sports-all no-tabs-here">
+                                        <div class="single-tournament">
+                                            <div class="tournament-title">
+                                                <span class="title-text">UEFA European Championship</span>
+                                                <span class="match-quantity"></span>
+                                            </div>
+                                            <div class="all-tournament-match">
+                                                {% for fixture in fixture_European_Championship  %}
+                                                    {% if fixture.in_play %}
+                                                    <div class="single-t-match match-in-play">
+                                                    {% elif not fixture.can_bet %}
+                                                    <div class="single-t-match finished">
+                                                    {% else %}
+                                                    <div class="single-t-match">
+                                                    {% endif %}
+                                                        <div class="match-time">
+                                                            <span class="time-icon">
+                                                                <i class="fa-regular fa-clock"></i>
+                                                            </span>
+                                                            
+                                                            <span class="m-date">{{fixture.date}}</span>
+                                                            {% if fixture.in_play %}
+                                                            <span class="m-in-play">in-play</span>
+                                                            <span class="fixture-id">{{ fixture.id }}</span>
+                                                            {% else %}
+                                                            <span class="m-time">{{fixture.time}}</span>
+                                                            <span class="fixture-id">{{ fixture.id }}</span>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="playing-teams">
+                                                            <div class="single-team">
+                                                                <div class="team-descr">
+                                                                    <span class="team-icon">
+                                                                        {% comment %} <img src="{% static 'assets/img/playing-bet/team-icon/team-3.png' %}" alt=""> {% endcomment %}
+                                                                    </span>
+                                                                    <span class="team-name">{{ fixture.home }}</span>
+                                                                </div>
+                                                                <div class="team-score">{{ fixture.home_score }}</div>
+                                                            </div>
+                                                            <div class="single-team">
+                                                                <div class="team-descr">
+                                                                    <span class="team-icon">
+                                                                        {% comment %} <img src="{% static 'assets/img/playing-bet/team-icon/team-4.png' %}" alt=""> {% endcomment %}
+                                                                    </span>
+                                                                    <span class="team-name">{{ fixture.away }}</span>
+                                                                </div>
+                                                                <div class="team-score">{{ fixture.away_score }}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="placing-bet">
+                                                            <a href="#0" class="single-bet-place {{ fixture.home_status }}">
+                                                                <span class="bet-ratio">{{ fixture.home_win }}</span>
+                                                                <span class="team-name">Home Win</span>
+                                                            </a>
+                                                            <a href="#0" class="single-bet-place draw-box {{ fixture.draw_status }}">
+                                                                <span class="bet-ratio">{{ fixture.draw }}</span>
+                                                                <span class="team-name">Draw</span>
+                                                            </a>
+                                                            <a href="#0" class="single-bet-place {{ fixture.away_status }}">
+                                                                <span class="bet-ratio">{{ fixture.away_win }}</span>
+                                                                <span class="team-name">Away Win</span>
+                                                            </a>
+                                                        </div>
+                                                        {% comment %} <span class="bet-ratio-details">
+                                                            <a href="match-details.html">33 <i class="fa-regular fa-angle-right"></i></a>
+                                                        </span> {% endcomment %}
+                                                    </div>
+                                                {% endfor %}
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="sports-copa" role="tabpanel" aria-labelledby="sports-football-tab">
+                        <div class="single-sports-item">
+                            <h2 class="accordion-header" id="football-matches">
+                                <div class="sports-header">
+                                    <span class="single-sports-icon">
+                                        <img src="{% static 'assets/img/home/39.png' %}" alt="">
+                                    </span>
+                                    <span class="single-sports-name">Copa America</span>
+                                    <span class="single-sports-img">
+                                        <img src="{% static 'assets/img/playing-bet/football-bg.png' %}" alt="">
+                                    </span>
+                                    <a href="#" class="see-all-sports-btn">See all <i class="fa-light fa-arrow-right-long"></i></a>
+                                </div>
+                            </h2>
+                            <div class="sports-expanded-list">
+                                <div class="sports-body">
+                                    <div class="playing-sports-all no-tabs-here">
+                                        <div class="single-tournament">
+                                            <div class="tournament-title">
+                                                <span class="title-text">Copa America</span>
+                                                <span class="match-quantity"></span>
+                                            </div>
+                                            <div class="all-tournament-match">
+                                                {% for fixture in fixture_Copa_America  %}
                                                     {% if fixture.in_play %}
                                                     <div class="single-t-match match-in-play">
                                                     {% elif not fixture.can_bet %}
