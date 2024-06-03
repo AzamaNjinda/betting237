@@ -272,7 +272,7 @@ def deposit_view(request):
             #nonce = randint(100000, 999999)
             user.deposit_amount = amount
             user.save()
-            return redirect("https://mesomb.hachther.com/en/pay/Q9i5c2LA7D7c1FkWocUd/")
+            return redirect("https://mesomb.hachther.com/pay/Q9i5c2LA7D7c1FkWocUd/")
             
     #         trxID = str(uuid.uuid4())
     #         operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
