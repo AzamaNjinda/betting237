@@ -269,7 +269,7 @@ def deposit_view(request):
     context = {
         'form': form,
     }
-    return render(request, "dashboard-deposit.html", context)
+    return candy.render(request, "dashboard-deposit.html", context)
 
 def handle_deposit_request(request, form):
     user = request.user
@@ -305,7 +305,7 @@ def handle_deposit_request(request, form):
             'form': form,
         }
     
-    return render(request, "dashboard-deposit.html", context)
+    return candy.render(request, "dashboard-deposit.html", context)
 
 
 # @login_required(login_url='/login/')
