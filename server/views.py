@@ -754,7 +754,7 @@ def error_3(request):
     max_stake_amount = StakeAmount.objects.first()
     context = {
         'title': mark_safe("Can't Place Bet. <br> Impossible de parier "),
-        'message': mark_safe(f"Maximum stake is {max_stake_amount}.<br> La mise maximum est de {max_stake_amount}  xaf "),
+        'message': mark_safe(f"Sorry you can't bet more than {max_stake_amount} Xaf Maximum stake limit is {max_stake_amount} xaf.<br> Désolé, vous ne pouvez pas miser plus que {max_stake_amount} xaf La limite maximale de mise est de {max_stake_amount} xaf. "),
     }
     return render(request, "error_3.html", context)
 
@@ -764,6 +764,6 @@ def error_4(request):
     max_stake = user.stake_limit
     context = {
         'title': mark_safe("Can't Place Bet. <br> Impossible de parier "),
-        'message': mark_safe(f"Maximum stake is {max_stake}.<br> La mise maximum est de {max_stake}  xaf "),
+        'message': mark_safe(f"Sorry you can't bet more than {max_stake} Xaf Maximum stake limit is {max_stake} xaf.<br> Désolé, vous ne pouvez pas miser plus que {max_stake} xaf La limite maximale de mise est de {max_stake} xaf. "),
     }
     return render(request, "error_3.html", context)

@@ -691,10 +691,10 @@
                         }
                     });
 
-                } else if (parseInt(stake_amount) > parseInt(max_stake_amount)){
+                } else if (parseInt(stake_amount) > parseInt(username_max_stake_amount)){
                     $.ajax({
                         type: 'GET',
-                        url: 'error3/',
+                        url: 'error4/',
                         headers: {
                             'X-CSRFToken': csrfToken // Include the CSRF token in the headers
                         },
@@ -709,10 +709,10 @@
                         }
                     });
 
-                } else if (parseInt(stake_amount) > parseInt(username_max_stake_amount)){
+                } else if (parseInt(stake_amount) > parseInt(max_stake_amount)){
                     $.ajax({
                         type: 'GET',
-                        url: 'error4/',
+                        url: 'error3/',
                         headers: {
                             'X-CSRFToken': csrfToken // Include the CSRF token in the headers
                         },
