@@ -701,7 +701,7 @@
                         success: function (data) {
                             // Handle the successful response
                             console.log(data.message);
-                            window.location.href = 'error3/';
+                            window.location.href = 'error4/';
                         },
                         error: function (error) {
                             // Handle the error
