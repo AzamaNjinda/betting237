@@ -2,6 +2,7 @@ on:
   push:
     branches: 
       - master
+      - leaguebranch
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
