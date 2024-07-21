@@ -1882,8 +1882,8 @@ ul {
 
 @media (max-width: 767.98px) {
   .header .mobile-navbar .navbar-toggler {
-    font-size: 34px; /* Adjust font size for smaller screens */
-    padding: 0 8px; /* Adjust padding for smaller screens */
+    font-size: 24px; /* Adjust font size for smaller screens */
+    padding: 5px 15px; /* Adjust padding for smaller screens */
   }
 }
 
