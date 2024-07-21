@@ -1351,35 +1351,34 @@ ul {
 }
 .header .mobile-navbar .navbar-toggler {
   outline: none;
-  background: linear-gradient(135.89deg, #163518 -5.11%, #163518 97.89%);
+  background: linear-gradient(135.89deg, #163518 -5.11%, #163518  97.89%);
   border: none;
   box-shadow: none;
   border-radius: 0;
-  width: 45px;
-  height: 45px;
-  padding: 0;
-  line-height: 0;
+  padding: 0 10px; /* Adjust padding to fit the text */
+  line-height: 25px; /* Center the text vertically */
   display: flex;
   color: #fff;
-  font-size: 22px;
-  line-height: 45px;
+  font-size: 56px; /* Adjust font size as needed */
   justify-content: center;
   align-items: center;
   float: right;
   margin-left: 10px;
-  border-radius: 50%;
+  border-radius: 10px; /* Adjust if needed */
+  height: auto; /* Adjust height to fit the text */
 }
+
 @media (max-width: 767.98px) {
   .header .mobile-navbar .navbar-toggler {
-    height: 40px;
-    width: 40px;
-    font-size: 18px;
+    font-size: 24px; /* Adjust font size for smaller screens */
+    padding: 5px 15px; /* Adjust padding for smaller screens */
   }
 }
+
 @media (max-width: 575.98px) {
   .header .mobile-navbar .navbar-toggler {
-    height: 35px;
-    width: 35px;
+    font-size: 15px; /* Adjust font size for even smaller screens */
+    padding: 5px 15px; /* Adjust padding for even smaller screens */
   }
 }
 .header .mobile-navbar .changing-version {
