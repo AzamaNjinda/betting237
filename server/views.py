@@ -772,7 +772,7 @@ def error_4(request):
 def error_5(request):
     max_stake = request.GET.get('fixtureStakeLimit')
     if not max_stake:
-        max_stake = "undefined"  # Default message if no limit is provided
+        max_stake = "900"  # Default message if no limit is provided
 
     print(max_stake)
     context = {
