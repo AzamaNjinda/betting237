@@ -767,3 +767,16 @@ def error_4(request):
         'message': mark_safe(f"Sorry you can't bet more than {max_stake} Xaf Maximum stake limit is {max_stake} xaf.<br> Désolé, vous ne pouvez pas miser plus que {max_stake} xaf La limite maximale de mise est de {max_stake} xaf. "),
     }
     return render(request, "error_3.html", context)
+
+@login_required(login_url='/login/')
+def error_5(request):
+    max_stake = request.GET.get('fixtureStakeLimit')
+    if not max_stake:
+        max_stake = "undefined"  # Default message if no limit is provided
+
+    print(max_stake)
+    context = {
+        'title': mark_safe("Can't Place Bet. <br> Impossible de parier "),
+        'message': mark_safe(f"Sorry you can't bet more than {max_stake} Xaf. Maximum Fixture stake is {max_stake} xaf.<br> Désolé, vous ne pouvez pas miser plus que {max_stake} xaf La limite maximale de mise est de {max_stake} xaf. "),
+    }
+    return render(request, "error_3.html", context)

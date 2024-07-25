@@ -68,6 +68,7 @@ class Fixture(models.Model):
     can_bet = models.BooleanField(default=True)
     date = models.CharField(max_length=50, blank=True, null=True)
     time = models.CharField(max_length=50, blank=True, null=True)
+    stake_limit = models.IntegerField(blank=True, null=True)
    
     
     def __str__(self):

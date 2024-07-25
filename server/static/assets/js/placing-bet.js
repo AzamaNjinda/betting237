@@ -530,8 +530,34 @@
                 if(!$('.single-bet-place.current-clicked-item').hasClass('already-placed')) {
                     $('.placing-bet').find('.single-bet-place.current-clicked-item').attr('id', idGen.getId());
                     matchID = $('.placing-bet').find('.single-bet-place.current-clicked-item').attr('id');
-                    newBScardAppend();
                     totalStakeCount();
+                    var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+                    var fixtureStakeLimit = $("#fixture-data").data("fixturestake");
+                    //var stake = parseInt($('[data-match-id="' + updatePlaced_id + '"]').find('.stake-number').text(stakeDG));
+                    console.log(fixtureStakeLimit, stakeDG)
+                    if (parseInt(stakeDG) > parseInt(fixtureStakeLimit)){  // check fixture stake Limit
+                        $.ajax({
+                            type: 'GET',
+                            url: 'error5/',
+                            headers: {
+                                'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+                            },
+                            data: {
+                                'fixtureStakeLimit': parseInt(fixtureStakeLimit)
+
+                            },
+                            success: function (data) {
+                                // Handle the successful response
+                                console.log(data.message);
+                                window.location.href = 'error5/';
+                            },
+                            error: function (error) {
+                                // Handle the error
+                                console.log('Error:', error);
+                            }
+                        });
+                    }
+                    newBScardAppend();
                     displayEmptySlip();
                     $('.successfull-card').hide();
                     slipCounter();
