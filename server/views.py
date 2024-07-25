@@ -777,6 +777,6 @@ def error_5(request):
     print(max_stake)
     context = {
         'title': mark_safe("Can't Place Bet. <br> Impossible de parier "),
-        'message': mark_safe(f"Sorry you can't bet more than {max_stake} Xaf. Maximum Fixture stake is {max_stake} xaf.<br> Désolé, vous ne pouvez pas miser plus que {max_stake} xaf La limite maximale de mise est de {max_stake} xaf. "),
+        'message': mark_safe(f"Sorry you can't bet more than {max_stake} Xaf. Maximum Stake on this Fixture  is {max_stake} xaf.<br> Désolé, vous ne pouvez pas miser plus que {max_stake} xaf La limite maximale de mise est de {max_stake} xaf. "),
     }
     return render(request, "error_3.html", context)
