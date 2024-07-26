@@ -530,7 +530,6 @@
                 if(!$('.single-bet-place.current-clicked-item').hasClass('already-placed')) {
                     $('.placing-bet').find('.single-bet-place.current-clicked-item').attr('id', idGen.getId());
                     matchID = $('.placing-bet').find('.single-bet-place.current-clicked-item').attr('id');
-                    totalStakeCount();
                     var csrfToken = $('[name=csrfmiddlewaretoken]').val();
                     var fixtureStakeLimit = $("#fixture-data").data("fixturestake");
                     //var stake = parseInt($('[data-match-id="' + updatePlaced_id + '"]').find('.stake-number').text(stakeDG));
@@ -556,11 +555,13 @@
                                 console.log('Error:', error);
                             }
                         });
+                    } else {
+                        newBScardAppend();
+                        totalStakeCount();
+                        displayEmptySlip();
+                        $('.successfull-card').hide();
+                        slipCounter();
                     }
-                    newBScardAppend();
-                    displayEmptySlip();
-                    $('.successfull-card').hide();
-                    slipCounter();
                 } else {
                     // update/edit function
                     var updatePlaced_id = $('.placing-bet').find('.placed.current-clicked-item').attr('id');
