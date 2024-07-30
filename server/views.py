@@ -769,10 +769,10 @@ def error_4(request):
     return render(request, "error_3.html", context)
 
 @login_required(login_url='/login/')
-def error_5(request):
-    max_stake = request.GET.get('fixtureStakeLimit')
-    if not max_stake:
-        max_stake = "900"  # Default message if no limit is provided
+def error_5(request, stakelimit):
+    max_stake = stakelimit
+    #if not max_stake:
+    #    max_stake = "900"  # Default message if no limit is provide
 
     print(max_stake)
     context = {

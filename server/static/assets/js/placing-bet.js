@@ -531,13 +531,14 @@
                     $('.placing-bet').find('.single-bet-place.current-clicked-item').attr('id', idGen.getId());
                     matchID = $('.placing-bet').find('.single-bet-place.current-clicked-item').attr('id');
                     var csrfToken = $('[name=csrfmiddlewaretoken]').val();
-                    var fixtureStakeLimit = $("#fixture-data").data("fixturestake");
+                    //var fixtureID = $('.single-t-match').find('.match-time').find('.fixture-id').text();
+                    var fixtureStakeLimit = $(`#fixture-${fixtureID}`).data("fixturestake");
                     //var stake = parseInt($('[data-match-id="' + updatePlaced_id + '"]').find('.stake-number').text(stakeDG));
-                    console.log(fixtureStakeLimit, stakeDG)
+                    console.log(stakeDG,fixtureStakeLimit, fixtureID)
                     if (parseInt(stakeDG) > parseInt(fixtureStakeLimit)){  // check fixture stake Limit
                         $.ajax({
                             type: 'GET',
-                            url: 'error5/',
+                            url: `error5/${fixtureStakeLimit}`,
                             headers: {
                                 'X-CSRFToken': csrfToken // Include the CSRF token in the headers
                             },
@@ -548,7 +549,7 @@
                             success: function (data) {
                                 // Handle the successful response
                                 console.log(data.message);
-                                window.location.href = 'error5/';
+                                window.location.href = `error5/${fixtureStakeLimit}`;
                             },
                             error: function (error) {
                                 // Handle the error
