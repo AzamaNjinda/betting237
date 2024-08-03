@@ -296,7 +296,7 @@ async def handle_deposit_request(request, form):
         
         if response.is_operation_success():
             user.account_balance += amount
-            user.save()
+            await sync_to_async(user.save)()
             return redirect("server:payment_successful")
         else:
             context = {
