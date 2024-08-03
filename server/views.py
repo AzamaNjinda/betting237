@@ -296,7 +296,7 @@ def handle_deposit_request(request, form):
             'date': datetime.now(),
             'nonce': RandomGenerator.nonce(),
             'trxID': trx_id,
-            'mode': 'synchronous'
+            'mode': 'asynchronous'
         })
         print(response.transaction.pk)
         #await check_status(request, response.transaction.pk, user, amount)
