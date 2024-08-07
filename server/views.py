@@ -280,9 +280,9 @@ def logout_view(request):
 #     payment_method = form.cleaned_data.get('payment_method')
 #     trx_id = str(uuid.uuid4())
 #     operation = PaymentOperation(
-#         '3b08794ed8f9a0c68eb16b324bc06920e96d6b04',
-#         'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55',
-#         '56ef9d32-9919-414e-a631-7b41ab3784b0'
+#         '051c62612a257c0d3a74f9126a78c1743b8cc8fb',
+#         '92292895-9e33-42e0-b503-2d274e625891',
+#         '5b4e363d-383c-48d7-af7f-4252bfdaf06f'
 #     )
 
 #     try:
@@ -295,13 +295,24 @@ def logout_view(request):
 #             'date': datetime.now(),
 #             'nonce': RandomGenerator.nonce(),
 #             'trxID': trx_id,
-#             'mode': 'asynchronous',
+#             'mode': 'synchronous',
 #         })
 #         print(response.transaction.pk)
 #         print(response.transaction.pk)
 #         print(response.transaction.pk)
 #         print(response.transaction.pk)
-#         await check_status(request, response.transaction.pk, user, amount)
+#         #await check_status(request, response.transaction.pk, user, amount)
+#         if response.is_transaction_success:
+#             user.account_balance += amount
+#             await sync_to_async(user.save)()
+#             return redirect("server:payment_successful")
+#         else:
+#             context = {
+#             'message': "ERROR: Payment Not Successful",
+#             'form': PaymentForm(request.POST or None),
+#         }
+#         return candy.render(request, "dashboard-deposit.html", context) 
+
        
 #     except Exception as e:
 #         print(f"MeSomb API error: {e}")
@@ -310,18 +321,25 @@ def logout_view(request):
 #             'form': form,
 #         }
 #         return candy.render(request, "dashboard-deposit.html", context)
+#     context = {'form': form}
+#     return candy.render(request, "dashboard-deposit.html", context)
+    
 
 # async def check_status(request, transaction_id, user, amount):
 #     operation = PaymentOperation(
-#         '3b08794ed8f9a0c68eb16b324bc06920e96d6b04',
-#         'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55',
-#         '56ef9d32-9919-414e-a631-7b41ab3784b0'
+#         '051c62612a257c0d3a74f9126a78c1743b8cc8fb',
+#         '92292895-9e33-42e0-b503-2d274e625891',
+#         '5b4e363d-383c-48d7-af7f-4252bfdaf06f'
 #     )
 #     trx = operation.get_transactions([transaction_id])
-    
+#     print(trx[0].status)
+#     print(trx[0].status)
+#     print(trx[0].status)
 #     if trx[0].status == 'PENDING':
-#         await asyncio.sleep(5)
+#         await asyncio.sleep(10)
 #         return await check_status(request, transaction_id, user, amount)
+#         #trx2 = operation.get_transactions([transaction_id])
+        
     
 #     elif trx[0].status == 'SUCCESS':
 #         user.account_balance += amount
@@ -334,6 +352,8 @@ def logout_view(request):
 #             'form': PaymentForm(request.POST or None),
 #         }
 #         return candy.render(request, "dashboard-deposit.html", context)
+    
+    
 
 
 
@@ -352,7 +372,7 @@ def deposit_view(request):
             #nonce = randint(100000, 999999)
             user.deposit_amount = amount
             user.save()
-            return redirect("https://mesomb.hachther.com/pay/Q9i5c2LA7D7c1FkWocUd/")
+            return redirect("https://pay.mesomb.com/l/2WsXr9vGQboiZ4sAy3Gv")
 
             # trxID = str(uuid.uuid4())
             # operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
