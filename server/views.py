@@ -676,7 +676,7 @@ def payment_successful(request):
     if status:
         # Process the status parameter as needed
         if status == "FAILED":
-            return candy.render(request, "payment-successful.html")    
+            return candy.render(request, "payment-failed.html")    
         elif status == "SUCCESS":
             user = request.user
             user.account_balance = user.account_balance + user.deposit_amount
