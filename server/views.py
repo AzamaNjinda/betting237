@@ -372,7 +372,7 @@ def deposit_view(request):
             #nonce = randint(100000, 999999)
             user.deposit_amount = amount
             user.save()
-            return redirect("https://pay.mesomb.com/l/Q9i5c2LA7D7c1FkWocUd/")
+            return redirect("https://pay.mesomb.com/l/2WsXr9vGQboiZ4sAy3Gv")
 
             # trxID = str(uuid.uuid4())
             # operation = PaymentOperation('3b08794ed8f9a0c68eb16b324bc06920e96d6b04', 'd61ad5f4-cbfa-4e06-91c2-ccd1471e4a55', '56ef9d32-9919-414e-a631-7b41ab3784b0')
@@ -670,12 +670,31 @@ def contact(request):
 
 @login_required(login_url='/login/')
 def payment_successful(request):
-    user = request.user
-    user.account_balance = user.account_balance + user.deposit_amount
-    user.deposit_amount = 0
-    user.save()
+     # Get the 'status' query parameter from the URL
+    status = request.GET.get('status', None)  # Default to None if 'status' is not provided
+
+    if status:
+        # Process the status parameter as needed
+        if status == "FAILED":
+            return candy.render(request, "payment-successful.html")    
+        elif status == "SUCCESS":
+            user = request.user
+            user.account_balance = user.account_balance + user.deposit_amount
+            user.deposit_amount = 0
+            user.save()
+        else:
+            return HttpResponse("Unknown payment status.")
+    else:
+        return HttpResponse("No status provided.")
+    
     #present_user = None
     return candy.render(request, "payment-successful.html")
+
+@login_required(login_url='/login/')
+def payment_failed(request):
+    # Get the 'status' query parameter from the URL
+    #present_user = None
+    return candy.render(request, "payment-failed.html")
 
 @login_required(login_url='/login/')
 def bet_history(request):

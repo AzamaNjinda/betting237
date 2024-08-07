@@ -20,6 +20,7 @@ urlpatterns = [
     *candy.path('upcoming/', views.upcoming, name='upcoming'), 
     *candy.path('contact/', views.contact, name='contact'), 
     path('payment_successful/', views.payment_successful, name='payment_successful'),
+    path('payment_failed/', views.payment_failed, name='payment_failed'),
    # path('deposit/', views.DepositView.as_view(), name='deposit'), 
     path('error/', views.error, name='error'), 
     path('error2/', views.error_2, name='error2'), 
