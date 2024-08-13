@@ -696,6 +696,7 @@
                 var allComboCard = $('.all-bs-card').find('.single-bs-card.card-combo').not('.hidden');  
                 var csrfToken = $('[name=csrfmiddlewaretoken]').val();
                 var stake_amount = $('.bet-slip-calculation').find('.total-stake').text();
+                var fixtureStakeLimit = $(`#fixture-${fixtureID}`).data("fixturestake");
                 const slipID =  uuidv4();
                 var user_balance = $("#user-details").data("account-balance");
                 var max_stake_amount = $("#user-details").data("max-stake-amount");
@@ -755,6 +756,27 @@
                         }
                     });
 
+                } else if (parseInt(stake_amount) > parseInt(fixtureStakeLimit)){  // check fixture stake Limit
+                    $.ajax({
+                        type: 'GET',
+                        url: `error5/${fixtureStakeLimit}`,
+                        headers: {
+                            'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+                        },
+                        data: {
+                            'fixtureStakeLimit': parseInt(fixtureStakeLimit)
+
+                        },
+                        success: function (data) {
+                            // Handle the successful response
+                            console.log(data.message);
+                            window.location.href = `error5/${fixtureStakeLimit}`;
+                        },
+                        error: function (error) {
+                            // Handle the error
+                            console.log('Error:', error);
+                        }
+                    });
                 } else {
                 
                     allComboCard.each(function(){
