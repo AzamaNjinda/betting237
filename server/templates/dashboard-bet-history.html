@@ -361,215 +361,121 @@
                                     {% endfor %}
                                     {% endif %}
                                     {% endfor %} {% endcomment %}
-                                    
-                                        {% for bet_slip_data in bet_slips_data %}                                                 
-                                            {% for bet_history in bet_slip_data.bet_histories %}
-                                                {% for fixture in bet_slip_data.fixtures  %}
+                                    {% for bet_slip_data in bet_slips_data %}
+    <!-- Check if the bet slip is a combo bet -->
+    {% if bet_slip_data.bet_slip.is_combo %}
+        <!-- Display combo bet slip card -->
+        <div class="single-bs-card singleBS" data-match-id="{{ bet_slip_data.bet_slip.slipID }}">
+            <!-- Loop through BetHistories associated with this bet slip -->
+            {% for bet_history in bet_slip_data.bet_histories %}
+                <div class="slct-match">
+                    <span class="tournament-name">{{ bet_history.fixture.league }}</span> ||
+                    <span class="team-1">{{ bet_history.fixture.home }}</span> vs
+                    <span class="team-2">{{ bet_history.fixture.away }}</span>
+                </div>
 
-                                                    {% if not fixture.is_finished %}
-                                                        <div class="single-bs-card singleBS" data-match-id="1689493708888">
-                                                            <span class="tournament-name">{{ fixture.league }}</span>
-                                                            <div class="slct-match">
-                                                                <span class="team-1">{{ fixture.home }}</span>
-                                                                vs
-                                                                <span class="team-2">{{ fixture.away }}</span>
-                                                            </div>
-                                                            <div class="bs-card-header">
-                                                                <div class="slct-place">
-                                                                    <span class="team-name">STATUS :</span>
-                                                                    <span class="attherate">@</span>
-                                                                    <span class="bet-ratio" style="-webkit-text-fill-color: rgb(255, 99, 71); font-weight: 500;">PENDING</span>
-                                                                </div>
-                                                            </div>
-                                                            {% if bet_history.predicted_outcome == "Home Win" %}
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
-                                                            </div>
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> ODD: {{ fixture.home_win }} </b></span>
-                                                            </div>
-                                                            {% elif bet_history.predicted_outcome == "Draw" %}
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
-                                                            </div>
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> ODD: {{ fixture.draw }} </b></span>
-                                                            </div>
-                                                            {% elif bet_history.predicted_outcome == "Away Win" %}
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
-                                                            </div>
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> ODD: {{ fixture.away_win }} </b></span>
-                                                            </div>
-                                                            {% endif %}
-                                                            <div class="bs-card-footer">
-                                                                <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stk:<span class="stake-number">{{ bet_slip_data.bet_slip.total_stake_amount }}</span></button>
-                                                                <div class="return-amount">
-                                                                    <span class="text">Return : </span>
-                                                                    <span class="number">{{ bet_slip_data.bet_slip.total_payout }}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    {% else %}
-                                                        <div class="single-bs-card singleBS" data-match-id="1689493708888">
-                                                            <span class="tournament-name">{{ fixture.league }}</span>
-                                                            <div class="slct-match">
-                                                                <span class="team-1">{{ fixture.home }}</span>
-                                                                vs
-                                                                <span class="team-2">{{ fixture.away }}</span>
-                                                            </div>
-                                                            <div class="bs-card-header">
-                                                                <div class="slct-place">
-                                                                    <span class="team-name">STATUS: </span>
-                                                                    <span class="attherate">@</span>
-                                                                    {% if bet_slip_data.bet_slip.is_winner %}
-                                                                        <span class="bet-ratio" style="-webkit-text-fill-color: rgb(77, 142, 83); font-weight: 500;">Won</span>
-                                                                    {% else %}
-                                                                        <span class="bet-ratio" style="-webkit-text-fill-color: rgb(255, 99, 71); font-weight: 500;">Loss</span>
-                                                                    {% endif %}
-                                                                </div>
-                                                            </div>
-                                                            {% if bet_history.predicted_outcome == "Home Win" %}
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
-                                                            </div>
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> ODD: {{ fixture.home_win }} </b></span>
-                                                            </div>
-                                                            {% elif bet_history.predicted_outcome == "Draw" %}
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
-                                                            </div>
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> ODD: {{ fixture.draw }} </b></span>
-                                                            </div>
-                                                            {% elif bet_history.predicted_outcome == "Away Win" %}
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> PREDICTION : {{ bet_history.predicted_outcome }} </b></span>
-                                                            </div>
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> ODD: {{ fixture.away_win }} </b></span>
-                                                            </div>
-                                                            {% endif %}
-                                                            <div class="slct-match">
-                                                                <span class="team-1"><b> Final Score :</b></span>
-                                                                <span class="team-1">{{ fixture.home_score }}</span>
-                                                                :
-                                                                <span class="team-2">{{ fixture.away_score }}</span>
-                                                            </div>
-                                                            <div class="bs-card-footer">
-                                                                <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">Stk:<span class="stake-number">{{ bet_slip_data.bet_slip.total_stake_amount }}</span></button>
-                                                                <div class="return-amount">
-                                                                    <span class="text">Return : </span>
-                                                                    <span class="number">{{ bet_slip_data.bet_slip.total_payout }}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    {% endif %}
-                                                {% endfor %}   
-                                            {% endfor %}
-                                        {% endfor %}   
-                                </div>
-                            </div>
-                        </div>
+                <!-- Display status based on whether the fixture is finished or not -->
+                {% if not bet_history.fixture.is_finished %}
+                    <div class="slct-match">
+                        <span class="team-1">Status: <span style="color: rgb(255, 99, 71);">Pending</span></span> ||
+                        <span class="team-2">Bet: {{ bet_history.predicted_outcome }}</span> ||
+                        {% if bet_history.predicted_outcome == "Home Win" %}
+                            <span class="team-2">ODD: {{ bet_history.fixture.home_win }}</span>
+                        {% elif bet_history.predicted_outcome == "Draw" %}
+                            <span class="team-2">ODD: {{ bet_history.fixture.draw }}</span>
+                        {% elif bet_history.predicted_outcome == "Away Win" %}
+                            <span class="team-2">ODD: {{ bet_history.fixture.away_win }}</span>
+                        {% endif %}
                     </div>
-                    <div class="col-xl-12 col-lg-12">
-                        <div class="single-db-element">
-                            <h4 class="title">
-                                <span class="icon"><i class="fa-duotone fa-files"></i></span>
-                                <span class="text">my recent bets</span>
-                            </h4>
-                            <div class="sports-body">
-                                <div class="playing-sports-all no-tabs-here">
-                                    <div class="single-tournament">
-                                        <div class="tournament-title"></div>
-                                        <div class="all-tournament-match">
-                                            {% for bet_slip_data in bet_slips_data %}
-                                            {% for bet_history in  bet_slip_data.bet_histories %}
-                                            {% for fixture in  bet_slip_data.fixtures %}
-                                            {% if fixture.is_finished is False %}
-                                            <div class="single-t-match">
-                                                <span class="in-play-tag"></span>
-                                                <div class="event">
-                                                    <div class="part-team">
-                                                        <div class="s-team">
-                                                            <img src="assets/img/playing-bet/team-icon/team-5.png" alt="" class="team-icon">
-                                                            <span class="team-name">{{ fixture.home }}</span>
-                                                        </div>
-                                                        <div class="s-team">
-                                                            <img src="assets/img/playing-bet/team-icon/team-6.png" alt="" class="team-icon">
-                                                            <span class="team-name">{{ fixture.away }}</span>
-                                                        </div>
-                                                    </div>
-                                                    <span class="event-name">{{ fixture.date }} {{ fixture.league}}</span>
-                                                </div>
-                                                <div class="b-slip">
-                                                    <span class="slip-number">{{ bet_slip_data.bet_slip.slipID }}</span>
-                                                </div>
-                                                <div class="date-n-time">
-                                                    <span class="date">{{ fixture.date }}</span>
-                                                    <span class="time">{{ fixture.time }}</span>
-                                                </div>
-                                                <div class="bet-type">
-                                                    <span class="text">Single bet</span>
-                                                </div>
-                                                <div class="bet-amount">
-                                                    <span class="text">{{ bet_slip_data.bet_slip.total_stake_amount }}</span>
-                                                </div>
-                                                <div class="b-odd">
-                                                    <span class="text">{{ bet_history.predicted_outcome }}</span>
-                                                </div>
-                                                <div class="status">
-                                                    <span class="lost">PENDING</span>
-                                                </div>
-                                            </div>
-                                            {% else %}
-                                            <div class="single-t-match">
-                                                <span class="in-play-tag"></span>
-                                                <div class="event">
-                                                    <div class="part-team">
-                                                        <div class="s-team">
-                                                            <img src="assets/img/playing-bet/team-icon/team-5.png" alt="" class="team-icon">
-                                                            <span class="team-name">{{ fixture.home }}</span>
-                                                        </div>
-                                                        <div class="s-team">
-                                                            <img src="assets/img/playing-bet/team-icon/team-6.png" alt="" class="team-icon">
-                                                            <span class="team-name">{{ fixture.away }}</span>
-                                                        </div>
-                                                    </div>
-                                                    <span class="event-name">{{ fixture.date }} {{ fixture.league}}</span>
-                                                </div>
-                                                <div class="b-slip">
-                                                    <span class="slip-number">{{ bet_slip_data.bet_slip.slipID }}</span>
-                                                </div>
-                                                <div class="date-n-time">
-                                                    <span class="date">{{ fixture.date }}</span>
-                                                    <span class="time">{{ fixture.time }}</span>
-                                                </div>
-                                                <div class="bet-type">
-                                                    <span class="text">Single bet</span>
-                                                </div>
-                                                <div class="bet-amount">
-                                                    <span class="text">{{ bet_slip_data.bet_slip.total_stake_amount }}</span>
-                                                </div>
-                                                <div class="b-odd">
-                                                    <span class="text">{{ bet_history.predicted_outcome }}</span>
-                                                </div>
-                                                {% if bet_slip_data.bet_slip.is_winner  %}
-                                                <div class="status">
-                                                    <span class="win">Won</span>
-                                                </div>
-                                                {% else %}
-                                                <div class="status">
-                                                    <span class="lost">Lost</span>
-                                                </div>
-                                                {% endif %}
-                                            </div>
-                                            {% endif %}
-                                            {% endfor %}
-                                            {% endfor %}
-                                            {% endfor %}
+                {% else %}
+                    <!-- If fixture is finished, display result and outcome -->
+                    <div class="slct-match">
+                        <span class="team-1">Status:</span>
+                        {% if bet_slip_data.bet_slip.is_winner %}
+                            <span class="bet-ratio" style="color: rgb(77, 142, 83); font-weight: 500;">Won</span>
+                        {% else %}
+                            <span class="bet-ratio" style="color: rgb(255, 99, 71); font-weight: 500;">Lost</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="slct-match">
+                        <span class="team-1">Final Score:</span>
+                        <span class="team-1">{{ bet_history.fixture.home_score }}</span> :
+                        <span class="team-2">{{ bet_history.fixture.away_score }}</span>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Combo bet slip footer -->
+            <div class="bs-card-footer">
+                <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Stk: <span class="stake-number">{{ bet_slip_data.bet_slip.total_stake_amount }}</span>
+                </button>
+                <div class="return-amount">
+                    <span class="text">Return:</span>
+                    <span class="number">{{ bet_slip_data.bet_slip.total_payout }}</span>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <!-- Display single bet slip card -->
+        <div class="single-bs-card singleBS" data-match-id="{{ bet_slip_data.bet_slip.slipID }}">
+            <!-- Loop through BetFixtures associated with this bet slip -->
+            {% for bet_fixture in bet_slip_data.bet_fixtures %}
+                <div class="slct-match">
+                    <span class="tournament-name">{{ bet_fixture.fixture.league }}</span> ||
+                    <span class="team-1">{{ bet_fixture.fixture.home }}</span> vs
+                    <span class="team-2">{{ bet_fixture.fixture.away }}</span>
+                </div>
+
+                <!-- Display status based on whether the fixture is finished or not -->
+                {% if not bet_fixture.fixture.is_finished %}
+                    <div class="slct-match">
+                        <span class="team-1">Status: <span style="color: rgb(255, 99, 71);">Pending</span></span> ||
+                        <span class="team-2">Bet: {{ bet_fixture.predicted_outcome }}</span> ||
+                        {% if bet_fixture.predicted_outcome == "Home Win" %}
+                            <span class="team-2">ODD: {{ bet_fixture.fixture.home_win }}</span>
+                        {% elif bet_fixture.predicted_outcome == "Draw" %}
+                            <span class="team-2">ODD: {{ bet_fixture.fixture.draw }}</span>
+                        {% elif bet_fixture.predicted_outcome == "Away Win" %}
+                            <span class="team-2">ODD: {{ bet_fixture.fixture.away_win }}</span>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <!-- If fixture is finished, display result and outcome -->
+                    <div class="slct-match">
+                        <span class="team-1">Status:</span>
+                        {% if bet_slip_data.bet_slip.is_winner %}
+                            <span class="bet-ratio" style="color: rgb(77, 142, 83); font-weight: 500;">Won</span>
+                        {% else %}
+                            <span class="bet-ratio" style="color: rgb(255, 99, 71); font-weight: 500;">Lost</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="slct-match">
+                        <span class="team-1">Final Score:</span>
+                        <span class="team-1">{{ bet_fixture.fixture.home_score }}</span> :
+                        <span class="team-2">{{ bet_fixture.fixture.away_score }}</span>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Single bet slip footer -->
+            <div class="bs-card-footer">
+                <button class="prd-btn-1 medium" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Stk: <span class="stake-number">{{ bet_slip_data.bet_slip.total_stake_amount }}</span>
+                </button>
+                <div class="return-amount">
+                    <span class="text">Return:</span>
+                    <span class="number">{{ bet_slip_data.bet_slip.total_payout }}</span>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+
+
+                              
                                             {% comment %} <div class="single-t-match">
                                                 <div class="event">
                                                     <div class="part-team">

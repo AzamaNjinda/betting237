@@ -1,5 +1,6 @@
 import json
 import time
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from server.forms import UserRegisterForm, UserLoginForm, PaymentForm, WithdrawalForm, ContactForm
@@ -25,7 +26,7 @@ from pymesomb.operations import PaymentOperation
 from pymesomb.utils import RandomGenerator
 from datetime import datetime, timezone
 from django.contrib.auth.decorators import login_required
-from . models import BetHistory, BetSlip, StakeAmount
+from . models import BetHistory, BetSlip, StakeAmount, BetFixture
 from django.db.models import Case, When, Value, F, IntegerField
 from . import candy
 from django.utils.safestring import mark_safe
@@ -511,55 +512,59 @@ def withdraw(request):
 
     return candy.render(request, "dashboard-withdraw.html", context)
 
-@login_required(login_url='/login/')
+@login_required(login_url='/login')
+@csrf_exempt
 def place_bet(request):
     user = request.user
     if request.method == 'POST':
-        # Retrieve data from the POST request
-        slip_id = request.POST.get('slipID')
-        fixture_id = request.POST.get('fixture')
-        stake_amount = request.POST.get('stake_amount')
-        predicted_outcome = request.POST.get('predicted_outcome')
+        slip_id = request.POST.get('slipID').strip()
         total_stake_amount = request.POST.get('total_stake_amount')
         total_payout = request.POST.get('total_payout')
+        fixtures = json.loads(request.POST.get('fixtures'))  # Load fixtures from JSON string
+        combo = request.POST.get('combo')
 
-        fixture = get_object_or_404(Fixture, id=fixture_id)
+        # Validate slip_id
+        if not slip_id:
+            return JsonResponse({'error': 'Invalid slip ID'}, status=400)
 
-        print("Hello" + total_stake_amount )
+        # Retrieve or create a single BetSlip for the slip_id and user
+        bet_slip, created = BetSlip.objects.get_or_create(
+            slipID=slip_id,
+            user=user,
+            defaults={
+                'total_stake_amount': float(total_stake_amount),  # Initialize total stake amount
+                'total_payout': float(total_payout),              # Initialize total payout
+            }
+        )
 
-        if BetSlip.objects.filter(user=user, bet_histories__fixture=fixture).exists():
-            #return redirect("server:error_2")
-            print("Hello")
-            response = {'error': 'You have already placed a bet on this fixture.'}
-            return JsonResponse(response)
-        
-    
-        bet_slip_query = BetSlip.objects.filter(slipID=slip_id)
-        
-        if bet_slip_query.exists():
-            bet_slip = bet_slip_query.first()
-            bet_slip.is_combo = True
-            bet_slip.save()
-        else:
-            bet_slip = BetSlip.objects.create(slipID=slip_id, user=user, total_stake_amount=float(total_stake_amount), total_payout=float(total_payout))
+        # If the BetSlip already existed, update the stake and payout values
+        if not created:
+            bet_slip.total_stake_amount += float(total_stake_amount)  # Accumulate stake amount
+            bet_slip.total_payout += float(total_payout)              # Accumulate payout amount
 
-        bet_history = BetHistory.objects.create(fixture=fixture, stake_amount=float(stake_amount), predicted_outcome=predicted_outcome)
-        bet_slip.bet_histories.set([bet_history])
-                
-        user.account_balance  = user.account_balance - int(total_stake_amount)
-        
-        if user.account_balance < 0:
-            user.account_balance = 0
+        # Save the BetSlip
+        bet_slip.save()
 
+        # Create BetFixture for each fixture in the request
+        for fixture_data in fixtures:
+            fixture = get_object_or_404(Fixture, id=fixture_data['fixture'])
+            BetFixture.objects.create(
+                bet_slip=bet_slip,
+                fixture=fixture,
+                stake_amount=float(fixture_data['stake_amount']),
+                predicted_outcome=fixture_data['predicted_outcome']
+            )
+
+        # Update the user's account balance based on the total stake amount
+        user.account_balance = max(0, user.account_balance - float(total_stake_amount))
         user.save()
 
-        
-        response = {'message': f'Hello from Django! You entered: { slip_id,fixture_id,stake_amount,predicted_outcome,total_stake_amount,total_payout}'}
-
+        response = {
+            'message': f'Bet placed successfully! BetSlip ID: {slip_id}, Total Stake: {total_stake_amount}, Total Payout: {total_payout}'
+        }
         return JsonResponse(response)
     else:
-        # If the request is not a POST request, return an error response
-        return JsonResponse({'error': 'Invalid request method'})
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 def about(request):
     return candy.render(request, "about.html")
@@ -696,110 +701,174 @@ def payment_failed(request):
     #present_user = None
     return candy.render(request, "payment-failed.html")
 
+# @login_required(login_url='/login/')
+# def bet_history(request):
+#     user = request.user
+#     bet_slips = BetSlip.objects.filter(user=request.user).order_by('-created_at')
+#     bet_slips_data = []
+#     bet_histories = []
+#     bet_fixtures = []
+#     fixtures = []
+#     for bet_slip in bet_slips:
+#         bet_histories = bet_slip.bet_histories.select_related('fixture')
+#         fixtures = [bet_history.fixture for bet_history in bet_histories]
+#         #bet_slip.is_winner = True
+
+#         for bet_history in bet_histories:
+#             fixture = bet_history.fixture
+#             if fixture.is_finished:
+#                 if fixture.home_score > fixture.away_score:
+#                     bet_history.actual_outcome = "Home Win"
+#                     bet_slip.is_winner = True
+#                 elif fixture.home_score == fixture.away_score:
+#                     bet_history.actual_outcome = "Draw"
+#                     bet_slip.is_winner = True
+#                 else:
+#                     bet_history.actual_outcome = "Away Win"
+#                     bet_slip.is_winner = True
+
+#                 bet_history.save()
+
+#                 if bet_history.predicted_outcome != bet_history.actual_outcome:
+#                     bet_slip.is_winner = False
+
+#         if bet_slip.is_winner and not bet_slip.is_paid:
+#             user.account_balance += bet_slip.total_payout
+#             bet_slip.is_paid = True
+#             bet_slip.save()
+#             user.save()
+           
+
+#         bet_slip_data = {
+#             'bet_slip': bet_slip,
+#             'bet_histories': bet_histories,
+#             'fixtures': fixtures,
+#         }
+
+#         bet_slips_data.append(bet_slip_data)
+
+#     for bet_slip in bet_slips:
+#         bet_fixtures = BetFixture.objects.filter(bet_slip=bet_slip)
+#         fixtures = [bet_fixture.fixture for bet_fixture in bet_fixtures]
+
+#         all_finished = True
+#         bet_slip.is_winner = True
+
+#         for bet_fixture in bet_fixtures:
+#             fixture = bet_fixture.fixture
+
+#             if fixture.is_finished:
+#                 if fixture.home_score > fixture.away_score:
+#                     bet_fixture.actual_outcome = "Home Win"
+#                 elif fixture.home_score == fixture.away_score:
+#                     bet_fixture.actual_outcome = "Draw"
+#                 else:
+#                     bet_fixture.actual_outcome = "Away Win"
+
+#                 bet_fixture.save()
+
+#                 if bet_fixture.predicted_outcome != bet_fixture.actual_outcome:
+#                     bet_slip.is_winner = False
+#             else:
+#                 all_finished = False
+
+#         if all_finished and bet_slip.is_winner and not bet_slip.is_paid:
+#             user.account_balance += bet_slip.total_payout
+#             bet_slip.is_paid = True
+#             user.save()
+
+#         bet_slip.save()
+
+#         bet_slip_data = {
+#             'bet_slip': bet_slip,
+#             'bet_histories': bet_fixtures,
+#             'fixtures': fixtures,
+#         }
+
+#         bet_slips_data.append(bet_slip_data)        
+            
+    
+#     context = {
+#         'bet_slips': bet_slips,
+#         'bet_histories': bet_histories,
+#         'fixtures' : fixtures,
+#         'bet_slips_data': bet_slips_data,
+#     }
+
+#     return candy.render(request, "dashboard-bet-history.html", context)
+
 @login_required(login_url='/login/')
 def bet_history(request):
     user = request.user
-    bet_slips = BetSlip.objects.filter(user=request.user).order_by('-created_at')
+    bet_slips = BetSlip.objects.filter(user=user).order_by('-created_at')
     bet_slips_data = []
-    bet_histories = []
-    fixtures = []
-    for bet_slip in bet_slips:
-        bet_histories = bet_slip.bet_histories.select_related('fixture')
-        fixtures = [bet_history.fixture for bet_history in bet_histories]
-        #bet_slip.is_winner = True
 
+    for bet_slip in bet_slips:
+        # Fetch BetHistories associated with the current bet slip
+        bet_histories = bet_slip.bet_histories.select_related('fixture')
+        
+        # Fetch BetFixtures associated with the current bet slip
+        bet_fixtures = BetFixture.objects.filter(bet_slip=bet_slip).select_related('fixture')
+
+        # Logic for BetHistories
         for bet_history in bet_histories:
             fixture = bet_history.fixture
             if fixture.is_finished:
                 if fixture.home_score > fixture.away_score:
                     bet_history.actual_outcome = "Home Win"
-                    bet_slip.is_winner = True
                 elif fixture.home_score == fixture.away_score:
                     bet_history.actual_outcome = "Draw"
-                    bet_slip.is_winner = True
                 else:
                     bet_history.actual_outcome = "Away Win"
-                    bet_slip.is_winner = True
-
                 bet_history.save()
 
-                if bet_history.predicted_outcome != bet_history.actual_outcome:
-                    bet_slip.is_winner = False
+        # Logic for BetFixtures
+        for bet_fixture in bet_fixtures:
+            fixture = bet_fixture.fixture
+            if fixture.is_finished:
+                if fixture.home_score > fixture.away_score:
+                    bet_fixture.actual_outcome = "Home Win"
+                elif fixture.home_score == fixture.away_score:
+                    bet_fixture.actual_outcome = "Draw"
+                else:
+                    bet_fixture.actual_outcome = "Away Win"
+                bet_fixture.save()
 
+        # Determine if the bet slip is a winner based on BetHistory outcomes
+        bet_slip.is_winner = all(
+            bet_history.predicted_outcome == bet_history.actual_outcome for bet_history in bet_histories
+        )
+
+        # Alternatively, determine if the bet slip is a winner based on BetFixture outcomes
+        if bet_fixtures.exists():
+            bet_slip.is_winner = all(
+                bet_fixture.predicted_outcome == bet_fixture.actual_outcome for bet_fixture in bet_fixtures
+            )
+
+        # Update user's balance if the bet slip is a winner and not yet paid
         if bet_slip.is_winner and not bet_slip.is_paid:
             user.account_balance += bet_slip.total_payout
             bet_slip.is_paid = True
-            bet_slip.save()
             user.save()
-            # if fixture.is_finished is True:
-            #     if fixture.home_score > fixture.away_score:
-            #         bet_history.actual_outcome = "Home Win"
-            #         bet_history.save()
-            #         if bet_history.predicted_outcome == bet_history.actual_outcome:
-            #             bet_slip.is_winner = True
-            #             bet_slip.save()
-            #             if not bet_slip.is_paid:
-            #                 user.account_balance = user.account_balance + bet_slip.total_payout
-            #                 bet_slip.is_paid = True
-            #                 bet_slip.save()
-            #                 user.save()
-            #             else:
-            #                 pass
-            #         else:
-            #             bet_slip.is_winner = False
-            #             bet_slip.save()
-            #     elif fixture.home_score == fixture.away_score:
-            #         bet_history.actual_outcome = "Draw"
-            #         bet_history.save()
-            #         if bet_history.predicted_outcome == bet_history.actual_outcome:
-            #             bet_slip.is_winner = True
-            #             bet_slip.save()
-            #             if not bet_slip.is_paid:
-            #                 user.account_balance = user.account_balance + bet_slip.total_payout
-            #                 bet_slip.is_paid = True
-            #                 bet_slip.save()
-            #                 user.save()
-            #             else:
-            #                 pass
-            #         else:
-            #             bet_slip.is_winner = False
-            #             bet_slip.save()
-            #     elif fixture.home_score < fixture.away_score:
-            #         bet_history.actual_outcome = "Away Win"
-            #         bet_history.save()
-            #         if bet_history.predicted_outcome == bet_history.actual_outcome:
-            #             bet_slip.is_winner = True
-            #             bet_slip.save()
-            #             if not bet_slip.is_paid:
-            #                 user.account_balance = user.account_balance + bet_slip.total_payout
-            #                 bet_slip.is_paid = True
-            #                 bet_slip.save()
-            #                 user.save()
-            #             else:
-            #                 pass
-            #         else:
-            #             bet_slip.is_winner = False
-            #             bet_slip.save()
 
+        # Save the updated bet slip
+        bet_slip.save()
+
+        # Prepare data for template rendering
         bet_slip_data = {
             'bet_slip': bet_slip,
-            'bet_histories': bet_histories,
-            'fixtures': fixtures,
+            'bet_histories': bet_histories,  # Includes BetHistory data
+            'bet_fixtures': bet_fixtures,    # Includes BetFixture data
         }
+        bet_slips_data.append(bet_slip_data)
 
-        bet_slips_data.append(bet_slip_data)        
-       
-
-         
-    
+    # Context for rendering the template
     context = {
-        'bet_slips': bet_slips,
-        'bet_histories': bet_histories,
-        'fixtures' : fixtures,
         'bet_slips_data': bet_slips_data,
     }
 
-    return candy.render(request, "dashboard-bet-history.html", context)
+    return render(request, "dashboard-bet-history.html", context)
+
 
 @login_required(login_url='/login/')  
 def error(request):

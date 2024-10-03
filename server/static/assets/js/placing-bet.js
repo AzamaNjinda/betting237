@@ -590,8 +590,8 @@
                 displayEmptySlip();
                 $('.successfull-card').hide();
             }
-            // cardButtonVisiblity();
-            // comboPackExec();
+            cardButtonVisiblity();
+            comboPackExec();
             if(comboBtnisOn == true) {
                 ComboRatioTotalMultipling();
                 comboStakeCounting();
@@ -692,8 +692,9 @@
         // function to place bet    
         $('.successfull-card').hide();
         function displaySuccessBet() {
-           // if(comboBtnisOn == true) {
+            //if(comboBtnisOn == true) {
                 var allComboCard = $('.all-bs-card').find('.single-bs-card.card-combo').not('.hidden');  
+                var allComboCardLen = $('.all-bs-card').find('.single-bs-card.card-combo').not('.hidden').length;  
                 var csrfToken = $('[name=csrfmiddlewaretoken]').val();
                 var stake_amount = $('.bet-slip-calculation').find('.total-stake').text();
                 var fixtureStakeLimit = $(`#fixture-${fixtureID}`).data("fixturestake");
@@ -701,6 +702,9 @@
                 var user_balance = $("#user-details").data("account-balance");
                 var max_stake_amount = $("#user-details").data("max-stake-amount");
                 var username_max_stake_amount = $("#user-details").data("username-max-stake-amount");
+                console.log(user_balance);
+                console.log(user_balance);
+                console.log(user_balance);
                 console.log(user_balance);
                 if (parseInt(stake_amount) > parseInt(user_balance)) {
                     $.ajax({
@@ -778,8 +782,17 @@
                         }
                     });
                 } else {
-                
-                    allComboCard.each(function(){
+                    if (allComboCardLen > 1) {
+                        let fixtures = [];
+
+                        allComboCard.each(function () {
+                            fixtures.push({
+                                fixture: $(this).find('.fixture-id').text(),
+                                stake_amount: 0,
+                                predicted_outcome: $(this).find('.team-name').text()
+                            });
+                        });
+
                         $.ajax({
                             type: 'POST',
                             url: 'place-bet/',
@@ -788,61 +801,67 @@
                             },
                             data: {
                                 'slipID': slipID,
-                                'fixture': $(this).find('.fixture-id').text(),
-                                'stake_amount': 0,
-                                'predicted_outcome': $(this).find('.team-name').text(),
+                                'fixtures': JSON.stringify(fixtures), // Send fixtures as a JSON string
                                 'total_stake_amount': $('.bet-slip-calculation').find('.total-stake').text(),
-                                'total_payout':  $('.bet-slip-calculation').find('.total-est-return').text()
-
+                                'total_payout': $('.bet-slip-calculation').find('.total-est-return').text(),
+                                'combo': "True"
                             },
                             success: function (response) {
-                                
                                 if (response && response.error) {
-                                    // Redirect to the error route
                                     console.log(response.error);
-                                    window.location.href = 'error2/';
                                 } else {
-                                    // Handle success scenario (optional)
                                     console.log(response.message);
-                                    
                                 }
                             },
                             error: function (xhr, status, error) {
-                                // Handle the error
                                 console.log(xhr.responseText);
-                
-                                window.location.href = 'error2/';
                             }
                         });
 
-                    });
-                }
-           // }
-            // if(systemBTNisON == true) {
-            //     var All_BSCard = $('.single-bs-card.singleBS').not('.hidden')
-            //     All_BSCard.each(function(){
-            //         $.ajax({
-            //             type: 'POST',
-            //             url: 'place-bet/',
-            //             data: {
-            //                 'fixture': $(this).find('.fixture-id').text(),
-            //                 'stake_amount': $(this).find('.stake-number').text(),
-            //                 'predicted_outcome': $(this).find('.slct-team-name').text(),
-            //                 'total_stake_amount': $('.bet-slip-calculation').find('.total-stake').text(),
-            //                 'total_payout':  $('.bet-slip-calculation').find('.total-est-return').text()
+                    } else {
+                        allComboCard.each(function(){
+                            $.ajax({
+                                type: 'POST',
+                                url: 'place-bet/',
+                                headers: {
+                                    'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+                                },
+                                data: {
+                                    'slipID': slipID,
+                                    'fixture': $(this).find('.fixture-id').text(),
+                                    'stake_amount': 0,
+                                    'predicted_outcome': $(this).find('.team-name').text(),
+                                    'total_stake_amount': $('.bet-slip-calculation').find('.total-stake').text(),
+                                    'total_payout':  $('.bet-slip-calculation').find('.total-est-return').text(),
+                                    'combo' : "False"
 
-            //             },
-            //             success: function (data) {
-            //                 // Handle the successful response
-            //                 console.log(data.message);
-            //             },
-            //             error: function (error) {
-            //                 // Handle the error
-            //                 console.log('Error:', error);
-            //             }
-            //         });
-            //     });
-            // }
+                                },
+                                success: function (response) {
+                                    
+                                    if (response && response.error) {
+                                        // Redirect to the error route
+                                        console.log(response.error);
+                                        //window.location.href = 'error2/';
+                                    } else {
+                                        // Handle success scenario (optional)
+                                        console.log(response.message);
+                                        
+                                    }
+                                },
+                                error: function (xhr, status, error) {
+                                    // Handle the error
+                                    console.log(xhr.responseText);
+                    
+                                    //window.location.href = 'error2/';
+                                }
+                            });
+
+                        });
+
+                    }
+                        
+                }
+            //}
             var All_BSCard = $('.single-bs-card.singleBS').not('.hidden').length;
             var singlePlacedC = $('.single-bet-place.placed');
             if(All_BSCard >= 1 ) {
@@ -856,6 +875,7 @@
                 displayEmptySlip();
             }
         }
+       
         $(document).on('click', '.slip-dlt', function(){
             $(this).parents('.single-bs-card').remove();
             deleting_match_id = $(this).parents('.single-bs-card').attr('data-match-id');

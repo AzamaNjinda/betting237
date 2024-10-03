@@ -1,8 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User,Fixture, BetHistory, BetSlip, StakeAmount, ContactForm, Withdrawal
+from .models import User,Fixture, BetHistory, BetSlip, StakeAmount, ContactForm, Withdrawal, BetFixture
 
 
+class BetFixtureInline(admin.StackedInline):
+    model = BetFixture
+    can_delete = True
 
 
 class UserAdmin(BaseUserAdmin):
@@ -52,16 +55,21 @@ class FixtureAdmin(admin.ModelAdmin):
     search_fields = ('league','home')
    
 class BetSlipAdmin(admin.ModelAdmin):
+    inlines = (BetFixtureInline,)
     search_fields = ('slipID','user__username')
 
 class WithdrawalAdmin(admin.ModelAdmin):
     search_fields = ('phoneNumber', 'email')
+
+class BetFixtureAdmin(admin.ModelAdmin):
+    list_display = ['fixture','predicted_outcome','actual_outcome']
 
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Fixture, FixtureAdmin)
 admin.site.register(BetSlip, BetSlipAdmin)
 admin.site.register(BetHistory)
+admin.site.register(BetFixture, BetFixtureAdmin)
 admin.site.register(StakeAmount)
 admin.site.register(ContactForm)
 admin.site.register(Withdrawal, WithdrawalAdmin)

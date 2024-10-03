@@ -72,7 +72,7 @@ class Fixture(models.Model):
    
     
     def __str__(self):
-        return self.home
+        return f"{self.home} Vs {self.away}"
     
 
 class BetHistory(models.Model):
@@ -88,7 +88,7 @@ class BetHistory(models.Model):
 class BetSlip(models.Model):
     slipID = models.CharField( max_length=50,blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    bet_histories = models.ManyToManyField(BetHistory, related_name='bet_slips')
+    bet_histories = models.ManyToManyField(BetHistory, related_name='bet_slips',blank=True)
     total_stake_amount = models.DecimalField(max_digits=10, decimal_places=2)
     total_payout = models.DecimalField(max_digits=10, decimal_places=2)
     is_winner = models.BooleanField(default=False)
@@ -99,6 +99,16 @@ class BetSlip(models.Model):
 
     def __str__(self):
          return f"Betslip for {self.user}: Total Stake - {self.total_stake_amount}, Total Payout - {self.total_payout}"
+    
+class BetFixture(models.Model):
+    bet_slip = models.ForeignKey(BetSlip, on_delete=models.CASCADE, related_name='bet_fixtures',blank=True, null=True)
+    fixture = models.ForeignKey(Fixture, on_delete=models.CASCADE)
+    stake_amount = models.DecimalField(max_digits=10, decimal_places=2,blank=True, null=True)
+    predicted_outcome = models.CharField( max_length=50,blank=True, null=True)
+    actual_outcome = models.CharField( max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return f"Bet on {self.fixture} with for Outcome {self.predicted_outcome}"
 
 
 class StakeAmount(models.Model):
