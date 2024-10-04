@@ -819,44 +819,52 @@
                         });
 
                     } else {
-                        allComboCard.each(function(){
-                            $.ajax({
-                                type: 'POST',
-                                url: 'place-bet/',
-                                headers: {
-                                    'X-CSRFToken': csrfToken // Include the CSRF token in the headers
-                                },
-                                data: {
-                                    'slipID': slipID,
-                                    'fixture': $(this).find('.fixture-id').text(),
-                                    'stake_amount': 0,
-                                    'predicted_outcome': $(this).find('.team-name').text(),
-                                    'total_stake_amount': $('.bet-slip-calculation').find('.total-stake').text(),
-                                    'total_payout':  $('.bet-slip-calculation').find('.total-est-return').text(),
-                                    'combo' : "False"
-
-                                },
-                                success: function (response) {
-                                    
-                                    if (response && response.error) {
-                                        // Redirect to the error route
-                                        console.log(response.error);
-                                        //window.location.href = 'error2/';
-                                    } else {
-                                        // Handle success scenario (optional)
-                                        console.log(response.message);
-                                        
-                                    }
-                                },
-                                error: function (xhr, status, error) {
-                                    // Handle the error
-                                    console.log(xhr.responseText);
-                    
-                                    //window.location.href = 'error2/';
-                                }
+                        let fixtures = [];
+                        allComboCard.each(function () {                    
+                           fixtures.push({
+                                fixture: $(this).find('.fixture-id').text(),
+                                stake_amount: 0,
+                                predicted_outcome: $(this).find('.team-name').text()
                             });
-
                         });
+                        
+                        $.ajax({
+                            type: 'POST',
+                            url: 'place-bet/',
+                            headers: {
+                                'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+                            },
+                            data: {
+                                'slipID': slipID,
+                                'fixtures': JSON.stringify(fixtures),
+                                'stake_amount': 0,
+                                //'predicted_outcome': $(this).find('.team-name').text(),
+                                'total_stake_amount': $('.bet-slip-calculation').find('.total-stake').text(),
+                                'total_payout':  $('.bet-slip-calculation').find('.total-est-return').text(),
+                                'combo' : "False"
+
+                            },
+                            success: function (response) {
+                                
+                                if (response && response.error) {
+                                    // Redirect to the error route
+                                    console.log(response.error);
+                                    //window.location.href = 'error2/';
+                                } else {
+                                    // Handle success scenario (optional)
+                                    console.log(response.message);
+                                    
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                // Handle the error
+                                console.log(xhr.responseText);
+                
+                                //window.location.href = 'error2/';
+                            }
+                        });
+
+                        
 
                     }
                         
