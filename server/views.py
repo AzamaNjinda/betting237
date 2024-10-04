@@ -541,6 +541,7 @@ def place_bet(request):
         if not created:
             bet_slip.total_stake_amount += float(total_stake_amount)  # Accumulate stake amount
             bet_slip.total_payout += float(total_payout)              # Accumulate payout amount
+            bet_slip.is_combo = combo
 
         # Save the BetSlip
         bet_slip.save()
