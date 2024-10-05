@@ -378,7 +378,7 @@
                                                             {% if not bet_history.fixture.is_finished %}
                                                                 <!-- Pending status display -->
                                                                 <div class="slct-match">
-                                                                    <span class="team-1">Status: <span style="color: rgb(255, 99, 71);">Pending</span></span> ||
+                                                                    <span class="team-1">Status: <span style="color: rgb(255, 99, 71);">Pending</span></span> <br>
                                                                     <span class="team-2">Bet: {{ bet_history.predicted_outcome }}</span> ||
                                                                     <!-- Display the ODD based on the predicted outcome -->
                                                                     {% if bet_history.predicted_outcome == "Home Win" %}
@@ -398,6 +398,19 @@
                                                                     {% else %}
                                                                         <span class="bet-ratio" style="color: rgb(255, 99, 71); font-weight: 500;">Lost</span>
                                                                     {% endif %}
+                                                                </div>
+                                                                <div class="slct-match">
+                                                                    <span class="team-1">Prediction:</span>
+                                                                    <span class="bet-ratio" style="color: rgb(77, 142, 83); font-weight: 500;">{{ bet_history.predicted_outcome }}</span>    
+                                                                </div>
+                                                                <div class="slct-match">
+                                                                    {% if bet_history.predicted_outcome == "Home Win" %}
+                                                                    <span class="team-2">ODD: {{ bet_history.fixture.home_win }}</span>
+                                                                    {% elif bet_history.predicted_outcome == "Draw" %}
+                                                                    <span class="team-2">ODD: {{ bet_history.fixture.draw }}</span>
+                                                                    {% elif bet_history.predicted_outcome == "Away Win" %}
+                                                                    <span class="team-2">ODD: {{ bet_history.fixture.away_win }}</span>
+                                                                    {% endif %}   
                                                                 </div>
 
                                                                 <div class="slct-match">
@@ -434,9 +447,12 @@
                                                             {% if not bet_fixture.fixture.is_finished %}
                                                                 <!-- Pending status display -->
                                                                 <div class="slct-match">
-                                                                    <span class="team-1">Status: <span style="color: rgb(255, 99, 71);">Pending</span></span> ||
-                                                                    <span class="team-2">Bet: {{ bet_fixture.predicted_outcome }}</span> ||
-                                                                    <!-- Display the ODD based on the predicted outcome -->
+                                                                    <span class="team-1">Status: <span style="color: rgb(255, 99, 71);">Pending</span></span>
+                                                                </div>
+                                                                <div class="slct-match">
+                                                                    <span class="team-1">Bet: <span style="color: rgb(255, 99, 71);">{{ bet_fixture.predicted_outcome }}</span></span>
+                                                                </div>
+                                                                <div class="slct-match">
                                                                     {% if bet_fixture.predicted_outcome == "Home Win" %}
                                                                         <span class="team-2">ODD: {{ bet_fixture.fixture.home_win }}</span>
                                                                     {% elif bet_fixture.predicted_outcome == "Draw" %}
@@ -444,6 +460,9 @@
                                                                     {% elif bet_fixture.predicted_outcome == "Away Win" %}
                                                                         <span class="team-2">ODD: {{ bet_fixture.fixture.away_win }}</span>
                                                                     {% endif %}
+                                                                </div>
+                                                                <div class="slct-match">
+                                                                    <span class="team-1">Time/Date: <span>{{ bet_fixture.fixture.time }}/{{ bet_fixture.fixture.date }}</span></span>
                                                                 </div>
                                                             {% else %}
                                                                 <!-- If fixture is finished, display result and outcome -->
@@ -454,6 +473,22 @@
                                                                     {% else %}
                                                                         <span class="bet-ratio" style="color: rgb(255, 99, 71); font-weight: 500;">Lost</span>
                                                                     {% endif %}
+                                                                </div>
+                                                                <div class="slct-match">
+                                                                    <span class="team-1">Prediction:</span>
+                                                                    <span class="bet-ratio" style="color: rgb(77, 142, 83); font-weight: 500;">{{ bet_fixture.predicted_outcome }}</span>    
+                                                                </div>
+                                                                <div class="slct-match">
+                                                                    {% if bet_history.predicted_outcome == "Home Win" %}
+                                                                    <span class="team-2">ODD: {{ bet_fixture.fixture.home_win }}</span>
+                                                                    {% elif bet_history.predicted_outcome == "Draw" %}
+                                                                    <span class="team-2">ODD: {{ bet_fixture.fixture.draw }}</span>
+                                                                    {% elif bet_history.predicted_outcome == "Away Win" %}
+                                                                    <span class="team-2">ODD: {{ bet_fixture.fixture.away_win }}</span>
+                                                                    {% endif %}   
+                                                                </div>
+                                                                <div class="slct-match">
+                                                                    <span class="team-1">Time/Date: <span>{{ bet_fixture.fixture.time }}/{{ bet_fixture.fixture.date }}</span></span>
                                                                 </div>
 
                                                                 <div class="slct-match">
@@ -475,9 +510,12 @@
                                                             {% if not bet_fixture.fixture.is_finished %}
                                                                 <!-- Pending status display -->
                                                                 <div class="slct-match">
-                                                                    <span class="team-1">Status: <span style="color: rgb(255, 99, 71);">Pending</span></span> ||
-                                                                    <span class="team-2">Bet: {{ bet_fixture.predicted_outcome }}</span> ||
-                                                                    <!-- Display the ODD based on the predicted outcome -->
+                                                                    <span class="team-1">Status: <span style="color: rgb(255, 99, 71);">Pending</span></span>
+                                                                </div>
+                                                                <div class="slct-match">
+                                                                    <span class="team-1">Bet: <span style="color: rgb(255, 99, 71);">{{ bet_fixture.predicted_outcome }}</span></span>
+                                                                </div>
+                                                                <div class="slct-match">
                                                                     {% if bet_fixture.predicted_outcome == "Home Win" %}
                                                                         <span class="team-2">ODD: {{ bet_fixture.fixture.home_win }}</span>
                                                                     {% elif bet_fixture.predicted_outcome == "Draw" %}
@@ -486,8 +524,10 @@
                                                                         <span class="team-2">ODD: {{ bet_fixture.fixture.away_win }}</span>
                                                                     {% endif %}
                                                                 </div>
+                                                                <div class="slct-match">
+                                                                    <span class="team-1">Time/Date: <span>{{ bet_fixture.fixture.time }}/{{ bet_fixture.fixture.date }}</span></span>
+                                                                </div>
                                                             {% else %}
-                                                                <!-- If fixture is finished, display result and outcome -->
                                                                 <div class="slct-match">
                                                                     <span class="team-1">Status:</span>
                                                                     {% if bet_slip_data.bet_slip.is_winner %}
@@ -495,6 +535,22 @@
                                                                     {% else %}
                                                                         <span class="bet-ratio" style="color: rgb(255, 99, 71); font-weight: 500;">Lost</span>
                                                                     {% endif %}
+                                                                </div>
+                                                                <div class="slct-match">
+                                                                    <span class="team-1">Prediction:</span>
+                                                                    <span class="bet-ratio" style="color: rgb(77, 142, 83); font-weight: 500;">{{ bet_fixture.predicted_outcome }}</span>    
+                                                                </div>
+                                                                <div class="slct-match">
+                                                                    {% if bet_history.predicted_outcome == "Home Win" %}
+                                                                    <span class="team-2">ODD: {{ bet_fixture.fixture.home_win }}</span>
+                                                                    {% elif bet_history.predicted_outcome == "Draw" %}
+                                                                    <span class="team-2">ODD: {{ bet_fixture.fixture.draw }}</span>
+                                                                    {% elif bet_history.predicted_outcome == "Away Win" %}
+                                                                    <span class="team-2">ODD: {{ bet_fixture.fixture.away_win }}</span>
+                                                                    {% endif %}   
+                                                                </div>
+                                                                <div class="slct-match">
+                                                                    <span class="team-1">Time/Date: <span>{{ bet_fixture.fixture.time }}/{{ bet_fixture.fixture.date }}</span></span>
                                                                 </div>
 
                                                                 <div class="slct-match">

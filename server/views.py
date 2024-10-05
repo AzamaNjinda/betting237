@@ -868,7 +868,7 @@ def bet_history(request):
         'bet_slips_data': bet_slips_data,
     }
 
-    return render(request, "dashboard-bet-history.html", context)
+    return candy.render(request, "dashboard-bet-history.html", context)
 
 
 @login_required(login_url='/login/')  

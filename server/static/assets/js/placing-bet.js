@@ -12,7 +12,7 @@
         var teamTwoLogo;
         var teamOneScore;
         var teamTwoScore;
-        var stakeDG;
+        var stakeDG = 300;
         var bettotal;
         var matchID;
         var fixtureID;
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="pb-calc">
-                            <span class="stake-line">Stake : <span class="stk-num"></span></span>
+                            <span class="stake-line">Stake : <span class="stk-num">300</span></span>
                             <span class="total-return">Total Est. Returns : <span class="ret-num">300</span></span>
                         </div>
                         <div class="pb-modal-footer">
