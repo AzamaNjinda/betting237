@@ -523,6 +523,13 @@ def place_bet(request):
         fixtures = json.loads(request.POST.get('fixtures'))  # Load fixtures from JSON string
         combo = request.POST.get('combo')
 
+            
+        for fixture_data in fixtures:
+            fixture_id = fixture_data['fixture']
+            existing_bet = BetFixture.objects.filter(bet_slip__user=user, fixture_id=fixture_id).exists()
+            if existing_bet:
+                return redirect('server:error2')
+
         # Validate slip_id
         if not slip_id:
             return JsonResponse({'error': 'Invalid slip ID'}, status=400)
