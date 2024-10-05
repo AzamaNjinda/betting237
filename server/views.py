@@ -528,7 +528,8 @@ def place_bet(request):
             fixture_id = fixture_data['fixture']
             existing_bet = BetFixture.objects.filter(bet_slip__user=user, fixture_id=fixture_id).exists()
             if existing_bet:
-                return redirect('server:error2')
+                response = {'error': 'You have already placed a bet on this fixture.'}
+                return JsonResponse(response)
 
         # Validate slip_id
         if not slip_id:

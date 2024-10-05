@@ -849,7 +849,7 @@
                                 if (response && response.error) {
                                     // Redirect to the error route
                                     console.log(response.error);
-                                    //window.location.href = 'error2/';
+                                    window.location.href = 'error2/';
                                 } else {
                                     // Handle success scenario (optional)
                                     console.log(response.message);
@@ -860,7 +860,7 @@
                                 // Handle the error
                                 console.log(xhr.responseText);
                 
-                                //window.location.href = 'error2/';
+                                window.location.href = 'error2/';
                             }
                         });
 
