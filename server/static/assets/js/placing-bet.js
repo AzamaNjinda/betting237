@@ -689,200 +689,316 @@
         }
 
         
-        // function to place bet    
-        $('.successfull-card').hide();
-        function displaySuccessBet() {
-            //if(comboBtnisOn == true) {
-                var allComboCard = $('.all-bs-card').find('.single-bs-card.card-combo').not('.hidden');  
-                var allComboCardLen = $('.all-bs-card').find('.single-bs-card.card-combo').not('.hidden').length;  
-                var csrfToken = $('[name=csrfmiddlewaretoken]').val();
-                var stake_amount = $('.bet-slip-calculation').find('.total-stake').text();
-                var fixtureStakeLimit = $(`#fixture-${fixtureID}`).data("fixturestake");
-                const slipID =  uuidv4();
-                var user_balance = $("#user-details").data("account-balance");
-                var max_stake_amount = $("#user-details").data("max-stake-amount");
-                var username_max_stake_amount = $("#user-details").data("username-max-stake-amount");
-                console.log(user_balance);
-                console.log(user_balance);
-                console.log(user_balance);
-                console.log(user_balance);
-                if (parseInt(stake_amount) > parseInt(user_balance)) {
-                    $.ajax({
-                        type: 'GET',
-                        url: 'error/',
-                        headers: {
-                            'X-CSRFToken': csrfToken // Include the CSRF token in the headers
-                        },
-                        success: function (data) {
-                            // Handle the successful response
-                            console.log(data.message);
-                            window.location.href = 'error/';
-                        },
-                        error: function (error) {
-                            // Handle the error
-                            console.log('Error:', error);
-                        }
-                    });
+        // // function to place bet    
+        // $('.successfull-card').hide();
+        // function displaySuccessBet() {
+        //     //if(comboBtnisOn == true) {
+        //         var allComboCard = $('.all-bs-card').find('.single-bs-card.card-combo').not('.hidden');  
+        //         var allComboCardLen = $('.all-bs-card').find('.single-bs-card.card-combo').not('.hidden').length;  
+        //         var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+        //         var stake_amount = $('.bet-slip-calculation').find('.total-stake').text();
+        //         var fixtureStakeLimit = $(`#fixture-${fixtureID}`).data("fixturestake");
+        //         const slipID =  uuidv4();
+        //         var user_balance = $("#user-details").data("account-balance");
+        //         var max_stake_amount = $("#user-details").data("max-stake-amount");
+        //         var username_max_stake_amount = $("#user-details").data("username-max-stake-amount");
+        //         console.log(user_balance);
+        //         console.log(user_balance);
+        //         console.log(user_balance);
+        //         console.log(user_balance);
+        //         if (parseInt(stake_amount) > parseInt(user_balance)) {
+        //             $.ajax({
+        //                 type: 'GET',
+        //                 url: 'error/',
+        //                 headers: {
+        //                     'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+        //                 },
+        //                 success: function (data) {
+        //                     // Handle the successful response
+        //                     console.log(data.message);
+        //                     window.location.href = 'error/';
+        //                 },
+        //                 error: function (error) {
+        //                     // Handle the error
+        //                     console.log('Error:', error);
+        //                 }
+        //             });
 
-                } else if (parseInt(stake_amount) > parseInt(username_max_stake_amount)){
-                    $.ajax({
-                        type: 'GET',
-                        url: 'error4/',
-                        headers: {
-                            'X-CSRFToken': csrfToken // Include the CSRF token in the headers
-                        },
-                        success: function (data) {
-                            // Handle the successful response
-                            console.log(data.message);
-                            window.location.href = 'error4/';
-                        },
-                        error: function (error) {
-                            // Handle the error
-                            console.log('Error:', error);
-                        }
-                    });
+        //         } else if (parseInt(stake_amount) > parseInt(username_max_stake_amount)){
+        //             $.ajax({
+        //                 type: 'GET',
+        //                 url: 'error4/',
+        //                 headers: {
+        //                     'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+        //                 },
+        //                 success: function (data) {
+        //                     // Handle the successful response
+        //                     console.log(data.message);
+        //                     window.location.href = 'error4/';
+        //                 },
+        //                 error: function (error) {
+        //                     // Handle the error
+        //                     console.log('Error:', error);
+        //                 }
+        //             });
 
-                } else if (parseInt(stake_amount) > parseInt(max_stake_amount)){
-                    $.ajax({
-                        type: 'GET',
-                        url: 'error3/',
-                        headers: {
-                            'X-CSRFToken': csrfToken // Include the CSRF token in the headers
-                        },
-                        success: function (data) {
-                            // Handle the successful response
-                            console.log(data.message);
-                            window.location.href = 'error3/';
-                        },
-                        error: function (error) {
-                            // Handle the error
-                            console.log('Error:', error);
-                        }
-                    });
+        //         } else if (parseInt(stake_amount) > parseInt(max_stake_amount)){
+        //             $.ajax({
+        //                 type: 'GET',
+        //                 url: 'error3/',
+        //                 headers: {
+        //                     'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+        //                 },
+        //                 success: function (data) {
+        //                     // Handle the successful response
+        //                     console.log(data.message);
+        //                     window.location.href = 'error3/';
+        //                 },
+        //                 error: function (error) {
+        //                     // Handle the error
+        //                     console.log('Error:', error);
+        //                 }
+        //             });
 
-                } else if (parseInt(stake_amount) > parseInt(fixtureStakeLimit)){  // check fixture stake Limit
-                    $.ajax({
-                        type: 'GET',
-                        url: `error5/${fixtureStakeLimit}`,
-                        headers: {
-                            'X-CSRFToken': csrfToken // Include the CSRF token in the headers
-                        },
-                        data: {
-                            'fixtureStakeLimit': parseInt(fixtureStakeLimit)
+        //         } else if (parseInt(stake_amount) > parseInt(fixtureStakeLimit)){  // check fixture stake Limit
+        //             $.ajax({
+        //                 type: 'GET',
+        //                 url: `error5/${fixtureStakeLimit}`,
+        //                 headers: {
+        //                     'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+        //                 },
+        //                 data: {
+        //                     'fixtureStakeLimit': parseInt(fixtureStakeLimit)
 
-                        },
-                        success: function (data) {
-                            // Handle the successful response
-                            console.log(data.message);
-                            window.location.href = `error5/${fixtureStakeLimit}`;
-                        },
-                        error: function (error) {
-                            // Handle the error
-                            console.log('Error:', error);
-                        }
-                    });
-                } else {
-                    if (allComboCardLen > 1) {
-                        let fixtures = [];
+        //                 },
+        //                 success: function (data) {
+        //                     // Handle the successful response
+        //                     console.log(data.message);
+        //                     window.location.href = `error5/${fixtureStakeLimit}`;
+        //                 },
+        //                 error: function (error) {
+        //                     // Handle the error
+        //                     console.log('Error:', error);
+        //                 }
+        //             });
+        //         } else {
+        //             if (allComboCardLen > 1) {
+        //                 let fixtures = [];
 
-                        allComboCard.each(function () {
-                            fixtures.push({
-                                fixture: $(this).find('.fixture-id').text(),
-                                stake_amount: 0,
-                                predicted_outcome: $(this).find('.team-name').text()
-                            });
-                        });
+        //                 allComboCard.each(function () {
+        //                     fixtures.push({
+        //                         fixture: $(this).find('.fixture-id').text(),
+        //                         stake_amount: 0,
+        //                         predicted_outcome: $(this).find('.team-name').text()
+        //                     });
+        //                 });
 
-                        $.ajax({
-                            type: 'POST',
-                            url: 'place-bet/',
-                            headers: {
-                                'X-CSRFToken': csrfToken // Include the CSRF token in the headers
-                            },
-                            data: {
-                                'slipID': slipID,
-                                'fixtures': JSON.stringify(fixtures), // Send fixtures as a JSON string
-                                'total_stake_amount': $('.bet-slip-calculation').find('.total-stake').text(),
-                                'total_payout': $('.bet-slip-calculation').find('.total-est-return').text(),
-                                'combo': "True"
-                            },
-                            success: function (response) {
-                                if (response && response.error) {
-                                    console.log(response.error);
-                                } else {
-                                    console.log(response.message);
-                                }
-                            },
-                            error: function (xhr, status, error) {
-                                console.log(xhr.responseText);
-                            }
-                        });
+        //                 $.ajax({
+        //                     type: 'POST',
+        //                     url: 'place-bet/',
+        //                     headers: {
+        //                         'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+        //                     },
+        //                     data: {
+        //                         'slipID': slipID,
+        //                         'fixtures': JSON.stringify(fixtures), // Send fixtures as a JSON string
+        //                         'total_stake_amount': $('.bet-slip-calculation').find('.total-stake').text(),
+        //                         'total_payout': $('.bet-slip-calculation').find('.total-est-return').text(),
+        //                         'combo': "True"
+        //                     },
+        //                     success: function (response) {
+        //                         if (response && response.error) {
+        //                             console.log(response.error);
+        //                         } else {
+        //                             console.log(response.message);
+        //                         }
+        //                     },
+        //                     error: function (xhr, status, error) {
+        //                         console.log(xhr.responseText);
+        //                     }
+        //                 });
 
-                    } else {
-                        let fixtures = [];
-                        allComboCard.each(function () {                    
-                           fixtures.push({
-                                fixture: $(this).find('.fixture-id').text(),
-                                stake_amount: 0,
-                                predicted_outcome: $(this).find('.team-name').text()
-                            });
-                        });
-                        
-                        $.ajax({
-                            type: 'POST',
-                            url: 'place-bet/',
-                            headers: {
-                                'X-CSRFToken': csrfToken // Include the CSRF token in the headers
-                            },
-                            data: {
-                                'slipID': slipID,
-                                'fixtures': JSON.stringify(fixtures),
-                                'stake_amount': 0,
-                                //'predicted_outcome': $(this).find('.team-name').text(),
-                                'total_stake_amount': $('.bet-slip-calculation').find('.total-stake').text(),
-                                'total_payout':  $('.bet-slip-calculation').find('.total-est-return').text(),
-                                'combo' : "False"
+        //             } else {
+        //                 let fixtures = [];
+                                                
+        //                 $.ajax({
+        //                     type: 'POST',
+        //                     url: 'place-bet/',
+        //                     headers: {
+        //                         'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+        //                     },
+        //                     data: {
+        //                         'slipID': slipID,
+        //                         'fixture': $(this).find('.fixture-id').text(),
+        //                         'stake_amount': 0,
+        //                         'predicted_outcome': $(this).find('.team-name').text(),
+        //                         'total_stake_amount': $('.bet-slip-calculation').find('.total-stake').text(),
+        //                         'total_payout':  $('.bet-slip-calculation').find('.total-est-return').text(),
+        //                         'combo' : "False"
 
-                            },
-                            success: function (response) {
+        //                     },
+        //                     success: function (response) {
                                 
-                                if (response && response.error) {
-                                    // Redirect to the error route
-                                    console.log(response.error);
-                                    window.location.href = 'error2/';
-                                } else {
-                                    // Handle success scenario (optional)
-                                    console.log(response.message);
+        //                         if (response && response.error) {
+        //                             // Redirect to the error route
+        //                             console.log(response.error);
+        //                             window.location.href = 'error2/';
+        //                         } else {
+        //                             // Handle success scenario (optional)
+        //                             console.log(response.message);
                                     
-                                }
-                            },
-                            error: function (xhr, status, error) {
-                                // Handle the error
-                                console.log(xhr.responseText);
+        //                         }
+        //                     },
+        //                     error: function (xhr, status, error) {
+        //                         // Handle the error
+        //                         console.log(xhr.responseText);
                 
-                                window.location.href = 'error2/';
-                            }
-                        });
+        //                         window.location.href = 'error2/';
+        //                     }
+        //                 });
 
                         
 
-                    }
+        //             }
                         
-                }
+        //         }
             //}
-            var All_BSCard = $('.single-bs-card.singleBS').not('.hidden').length;
-            var singlePlacedC = $('.single-bet-place.placed');
-            if(All_BSCard >= 1 ) {
-                $('.successfull-card').show();
-                singlePlacedC.removeClass("placed");
-                $('.single-bs-card').not('.hidden').remove();
-                totalStakeCount();
-                slipCounter();
-            } else {
+         
+           
                 $('.successfull-card').hide();
-                displayEmptySlip();
-            }
-        }
+            
+                function displaySuccessBet() {
+                    const stakeAmount = parseFloat($('.bet-slip-calculation .total-stake').text());
+                    const userBalance = parseFloat($("#user-details").data("account-balance"));
+                    const maxStakeAmount = parseFloat($("#user-details").data("max-stake-amount"));
+                    const usernameMaxStakeAmount = parseFloat($("#user-details").data("username-max-stake-amount"));
+                    const fixtureStakeLimit = parseFloat($(`#fixture-${fixtureID}`).data("fixturestake"));
+                    const allComboCards = $('.all-bs-card .single-bs-card.card-combo').not('.hidden');
+                    const slipID = uuidv4();  // Ensure uuidv4 is defined somewhere if you haven't already
+                    const isCombo = allComboCards.length > 1;
+            
+                    const errorUrls = {
+                        balance: 'error/',
+                        usernameStake: 'error4/',
+                        maxStake: 'error3/',
+                        fixtureLimit: `error5/${fixtureStakeLimit}`,
+                        general: 'error2/'
+                    };
+            
+                    // Check various error conditions
+                    if (stakeAmount > userBalance) {
+                        redirectToError(errorUrls.balance);
+                    } else if (stakeAmount > usernameMaxStakeAmount) {
+                        redirectToError(errorUrls.usernameStake);
+                    } else if (stakeAmount > maxStakeAmount) {
+                        redirectToError(errorUrls.maxStake);
+                    } else if (stakeAmount > fixtureStakeLimit) {
+                        redirectToError(errorUrls.fixtureLimit, { fixtureStakeLimit });
+                    } else {
+                        const fixtures = isCombo ? getComboFixtures(allComboCards) : getSingleFixture();
+                        submitBet(fixtures, isCombo, slipID, stakeAmount);
+                    }
+                }
+            
+                function redirectToError(url, data = {}) {
+                    $.ajax({
+                        type: 'GET',
+                        url: url,
+                        data,
+                        success: () => window.location.href = url,
+                        error: (error) => console.error('Error:', error)
+                    });
+                }
+            
+                function getComboFixtures(cards) {
+                    return cards.map((_, card) => ({
+                        fixture: $(card).find('.fixture-id').text(),
+                        stake_amount: 0,  // Update with actual stake if needed
+                        predicted_outcome: $(card).find('.team-name').text()
+                    })).get();
+                }
+            
+                function getSingleFixture() {
+                    const fixtureID = $('.single-bs-card.singleBS').find('.fixture-id').text();
+                    const predictedOutcome = $('.single-bs-card.singleBS').find('.team-name').text();
+                    return [{
+                        fixture: fixtureID,
+                        stake_amount: 0,  // Update with actual stake if needed
+                        predicted_outcome: predictedOutcome
+                    }];
+                }
+            
+                function submitBet(fixtures, isCombo, slipID, stakeAmount) {
+                    const csrfToken = $('[name=csrfmiddlewaretoken]').val();
+                    const totalPayout = $('.bet-slip-calculation .total-est-return').text();
+            
+                    // Prepare the data to be sent in the AJAX request
+                    const data = {
+                        slipID: slipID,
+                        fixtures: JSON.stringify(fixtures),
+                        total_stake_amount: stakeAmount,
+                        total_payout: totalPayout,
+                        combo: isCombo.toString()
+                    };
+            
+                    // If it's a single bet (not a combo), we need to add the single fixture data
+                    if (!isCombo) {
+                        const fixtureID = $('.single-bs-card.singleBS').find('.fixture-id').text();
+                        const predictedOutcome = $('.single-bs-card.singleBS').find('.team-name').text();
+            
+                        data['fixture'] = fixtureID;
+                        data['predicted_outcome'] = predictedOutcome;
+                    }
+            
+                    $.ajax({
+                        type: 'POST',
+                        url: 'place-bet/',
+                        headers: { 'X-CSRFToken': csrfToken },
+                        data: data,
+                        success: (response) => {
+                            if (response.error) {
+                                console.error(response.error);
+                                window.location.href = 'error2/';
+                            } else {
+                                console.log(response.message);
+                                var All_BSCard = $('.single-bs-card.singleBS').not('.hidden').length;
+                                var singlePlacedC = $('.single-bet-place.placed');
+                                if (All_BSCard >= 1) {
+                                    $('.successfull-card').show();
+                                    singlePlacedC.removeClass("placed");
+                                    $('.single-bs-card').not('.hidden').remove();
+                                    totalStakeCount();
+                                    slipCounter();
+                                } else {
+                                    $('.successfull-card').hide();
+                                    displayEmptySlip();
+                                }
+                            }
+                        },
+                        error: (xhr) => {
+                            console.error('AJAX Error:', xhr.responseText);
+                            window.location.href = 'error2/';
+                        }
+                    });
+                }
+            
+                var All_BSCard = $('.single-bs-card.singleBS').not('.hidden').length;
+                var singlePlacedC = $('.single-bet-place.placed');
+                if (All_BSCard >= 1) {
+                    $('.successfull-card').show();
+                    singlePlacedC.removeClass("placed");
+                    $('.single-bs-card').not('.hidden').remove();
+                    totalStakeCount();
+                    slipCounter();
+                } else {
+                    $('.successfull-card').hide();
+                    displayEmptySlip();
+                }
+            
+            
+           
+            
+    
        
         $(document).on('click', '.slip-dlt', function(){
             $(this).parents('.single-bs-card').remove();

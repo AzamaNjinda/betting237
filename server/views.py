@@ -513,67 +513,170 @@ def withdraw(request):
     return candy.render(request, "dashboard-withdraw.html", context)
 
 @login_required(login_url='/login')
-@csrf_exempt
-def place_bet(request):
-    user = request.user
-    if request.method == 'POST':
-        slip_id = request.POST.get('slipID').strip()
-        total_stake_amount = request.POST.get('total_stake_amount')
-        total_payout = request.POST.get('total_payout')
-        fixtures = json.loads(request.POST.get('fixtures'))  # Load fixtures from JSON string
-        combo = request.POST.get('combo')
+# @csrf_exempt
+# def place_bet(request):
+#     user = request.user
+#     if request.method == 'POST':
+#         slip_id = request.POST.get('slipID').strip()
+#         total_stake_amount = request.POST.get('total_stake_amount')
+#         total_payout = request.POST.get('total_payout')
+#         fixtures = json.loads(request.POST.get('fixtures'))  # Load fixtures from JSON string
+#         fixture_single = request.POST.get('fixture') 
+#         predicted_outcome_single = request.POST.get('predicted_outcome') 
+#         combo = request.POST.get('combo')
 
+#         if fixtures:    
+#             for fixture_data in fixtures:
+#                 fixture_id = fixture_data['fixture']
+#                 existing_bet = BetFixture.objects.filter(bet_slip__user=user, fixture_id=fixture_id).exists()
+#                 if existing_bet:
+#                     response = {'error': 'You have already placed a bet on this fixture.'}
+#                     return JsonResponse(response)
             
-        for fixture_data in fixtures:
-            fixture_id = fixture_data['fixture']
-            existing_bet = BetFixture.objects.filter(bet_slip__user=user, fixture_id=fixture_id).exists()
-            if existing_bet:
-                response = {'error': 'You have already placed a bet on this fixture.'}
-                return JsonResponse(response)
+#         if fixture_single:
+#             existing_bet = BetFixture.objects.filter(bet_slip__user=user, fixture_id=fixture_single).exists()
+#             if existing_bet:
+#                 response = {'error': 'You have already placed a bet on this fixture.'}
+#                 return JsonResponse(response)
 
-        # Validate slip_id
-        if not slip_id:
-            return JsonResponse({'error': 'Invalid slip ID'}, status=400)
+#         # Validate slip_id
+#         if not slip_id:
+#             return JsonResponse({'error': 'Invalid slip ID'}, status=400)
 
-        # Retrieve or create a single BetSlip for the slip_id and user
-        bet_slip, created = BetSlip.objects.get_or_create(
-            slipID=slip_id,
-            user=user,
-            defaults={
-                'total_stake_amount': float(total_stake_amount),  # Initialize total stake amount
-                'total_payout': float(total_payout),              # Initialize total payout
-            }
+#         # Retrieve or create a single BetSlip for the slip_id and user
+#         bet_slip, created = BetSlip.objects.get_or_create(
+#             slipID=slip_id,
+#             user=user,
+#             defaults={
+#                 'total_stake_amount': float(total_stake_amount),  # Initialize total stake amount
+#                 'total_payout': float(total_payout),              # Initialize total payout
+#             }
+#         )
+
+#         # If the BetSlip already existed, update the stake and payout values
+#         if not created:
+#             bet_slip.total_stake_amount += float(total_stake_amount)  # Accumulate stake amount
+#             bet_slip.total_payout += float(total_payout)              # Accumulate payout amount
+#             bet_slip.is_combo = combo
+
+#         # Save the BetSlip
+#         bet_slip.save()
+
+#         # Create BetFixture for each fixture in the request
+#         if fixtures:
+#             for fixture_data in fixtures:
+#                 fixture = get_object_or_404(Fixture, id=fixture_data['fixture'])
+#                 BetFixture.objects.create(
+#                     bet_slip=bet_slip,
+#                     fixture=fixture,
+#                     stake_amount=float(fixture_data['stake_amount']),
+#                     predicted_outcome=fixture_data['predicted_outcome']
+#                 )
+
+#         if fixture_single:
+#             fixture = get_object_or_404(Fixture, id=fixture_single)
+#             BetFixture.objects.create(
+#                 bet_slip=bet_slip,
+#                 fixture=fixture,
+#                 stake_amount=0,
+#                 predicted_outcome=predicted_outcome_single
+#             )
+
+#         # Update the user's account balance based on the total stake amount
+#         user.account_balance = max(0, user.account_balance - float(total_stake_amount))
+#         user.save()
+
+#         response = {
+#             'message': f'Bet placed successfully! BetSlip ID: {slip_id}, Total Stake: {total_stake_amount}, Total Payout: {total_payout}'
+#         }
+#         return JsonResponse(response)
+#     else:
+#         return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+@login_required(login_url='/login')
+def place_bet(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+    user = request.user
+    slip_id = request.POST.get('slipID', '').strip()
+    if not slip_id:
+        return JsonResponse({'error': 'Invalid slip ID'}, status=400)
+
+    total_stake_amount = float(request.POST.get('total_stake_amount', 0))
+    total_payout = float(request.POST.get('total_payout', 0))
+    fixtures = json.loads(request.POST.get('fixtures', '[]'))
+    combo = request.POST.get('combo') == 'True'
+
+    # Handle single fixture case (if not a combo bet)
+    if not combo and len(fixtures) == 0:
+        fixture_single = request.POST.get('fixture')
+        predicted_outcome_single = request.POST.get('predicted_outcome')
+        if not fixture_single or not predicted_outcome_single:
+            return JsonResponse({'error': 'No fixture data provided for a single bet'}, status=400)
+
+        # Add the single fixture to the fixtures list to process it the same way
+        fixtures = [{
+            'fixture': fixture_single,
+            'stake_amount': 0,  # Or appropriate stake amount
+            'predicted_outcome': predicted_outcome_single
+        }]
+
+    # Validate bets
+    if not validate_bets(user, fixtures):
+        return JsonResponse({'error': 'You have already placed a bet on this fixture.'})
+
+    # Create or update bet slip
+    bet_slip, created = BetSlip.objects.get_or_create(
+        slipID=slip_id, user=user,
+        defaults={
+            'total_stake_amount': total_stake_amount,
+            'total_payout': total_payout,
+            'is_combo': combo
+        }
+    )
+
+    if not created:
+        update_bet_slip(bet_slip, total_stake_amount, total_payout, combo)
+
+    # Create the bet fixtures
+    create_bet_fixtures(bet_slip, fixtures)
+
+    # Update user balance
+    update_user_balance(user, total_stake_amount)
+
+    response = {
+        'message': f'Bet placed successfully! BetSlip ID: {slip_id}, '
+                   f'Total Stake: {total_stake_amount}, Total Payout: {total_payout}'
+    }
+    return JsonResponse(response)
+
+def validate_bets(user, fixtures):
+    for fixture_data in fixtures:
+        fixture_id = fixture_data['fixture']
+        if BetFixture.objects.filter(bet_slip__user=user, fixture_id=fixture_id).exists():
+            return False
+    return True
+
+def update_bet_slip(bet_slip, total_stake_amount, total_payout, combo):
+    bet_slip.total_stake_amount += total_stake_amount
+    bet_slip.total_payout += total_payout
+    bet_slip.is_combo = combo
+    bet_slip.save()
+
+def create_bet_fixtures(bet_slip, fixtures):
+    for fixture_data in fixtures:
+        fixture = get_object_or_404(Fixture, id=fixture_data['fixture'])
+        BetFixture.objects.create(
+            bet_slip=bet_slip,
+            fixture=fixture,
+            stake_amount=fixture_data['stake_amount'],
+            predicted_outcome=fixture_data['predicted_outcome']
         )
 
-        # If the BetSlip already existed, update the stake and payout values
-        if not created:
-            bet_slip.total_stake_amount += float(total_stake_amount)  # Accumulate stake amount
-            bet_slip.total_payout += float(total_payout)              # Accumulate payout amount
-            bet_slip.is_combo = combo
-
-        # Save the BetSlip
-        bet_slip.save()
-
-        # Create BetFixture for each fixture in the request
-        for fixture_data in fixtures:
-            fixture = get_object_or_404(Fixture, id=fixture_data['fixture'])
-            BetFixture.objects.create(
-                bet_slip=bet_slip,
-                fixture=fixture,
-                stake_amount=float(fixture_data['stake_amount']),
-                predicted_outcome=fixture_data['predicted_outcome']
-            )
-
-        # Update the user's account balance based on the total stake amount
-        user.account_balance = max(0, user.account_balance - float(total_stake_amount))
-        user.save()
-
-        response = {
-            'message': f'Bet placed successfully! BetSlip ID: {slip_id}, Total Stake: {total_stake_amount}, Total Payout: {total_payout}'
-        }
-        return JsonResponse(response)
-    else:
-        return JsonResponse({'error': 'Invalid request method'}, status=405)
+def update_user_balance(user, total_stake_amount):
+    user.account_balance = max(0, user.account_balance - total_stake_amount)
+    user.save()
 
 def about(request):
     return candy.render(request, "about.html")
